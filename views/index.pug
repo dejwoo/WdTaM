@@ -1,0 +1,31 @@
+extends layout
+
+block header
+    header
+        nav.navbar
+            h1 eService Dashboard - Tickets
+            p You are currently logged in as #{user.username}
+    aside#slide-out.side-nav
+        ul
+            each item in [{title:"Tickets", link:'/tickets'}, {title:"Clients",link:'/clients'},{title:"Statistics",link:'/stats'},{title:"Logout", link:'/logout'}]
+                li
+                    a(href=item.link) #{item.title}
+
+block content
+
+    if (!user)
+        header
+            nav
+                h1 eService Dashboard - Login
+        a(href="/login") Login
+        br
+        a(href="/register") Register
+    if (user)
+        - var values = [{client:"Ricky Lewis",ticketTitle:"Critical car malfunction", ticketAge: 10, ticketDescr:'Greed ho! hoist to be commanded.'},{client:"Marcella Hawkins",ticketTitle:"Something is not working", ticketAge: 9, ticketDescr:'Greed ho! hoist to be commanded.'}]
+        section
+            ul
+                each item in values
+                    li= item.client + " : " + item.ticketTitle
+
+                else
+                    li There are no values
