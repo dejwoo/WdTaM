@@ -33,35 +33,15 @@ body {
   line-height: 2.5em;
   text-align: center;
   border-radius: 50%;
-  background: #efd7a5;
+  background: #b4d2bb;
   vertical-align: middle;
   margin-right: 1em;
   color: white; }
-
-.wrapper {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex; }
-
-.item {
-  -webkit-box-flex: 1 200px;
-  -moz-box-flex: 1 200px;
-  -webkit-flex: 1 200px;
-  -ms-flex: 1 200px;
-  flex: 1 200px;
-  -webkit-box-ordinal-group: 2;
-  -moz-box-ordinal-group: 2;
-  -ms-flex-order: 2;
-  -webkit-order: 2;
-  order: 2; }
 
 .space {
   margin: 7px 0; }
 
 .space-switch {
   margin: 3em 0; }
-
 
 /*# sourceMappingURL=style.css.map */

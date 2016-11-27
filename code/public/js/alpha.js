@@ -100,7 +100,6 @@ $(document).ready(function () {
         $(".dropdown-right").dropdown({
             alignment: "right"
         }),
-        $(".button-collapse:not(.right-sidebar-button)").sideNav(),
         $(".button-collapse.right-sidebar-button").sideNav({
             edge: "right"
         }),
