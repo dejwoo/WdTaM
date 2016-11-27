@@ -50,8 +50,11 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://localhost/tmah');
-
+ var options = {
+            user: "webUser",
+            pass: "4z!WXiMr^J"
+        }
+db = mongoose.connect('mongodb://dejwoo.com:28001/wdtam', options);
 //app.use('/login', login);
 app.use('/users', users);
 

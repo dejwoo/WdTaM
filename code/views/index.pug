@@ -2,30 +2,28 @@ extends layout
 
 block header
     header
-        nav.navbar
-            h1 eService Dashboard - Tickets
-            p You are currently logged in as #{user.username}
-    aside#slide-out.side-nav
-        ul
-            each item in [{title:"Tickets", link:'/tickets'}, {title:"Clients",link:'/clients'},{title:"Statistics",link:'/stats'},{title:"Logout", link:'/logout'}]
-                li
-                    a(href=item.link) #{item.title}
+        nav(class="light-blue lighten-1" role="navigation")
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">$TODO_LOGO</a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="#">Vehicles</a></li>
+                    <li><a href="#">Your problems</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
+            </div>
 
 block content
 
-    if (!user)
-        header
-            nav
-                h1 eService Dashboard - Login
-        a(href="/login") Login
-        br
-        a(href="/register") Register
-    if (user)
-        - var values = [{client:"Ricky Lewis",ticketTitle:"Critical car malfunction", ticketAge: 10, ticketDescr:'Greed ho! hoist to be commanded.'},{client:"Marcella Hawkins",ticketTitle:"Something is not working", ticketAge: 9, ticketDescr:'Greed ho! hoist to be commanded.'}]
-        section
-            ul
-                each item in values
-                    li= item.client + " : " + item.ticketTitle
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h1 class="header center orange-text">Starter Template</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+            </div>
+            <div class="row center">
+                <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+            </div>
+        </div>
+    </div>
 
-                else
-                    li There are no values
