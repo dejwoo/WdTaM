@@ -1,0 +1,28 @@
+mixin namedHeader(title)
+    header
+    if (!user)
+        nav
+            .nav-wrapper
+                a(href="#!" class="brand-logo")
+                    i(class="material-icons") menu
+                h3= 'eService Dashboard -' + title
+    if (user)
+        nav
+            .nav-wrapper
+                a(href="#!" data-activates="slide-out" class="brand-logo button-collapse")
+                    i(class="material-icons") menu
+                h3= 'eService Dashboard -' + title
+                ul.right.hide-on-med-and-down
+                    li
+                        a(href='#')
+                            i.material-icons search
+                        a(href='#')
+                            i.material-icons view_module
+                        a(href='#')
+                            i.material-icons refresh
+                        a(href='#')
+                            i.material-icons module_vert
+
+
+mixin clientItem(item)
+    li= item.client + " : " + item.ticketTitle

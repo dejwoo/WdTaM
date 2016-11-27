@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:code/views/login.pug
 extends layout
 
 block content
@@ -13,3 +14,28 @@ block content
             button.btn.btn-default(type='submit') Submit &nbsp;
     a(href='/')
         button.btn.btn-primary(type="button") Cancel
+=======
+extends layout
+include ./mixins.pug
+
+block content
+    +namedHeader('Home')
+    .container
+        h1.center Login Page
+        br
+        form.col.s4.m4.l4(role='form', action="/login",method="post")
+            .row
+                .input-field.col.s12.m6.l4.offset-m3.offset-l4
+                    input#username.validate(type='text', name="username")
+                    label(for="username") Username
+            .row
+                .input-field.col.s12.m6.l4.offset-m3.offset-l4
+                    input#password.validate(type='password', name="password")
+                    label(for="password") Password
+            .row
+                .col.s6.center.m4.l3.offset-m2.offset-l3
+                    button.btn.floating.waves-effect.waves-light(type='submit') Submit
+                .col.s6.center.m4.l3
+                    a(href='/')
+                        button.btn.floating.waves-effect.waves-light(type="button") Cancel
+>>>>>>> Stashed changes:views/login.pug

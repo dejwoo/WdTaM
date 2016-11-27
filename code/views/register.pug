@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:code/views/register.pug
 extends layout
 
 block content
@@ -13,3 +14,30 @@ block content
             button.btn.btn-default(type='submit') Submit &nbsp;
             a(href='/')
                 button.btn.btn-primary(type="button") Cancel
+=======
+extends layout
+include ./mixins.pug
+
+block content
+    +namedHeader('Registration')
+    if (!user)
+        .container
+            h1.center Register Page
+            br
+            form#formValidate.col.s6.m6.l6(role='form', action="/register",method="post")
+                .row
+                    .input-field.col.s12.m6.offset-m3
+                        input#username.validate(type='text', name="username")
+                        label(for="username") Username
+                .row
+                    .input-field.col.s12.m6.offset-m3
+                        input#password.validate(type='password', name="password")
+                        label(for="password") Password
+                .row
+                    .col.s6.center.m4.l3.offset-m2.offset-l3
+                        button.btn.floating.waves-effect.waves-light(type='submit', name) Submit
+
+                    .col.s6.center.m4.l3
+                        a(href='/')
+                            button.btn.floating.waves-effect.waves-light(type="button") Cancel
+>>>>>>> Stashed changes:views/register.pug
