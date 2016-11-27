@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    +namedHeader('Home')
+        if (user)
+            -
+                var menuitems = [{title:"Tickets", link:'/tickets', icon:'move_to_inbox'},
+                {title:"Clients",link:'/clients', icon:'people'},
+                {title:"Statistics",link:'/stats', icon:'description'},
+                {title:"Logout", link:'/logout', icon:'exit_to_app'}]
+            aside#slide-out.side-nav.white.fixed
+                ul.sidebar-menu.collapsible(data-collapsible="accordion")
+                    each item in menuitems
+                        +menuitem(item)
+
+            main.mn-inner.inner-active-sidebar
+                block inner-content
+                //- var values = [{client:"Ricky Lewis",ticketTitle:"Critical car malfunction", ticketAge: 10, ticketDescr:'Greed ho! hoist to be commanded.'},{client:"Marcella Hawkins",ticketTitle:"Something is not working", ticketAge: 9, ticketDescr:'Greed ho! hoist to be commanded.'}]
+                //section
+                    ul
+                        each item in values
+                            +clientItem(item)
+
+                        else
+                            li There are no values
