@@ -1,3 +1,43 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.mn-header {
+  z-index: 999; }
+
+.material-design-hamburger a {
+  display: block;
+  border: none;
+  background: 0 0;
+  outline: 0;
+  padding-top: 30px; }
+
+.material-design-hamburger__icon {
+  padding: 3rem 1rem;
+  cursor: pointer; }
+
+.material-design-hamburger__layer {
+  display: block;
+  width: 13px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.9);
+  position: relative;
+  animation-duration: .2s;
+  animation-timing-function: ease-in-out; }
+
+[data-letters]:before {
+  content: attr(data-letters);
+  display: inline-block;
+  font-size: 1em;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  text-align: center;
+  border-radius: 50%;
+  background: #efd7a5;
+  vertical-align: middle;
+  margin-right: 1em;
+  color: white; }
+
 .wrapper {
   display: -webkit-box;
   display: -moz-box;
@@ -22,5 +62,6 @@
 
 .space-switch {
   margin: 3em 0; }
+
 
 /*# sourceMappingURL=style.css.map */

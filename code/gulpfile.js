@@ -13,6 +13,7 @@ var browserify = require('browserify');
 var transform = require('vinyl-transform');
 var gulpPugBeautify = require('gulp-pug-beautify');
 var pug = require('gulp-pug');
+var puglint = require('gulp-pug-lint');
 
 reload = browserSync.reload;
 
@@ -25,10 +26,9 @@ gulp.task('lint', function () {
 
 // Compile Our Sass
 gulp.task('sass', function () {
-    return gulp.src('public/stylesheets/*.sass')
-        .pipe(sass())
-        .pipe(gulp.dest('public/stylesheets/css'))
-        .pipe(browserSync.stream());
+    return gulp.src('./public/styles/**/*.[scss,sass]')
+        .pipe(sass().sync().on('error', sass.logError))
+        .pipe(gulp.dest('public/stylesheets/'));
 });
 
 // Concatenate & Minify JS
@@ -45,7 +45,6 @@ gulp.task('scripts', function () {
 gulp.task('views', function (done) {
     return gulp.src('views/**.pug')
         .pipe(pug())
-        .pipe(gulpPugBeautify({omit_empty: true}))
         .pipe(gulp.dest('./public'))
         .on('end', done)
 });
@@ -92,9 +91,11 @@ gulp.task('browser-sync', ['nodemon'], function () {
     });
 });
 
-gulp.task('default', ['browser-sync', 'sass'], function () {
+gulp.task('default', ['browser-sync'], function () {
     gulp.watch('./views/**/*.pug', browserSync.reload);
     gulp.watch('./public/**/*.js', browserSync.reload);
     gulp.watch('./public/**/*.css', browserSync.reload);
+    gulp.watch('./public/**/*.[sass,scss]', ['sass']);
     gulp.watch(['./routes/**/*.js', './app.js', './bin/www'], ['bs-delay']);
 });
+

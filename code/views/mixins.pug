@@ -1,0 +1,38 @@
+mixin namedHeader(title)
+    header.mn-header.navbar-fixed
+        nav.light-blue
+            .nav-wrapper.row
+                if (!user)
+                    .header-title.col.s3.m3
+                        span.chapter-title
+                            = 'eService Dashboard - ' + title
+
+                if (user)
+                    section.material-design-hamburger.navigation-toggle
+                        a.show-on-large.material-design-hamburger__icon.reverse-icon( href="javascript:void(0)" data-activates="slide-out" )
+                            //i(class="material-icons") menu
+                            span.material-design-hamburger__layer.material-design-hamburger__icon--from-arrow
+
+                    .header-title.col.s12.m6
+                        span.chapter-title
+                            = 'eService Dashboard - ' + title
+                    form.left.search.col.s6.hide-on-small-and-down
+                        .input-field
+                            input#search(type="search",placeholder="Search",autocomplete="off")
+                            label.active(for="search")
+                                i.material-icons.search-icon search
+                    if (!user.profile_img)
+                        -var letter = user.username.substr(0,1)
+                        .right.col.s9.m6.nav-right-menu
+                            img.circle(src='' alt='' data-letters=letter)
+
+
+mixin clientItem(item)
+    li= item.client + " : " + item.ticketTitle
+
+
+mixin menuitem(item)
+    li.no-padding
+        a.waves-effect.waves-blue(href=item.link)
+            i.material-icons #{item.icon}
+            =item.title
