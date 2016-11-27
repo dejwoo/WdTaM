@@ -17,11 +17,10 @@
   -webkit-order: 2;
   order: 2; }
 
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+.space {
+  margin: 7px 0; }
 
-a {
-  color: #00B7FF; }
+.space-switch {
+  margin: 3em 0; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,15 +1,25 @@
 extends layout
 
+include header.pug
+
 block content
-    .container
-        h1 Login Page
-        p.lead Say something worthwhile here.
-        br
-        form(role='form', action="/login",method="post", style='max-width: 300px;')
-            .form-group
-                input.form-control(type='text', name="username", placeholder='Enter Username')
-            .form-group
-                input.form-control(type='password', name="password", placeholder='Password')
-            button.btn.btn-default(type='submit') Submit &nbsp;
-    a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+    .container.center
+        .row
+            h1 Login
+            p.lead Please login into your account
+            if reason
+                .card-panel
+                    span.red-text.text-darken-2
+                        =reason.message
+        .row
+            form(role='form',action="/login",method="post", class="col s12 m6 offset-m3")
+                .row.input-field
+                    input#login.validate(type='text', name="username", placeholder='Enter Username')
+                    label(for="login") User Name
+                .row.input-field
+                    input#password.validate(type='password', name="password", placeholder='Password')
+                    label(for="password") Password
+                .row
+                    a.btn.col.space.s12.m4.waves-effect.waves-light(href='/') Cancel
+
+                    button.btn.col.space.s12.m4.offset-m4.waves-effect.waves-light(type='submit') Submit

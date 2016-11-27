@@ -1,18 +1,6 @@
 extends layout
 
-block header
-    header
-        nav(class="light-blue lighten-1" role="navigation")
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-              <ul class="right hide-on-med-and-down">
-                <li><a href="#">Navbar Link</a></li>
-              </ul>
-
-              <ul id="nav-mobile" class="side-nav">
-                <li><a href="#">Navbar Link</a></li>
-              </ul>
-              <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
+include header.pug
 
 block content
 
@@ -22,11 +10,21 @@ block content
             <div class="row center">
                 <h5 class="header col s12 light">A modern approach to car troubles!</h5>
             </div>
-            <div class="row center collection">
-                <a href="#" class="btn-large waves-effect waves-light orange collection-item">Your problem's</a>
-                <a href="#" class="btn-large waves-effect waves-light orange collection-item">History</a>
-                <a href="#" class="btn-large waves-effect waves-light orange collection-item">Help</a>
-            </div>
+
+            //- only for mobile client version
+            div.hide-on-large-only
+                if user
+                    .row.center
+                        a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="#") Your problem's
+                        a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="#") History
+                        a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="#") Help
+                    .fixed-action-btn
+                        <a class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
+                if !user
+                    .row.center
+                        a.col.s12.space.btn-large.waves-effect.waves-light.blue(href="login") About
+                        a.col.s12.space.btn-large.waves-effect.waves-light.blue(href="login") Login
+                        a.col.s12.space.btn-large.waves-effect.waves-light.blue(href="register") Register
         </div>
     </div>
 
