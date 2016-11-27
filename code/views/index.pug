@@ -3,26 +3,29 @@ extends layout
 block header
     header
         nav(class="light-blue lighten-1" role="navigation")
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">$TODO_LOGO</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="#">Vehicles</a></li>
-                    <li><a href="#">Your problems</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="#">Navbar Link</a></li>
+              </ul>
+
+              <ul id="nav-mobile" class="side-nav">
+                <li><a href="#">Navbar Link</a></li>
+              </ul>
+              <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
 
 block content
 
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-            <h1 class="header center orange-text">Starter Template</h1>
+            <h1 class="header center orange-text">Automobile Service Application</h1>
             <div class="row center">
-                <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                <h5 class="header col s12 light">A modern approach to car troubles!</h5>
             </div>
-            <div class="row center">
-                <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+            <div class="row center collection">
+                <a href="#" class="btn-large waves-effect waves-light orange collection-item">Your problem's</a>
+                <a href="#" class="btn-large waves-effect waves-light orange collection-item">History</a>
+                <a href="#" class="btn-large waves-effect waves-light orange collection-item">Help</a>
             </div>
         </div>
     </div>
