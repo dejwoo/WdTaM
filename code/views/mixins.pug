@@ -1,0 +1,29 @@
+mixin namedHeader(title)
+    header
+        nav.light-blue
+            .nav-wrapper
+                if (!user)
+                    a.brand-logo(href="#")
+                        i(class="material-icons") menu
+                        ='eService Dashboard -' + title
+
+                if (user)
+                    //section.material-design-hamburger
+                    a.brand-logo.button-collapse(href="#")
+                        i(class="material-icons") menu
+                        span
+                            = 'eService Dashboard -' + title
+                    ul.right.hide-on-small-and-down
+                        li
+                            a(href='#')
+                                i.material-icons search
+                            a(href='#')
+                                i.material-icons view_module
+                            a(href='#')
+                                i.material-icons refresh
+                            a(href='#')
+                                i.material-icons module_vert
+
+
+mixin clientItem(item)
+    li= item.client + " : " + item.ticketTitle

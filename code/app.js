@@ -20,6 +20,7 @@ app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -50,10 +51,10 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
- var options = {
-            user: "webUser",
-            pass: "4z!WXiMr^J"
-        }
+var options = {
+    user: "webUser",
+    pass: "4z!WXiMr^J"
+};
 db = mongoose.connect('mongodb://dejwoo.com:28001/wdtam', options);
 //app.use('/login', login);
 app.use('/users', users);

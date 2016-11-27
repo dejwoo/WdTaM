@@ -9,7 +9,7 @@ describe('Account', function() {
         var options = {
             user: "webUser",
             pass: "4z!WXiMr^J"
-        }
+        };
         db = mongoose.connect('mongodb://dejwoo.com:28001/wdtam', options);
         done();
     });

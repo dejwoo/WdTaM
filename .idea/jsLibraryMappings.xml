@@ -3,6 +3,5 @@
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{jquery, jquery-2.1.1, jquery-2.1.4, materialize}" />
     <includedPredefinedLibrary name="Node.js Core" />
-    <excludedPredefinedLibrary name="wdtam/node_modules" />
   </component>
 </project>

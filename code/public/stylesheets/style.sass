@@ -1,34 +1,25 @@
-@mixin flexbox()
-  display: -webkit-box
-  display: -moz-box
-  display: -ms-flexbox
-  display: -webkit-flex
-  display: flex
-
-@mixin flex($values)
-  -webkit-box-flex: $values
-  -moz-box-flex: $values
-  -webkit-flex: $values
-  -ms-flex: $values
-  flex: $values
-
-@mixin order($val)
-  -webkit-box-ordinal-group: $val
-  -moz-box-ordinal-group: $val
-  -ms-flex-order: $val
-  -webkit-order: $val
-  order: $val
-
-.wrapper
-  @include flexbox()
-
-.item
-  @include flex(1 200px)
-  @include order(2)
-
 body
-  padding: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
 
-a
-  color: #00B7FF
+.mn-header
+  z-index: 999
+
+.material-design-hamburger a
+  display: block
+  border: none
+  background: 0 0
+  outline: 0
+  padding-top: 30px
+
+.material-design-hamburger__icon
+  padding: 3rem 1rem
+  cursor: pointer
+
+.material-design-hamburger__layer
+  display: block
+  width: 13px
+  height: 1.5px
+  background: rgba(255, 255, 255, .9)
+  position: relative
+  animation-duration: .2s
+  animation-timing-function: ease-in-out
