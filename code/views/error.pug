@@ -1,5 +1,7 @@
-extends layout
+extends ./layouts/default
 
 block content
-  h2= message + " - " + error.status
-  pre #{error.stack}
+    if error && message
+        h1= message
+        h2= error.status
+        pre #{error.stack}

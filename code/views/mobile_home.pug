@@ -1,0 +1,20 @@
+
+mixin menuitem_mobile(link,title)
+    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href=link) #{title}
+
+block inner-contet
+    //- only for mobile client version
+    div.hide-on-large-only
+        if user
+            .row.center
+                +menuitem_mobile("#","Your problems")
+                +menuitem_mobile("#","History")
+                +menuitem_mobile("#","Help")
+            .fixed-action-btn
+                a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
+                    i.material-icons add
+        else
+            .row.center
+                +menuitem_mobile("/index", "About")
+                +menuitem_mobile("/login", "Login")
+                +menuitem_mobile("/register", "Register")

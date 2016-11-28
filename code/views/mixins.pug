@@ -5,34 +5,53 @@ mixin namedHeader(title)
                 if (!user)
                     .header-title.col.s3.m3
                         span.chapter-title
-                            = 'eService Dashboard - ' + title
+                        if title == 'Home'
+                            = 'eService'
+                        else
+                            = 'eService - ' + title
+                    ul.right.hide-on-med-and-down
+                        li: a(href="#") Help
+                        li: a(href="/register") Register
+                        li: a(href="/login") Login
 
-                if (user)
+                    ul#nav-mobile.side-nav
+                        li: a(href="#") Help
+                        li: a(href="/login") Login
+                else
                     section.material-design-hamburger.navigation-toggle
-                        a.show-on-large.material-design-hamburger__icon.reverse-icon( href="javascript:void(0)" data-activates="slide-out" )
-                            //i(class="material-icons") menu
-                            span.material-design-hamburger__layer.material-design-hamburger__icon--from-arrow
+                        if (user.isMechanic)
+                            a.show-on-large.material-design-hamburger__icon.reverse-icon( href="javascript:void(0)" data-activates="slide-out" )
+                        else
+                            a.button-collapse(href="#" data-activates="nav-mobile")
+                        i.material-icons menu
+                        span.material-design-hamburger__layer.material-design-hamburger__icon--from-arrow
 
                     .header-title.col.s12.m6
                         span.chapter-title
-                            = 'eService Dashboard - ' + title
+                            if(user.isMechanic)
+                                = 'eService Dashboard - ' + title
+                            else
+                                = 'eService - ' + title
+
+                    if !user.isMechanic
+                        ul.right.hide-on-med-and-down
+                            li: a(href="#") Vehicles
+                            li: a(href="#") History
+                            li: a(href="/logout") Logout
+
                     form.left.search.col.s6.hide-on-small-and-down
                         .input-field
                             input#search(type="search",placeholder="Search",autocomplete="off")
                             label.active(for="search")
                                 i.material-icons.search-icon search
-                    if (!user.profile_img)
-                        -var letter = user.username.substr(0,1)
-                        .right.col.s9.m6.nav-right-menu
-                            img.circle(src='' alt='' data-letters=letter)
+                if (user && !user.profile_img)
+                    -var letter = user.username.substr(0,1)
+                    .right.col.s9.m6.nav-right-menu
+                        img.circle(src='' alt='' data-letters=letter)
 
 
 mixin clientItem(item)
     li= item.client + " : " + item.ticketTitle
 
 
-mixin menuitem(item)
-    li.no-padding
-        a.waves-effect.waves-blue(href=item.link)
-            i.material-icons #{item.icon}
-            =item.title
+

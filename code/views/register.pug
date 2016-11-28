@@ -1,7 +1,8 @@
-extends layout
+extends ./layouts/default
+include ./mixins
 
 block content
-    include header.pug
+    +namedHeader('Register')
     .container
         .row.center
             h1 Register
@@ -22,14 +23,20 @@ block content
                         input#firstName.validate(type='text', name="firstName")
                         label(for="firstName") First Name
                     .input-field.col.s12.m6
-                        input#password.validate(type='text', name="lastName")
+                        input#lastName.validate(type='text', name="lastName")
                         label(for="lastName") Last Name
                 .row
                     .input-field.col.s12
                         input#email.validate(type='email', name="email")
                         label(for="email") Email
-                .row.input-field.col.s8.offset-s3.m10.offset-m2.l6.offset-l4
-                    include mechanic_switch.html
+                .row
+                    .input-field.col.s8.push-s2.m8.offset-m2.l8.push-l3
+                        .switch.space-switch
+                            label(for="isMechanic")
+                                = "Customer"
+                                input#isMechanic.validate(type="checkbox" name="isMechanic")
+                                span.lever
+                                = "Mechanic"
                 .row.space
                     a.btn.col.space.s12.m4.waves-effect.waves-light(href='/') Cancel
 
