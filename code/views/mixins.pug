@@ -54,4 +54,11 @@ mixin clientItem(item)
     li= item.client + " : " + item.ticketTitle
 
 
+mixin menuitem(title, link, icon)
+    li.no-padding
+        a.waves-effect.waves-blue(href=link)
+            i.material-icons #{icon}
+            =title
 
+mixin menuitem_mobile(link,title)
+    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href=link) #{title}

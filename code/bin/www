@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('untitled1:server');
 var http = require('http');
+var chalk = require('chalk');
 
 /**
  * Get port from environment and store in Express.
@@ -81,7 +82,14 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
+ /**
+  * Start Express server.
+  */
+
+
 function onListening() {
+    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+    console.log('  Press CTRL-C to stop\n');
     var addr = server.address();
     var bind = typeof addr === 'string'
         ? 'pipe ' + addr

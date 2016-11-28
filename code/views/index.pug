@@ -1,23 +1,17 @@
-extends ./layouts/default
+extends layouts/default
 
-include ./mixins
-
-mixin menuitem(title, link, icon)
-    li.no-padding
-        a.waves-effect.waves-blue(href=link)
-            i.material-icons #{icon}
-            =title
+include mixins
 
 block content
     +namedHeader('Home')
-    .section.no-pad-bot.index-banner
-        .container
-            h1.header.center.orange-text Automobile Service Application
-            .row.center
-                h5.header.col.s12.light A modern approach to car troubles!
+    .mn-content.fixed-sidebar
+        .section.no-pad-bot.index-banner
+            .container
+                h1.header.center.orange-text Automobile Service Application
+                .row.center
+                    h5.header.col.s12.light A modern approach to car troubles!
 
-            if user
-                if user.isMechanic
+                if user && user.isMechanic
                     // Desktop left sidebar
                     aside#slide-out.side-nav.white.fixed
                         ul.sidebar-menu.collapsible(data-collapsible="accordion")
@@ -25,15 +19,6 @@ block content
                             +menuitem("Clients",'/clients','people')
                             +menuitem("Statistics",'/stats','description')
                             +menuitem("Logout",'/logout','exit_to_app')
-                else
-                    // Mobile right sidebar
-                    aside#nav-mobile.side-nav
-                        ul
-                            li: a(href="#") Vehicles
-                            li: a(href="#") History
-                            li: a(href="/logout") Logout
-
-                block inner-content
 
 
 
