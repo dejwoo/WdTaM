@@ -96,6 +96,6 @@ gulp.task('default', ['browser-sync'], function () {
     gulp.watch('./public/**/*.js', browserSync.reload);
     gulp.watch('./public/**/*.css', browserSync.reload);
     gulp.watch('./public/**/*.[sass,scss]', ['sass']);
-    gulp.watch(['./routes/**/*.js', './app.js', './bin/www'], ['bs-delay']);
+    gulp.watch(['./controllers/**/*.js', './app.js', './bin/www'], ['bs-delay']);
 });
 
