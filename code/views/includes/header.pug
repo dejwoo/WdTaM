@@ -3,12 +3,12 @@ block header
         nav.light-blue
             .nav-wrapper.row
                 if (!user)
-                    .header-title.col.s3.m3
+                    .header-title.col.s5.m3
                         span.chapter-title
-                        if title == 'Home'
-                            = 'eService'
-                        else
+                        if title
                             = 'eService - ' + title
+                        else
+                            = 'eService'
                     ul.right.hide-on-med-and-down
                         li: a(href="#") Help
                         li: a(href="/register") Register
@@ -23,10 +23,10 @@ block header
                             a.show-on-large.material-design-hamburger__icon.reverse-icon( href="javascript:void(0)" data-activates="slide-out" )
                         else
                             a.button-collapse(href="#" data-activates="nav-mobile")
-                        i.material-icons menu
-                        span.material-design-hamburger__layer.material-design-hamburger__icon--from-arrow
+                            //i.material-icons menu
+                            span.material-design-hamburger__layer.material-design-hamburger__icon--from-arrow
 
-                    .header-title.col.s12.m6
+                    .header-title.col.s5.m6
                         span.chapter-title
                             if(user.isMechanic)
                                 = 'eService Dashboard - ' + title

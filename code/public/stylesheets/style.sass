@@ -7,8 +7,182 @@ body
 main
   flex: 1 0 auto
 
+.header-title, nav
+  position: relative
+
+.loaded .loader-bg
+  opacity: 0
+  position: relative
+
 .mn-header
   z-index: 999
+
+.header-title
+  font-size: 15px
+  font-weight: 700
+  line-height: 60px
+  float: left
+  color: #fff
+  margin-left: 8px
+  cursor: pointer
+
+.header-title span
+  margin: 1px 0
+  display: block
+
+.navbar-fixed .header-title
+  margin-left: 56px
+
+nav
+  padding: 0 16px
+  line-height: 60px !important
+
+.mn-header.navbar-fixed nav .nav-wrapper
+  padding-left: 44px
+
+nav .nav-wrapper
+  padding-right: 44px
+
+/* Left Side Naviganion */
+
+.side-nav .sidenav-logo, .side-nav-wrapper
+  position: relative
+
+@media only screen and (max-width: 992px)
+  .side-nav.fixed
+    -webkit-transform: translateX(0)
+    transform: translateX(0)
+
+.side-nav
+  padding: 0 !important
+  height: calc(100% - 60px) !important
+  margin-top: 60px
+  z-index: 997
+  width: 220px
+
+#sidenav-overlay
+  display: none
+
+.sidebar-menu
+  padding-top: 15px !important
+  padding-bottom: 15px !important
+
+@media (min-width: 600px)
+  .drag-target
+    display: none
+
+.side-nav-wrapper
+  min-height: 100% !important
+  padding-bottom: 96px
+
+.side-nav
+  ul li, &.fixed ul li
+    padding: 0
+    -webkit-transition: all .3s
+    -moz-transition: all .3s
+    -o-transition: all .3s
+    transition: all 0.3s
+  ul li a, &.fixed ul li a
+    font-size: 13px
+    height: auto !important
+    color: rgba(0, 0, 0, 0.7)
+    padding: 15px 0 15px 24px !important
+    line-height: 1em !important
+  ul li a.active:hover, &.fixed ul li a.active:hover
+    background: 0 0 !important
+  ul li a span.badge, &.fixed ul li a span.badge
+    padding: 3px 6px
+    margin-top: -3px
+    font-size: 12px
+    min-width: auto !important
+    margin-right: 5px
+  ul li a span.badge.new:after, &.fixed ul li a span.badge.new:after
+    content: "" !important
+  ul li a.active-page, &.fixed ul li a.active-page
+    font-weight: 500
+    color: rgba(0, 0, 0, 0.9)
+  ul ul li a, &.fixed ul ul li a
+    border-left: 2px solid transparent
+    color: rgba(0, 0, 0, 0.9)
+    display: block
+    font-weight: 400
+    letter-spacing: .1px
+    padding: 11.5px 24px 11.5px 60px !important
+    white-space: nowrap
+    margin: 0 !important
+  ul ul li a:hover, &.fixed ul ul li a:hover
+    background-color: #E3E3E3 !important
+  ul li:hover, &.fixed ul li:hover
+    background: 0 0
+  ul li.divider:hover, &.fixed ul li.divider:hover
+    background-color: #ECECEC
+  li a
+    -webkit-transition: all 0s
+    -moz-transition: all 0s
+    -o-transition: all 0s
+    transition: all 0s
+    &:hover
+      background-color: #ECECEC !important
+      -webkit-transition: all 0s
+      -moz-transition: all 0s
+      -o-transition: all 0s
+      transition: all 0s
+
+.card-options > ul > li > a, .dd-handle
+  -webkit-transition: all .3s
+  -moz-transition: all .3s
+  -o-transition: all 0.3s
+
+.side-nav
+  ul li
+    &.active, &:focus
+      background-color: #F3F3F3 !important
+  &.fixed ul li
+    &.active, &:focus
+      background-color: #F3F3F3 !important
+    &.active > a
+      font-weight: 500
+      &.collapsible-header
+        font-weight: 500
+  ul li a i
+    font-size: 19px
+    vertical-align: middle
+    margin-right: 20px
+    color: #67696A
+    &.material-icons
+      line-height: inherit
+      margin: 0 20px 0 0
+      width: auto
+  .collapsible-header
+    margin: 0
+    line-height: 1em
+  .collapsible-body, &.fixed .collapsible-body
+    background-color: transparent
+
+.collapsible-header i
+  width: auto
+  font-size: 20px
+  line-height: inherit
+  display: inline-block
+  text-align: left
+  margin-right: 15px
+
+.side-nav .sidenav-logo a
+  padding: 12px 0 11px 24px
+  color: #767676
+  line-height: 40px
+  font-size: 24px
+  font-weight: 700
+  border-bottom: 1px solid #E0E0E0
+
+@media (max-width: 600px)
+  .side-nav .sidenav-logo a
+    height: 56px
+    padding: 8px 0 7px 24px
+
+.navbar-fixed nav .navigation-toggle
+  position: fixed
+  left: 12px
 
 .material-design-hamburger a
   display: block
@@ -29,6 +203,8 @@ main
   position: relative
   animation-duration: .2s
   animation-timing-function: ease-in-out
+
+
 
 [data-letters]:before
   content: attr(data-letters)
@@ -80,4 +256,3 @@ main
     margin-left: auto
     left: auto
     right: auto
-

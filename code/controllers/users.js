@@ -27,7 +27,7 @@ router.post('/login', function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            res.redirect('/');
+            res.redirect('/home')
         });
     })(req, res, next);
 });
@@ -59,9 +59,49 @@ router.post('/register', function (req, res) {
     });
 });
 
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
 router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
+
+router.get('/home', isAuthenticated, function (req, res) {
+    if (req.user.isMechanic) {
+        res.render('mechanic/home', {title: 'Home'});
+    } else {
+        res.render('client/home', {title: 'Client Home'});
+    }
+});
+
+router.get('/tickets', isAuthenticated, function (req, res) {
+    if (req.user.isMechanic) {
+        res.render('mechanic/tickets', {title: 'Tickets'});
+    } else {
+        res.redirect('/')
+    }
+});
+
+router.get('/clients', isAuthenticated, function (req, res) {
+    if (req.user.isMechanic) {
+        res.render('mechanic/clients', {title: 'Clients'});
+    } else {
+        res.redirect('/')
+    }
+});
+
+router.get('/statistics', isAuthenticated, function (req, res) {
+    if (req.user.isMechanic) {
+        res.render('mechanic/statistics', {title: 'Statistics'});
+    } else {
+        res.redirect('/')
+    }
+});
+
 
 module.exports = router;

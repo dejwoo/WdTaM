@@ -6,7 +6,10 @@ const router = express.Router();
  * Home page.
  */
 router.get('/', function (req, res) {
-    res.render('index', {title: 'Home'});
+    if (req.user) {
+        res.redirect('/home')
+    }
+    res.render('index');
 });
 
 module.exports = router;

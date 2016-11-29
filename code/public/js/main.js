@@ -1,14 +1,15 @@
-(function($){
-  $(function(){
+(function ($) {
+    $(function () {
 
-    $('.button-collapse').sideNav({
-    	edge: 'right',
-    	closeOnClick: true,
-    	draggable: true
-    });
+        $('.button-collapse').sideNav({
+            edge: 'right',
+            closeOnClick: true,
+            draggable: true
+        });
 
-  }); // end of document ready
+    }); // end of document ready
 })(jQuery);
-$(document).ready(function(){
-      $('.parallax').parallax();
-    });
+
+$(document).ready(function () {
+    $('.parallax').parallax();
+});
