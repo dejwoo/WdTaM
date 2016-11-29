@@ -4,43 +4,76 @@ include mixins
 
 block content
     +namedHeader('Home')
-    .mn-content.fixed-sidebar
-        .section.no-pad-bot.index-banner
-            .container
-                h1.header.center.orange-text Automobile Service Application
-                .row.center
-                    h5.header.col.s12.light A modern approach to car troubles!
+    if user && user.isMechanic
+        .mn-content.fixed-sidebar
+            // Desktop left sidebar
+            aside#slide-out.side-nav.white.fixed
+                ul.sidebar-menu.collapsible(data-collapsible="accordion")
+                    +menuitem("Tickets",'/tickets','move_to_inbox')
+                    +menuitem("Clients",'/clients','people')
+                    +menuitem("Statistics",'/stats','description')
+                    +menuitem("Logout",'/logout','exit_to_app')
 
-                if user && user.isMechanic
-                    // Desktop left sidebar
-                    aside#slide-out.side-nav.white.fixed
-                        ul.sidebar-menu.collapsible(data-collapsible="accordion")
-                            +menuitem("Tickets",'/tickets','move_to_inbox')
-                            +menuitem("Clients",'/clients','people')
-                            +menuitem("Statistics",'/stats','description')
-                            +menuitem("Logout",'/logout','exit_to_app')
+    if user && !user.isMechanic
+        // Mobile right sidebar
+        aside#nav-mobile.side-nav
+            ul
+                li: a(href="#") Vehicles
+                li: a(href="#") History
+                li: a(href="/logout") Logout
 
-                if user && !user.isMechanic
-                    // Mobile right sidebar
-                    aside#nav-mobile.side-nav
-                        ul
-                            li: a(href="#") Vehicles
-                            li: a(href="#") History
-                            li: a(href="/logout") Logout
-
-                    .hide-on-large-only
-                        .row.center
-                            +menuitem_mobile("#","Your problems")
-                            +menuitem_mobile("#","History")
-                            +menuitem_mobile("#","Help")
-                        .fixed-action-btn
-                            a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
-                                i.material-icons add
-                else if !user
-                        .row.center
-                            +menuitem_mobile("/index", "About")
-                            +menuitem_mobile("/login", "Login")
-                            +menuitem_mobile("/register", "Register")
+        .hide-on-large-only
+            .row.center
+                +menuitem_mobile("#","Your problems")
+                +menuitem_mobile("#","History")
+                +menuitem_mobile("#","Help")
+            .fixed-action-btn
+                a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
+                    i.material-icons add
+    else if !user
+            //Mobile main screen to do pre prihlaseneho iba
+            //- .row.center.hide-on-large-only
+            //-     +menuitem_mobile("/index", "About")
+            //-     +menuitem_mobile("/login", "Login")
+            //-     +menuitem_mobile("/register", "Register")
+            //Desktop main screen
+            .parallax-container.valign-wrapper.make-flex-center
+                .center.main-readable
+                    .section.no-pad-bot.index-banner
+                        h1.header.center.white-text.text-darken-2 Automobile Service Application
+                    .row
+                        h5.header.col.s12.white-text A modern approach to car troubles!
+                    .row
+                        a.btn-large.wavers-effect.waves-light.teal.lighthen-1(href="/login") Get Started!
+                .parallax
+                    img.responsive-img(src="/media/main.jpg")
+            main.container
+                section.section
+                    .row
+                        .col.s12.m4
+                            .icon-block
+                                h2.center.brown-text
+                                    i.material-icons my_location
+                                h5.center.
+                                    Lorem ipsum dolor sit amet
+                                p.light.
+                                    Consectetur adipiscing elit. Duis aliquet, tortor ut malesuada finibus, justo mauris sollicitudin nisl, a tempus lacus magna a leo, malesuada sed tempus a, lobortis congue metus.
+                        .col.s12.m4
+                            .icon-block
+                                h2.center.brown-text
+                                    i.material-icons query_builder
+                                h5.center.
+                                    Pellentesque diam massa
+                                p.light.
+                                    Pellentesque diam massa, malesuada sed tempus a, lobortis congue metus. Integer laoreet libero et leo vestibulum posuere. Morbi egestas elementum congue. Sed laoreet sit amet tortor.
+                        .col.s12.m4
+                            .icon-block
+                                h2.center.brown-text
+                                    i.material-icons perm_phone_msg
+                                h5.center.
+                                    Integer laoreet libero
+                                p.light.
+                                    Integer laoreet libero et leo vestibulum posuere. Morbi egestas elementum congue. Sed laoreet sit amet tortor.
 
 
 

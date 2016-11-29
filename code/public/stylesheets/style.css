@@ -33,7 +33,7 @@ body {
   line-height: 2.5em;
   text-align: center;
   border-radius: 50%;
-  background: #b495c4;
+  background: #50f6f6;
   vertical-align: middle;
   margin-right: 1em;
   color: white; }
@@ -43,5 +43,14 @@ body {
 
 .space-switch {
   margin: 3em 0; }
+
+.make-flex-center {
+  justify-content: center; }
+
+.main-readable {
+  padding: 2%;
+  border: 1px transparent;
+  border-radius: 2em;
+  background-color: rgba(0, 0, 0, 0.5); }
 
 /*# sourceMappingURL=style.css.map */

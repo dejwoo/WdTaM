@@ -9,3 +9,6 @@
 
   }); // end of document ready
 })(jQuery);
+$(document).ready(function(){
+      $('.parallax').parallax();
+    });
