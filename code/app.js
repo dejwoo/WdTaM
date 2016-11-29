@@ -95,15 +95,20 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     if (req.path === '/api/upload') {
         next();
     } else {
         lusca.csrf()(req, res, next);
     }
 });
+
+app.use(lusca.csp({csrf: false, csp: {policy: {'default-src': '\'self\'', 'img-src': '*'}}}));
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
+app.use(lusca.p3p('ABCDEF'));
+app.use(lusca.hsts({maxAge: 31536000}));
+*/
 app.use((req, res, next) => {
     res.locals.user = req.user;
     next();
