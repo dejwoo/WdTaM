@@ -18,13 +18,9 @@ block header
                         li: a(href="#") Help
                         li: a(href="/login") Login
                 else
-                    section.material-design-hamburger.navigation-toggle
-                        if (user.isMechanic)
+                    if (user.isMechanic)
+                        section.material-design-hamburger.navigation-toggle
                             a.show-on-large.material-design-hamburger__icon.reverse-icon( href="javascript:void(0)" data-activates="slide-out" )
-                        else
-                            a.button-collapse(href="#" data-activates="nav-mobile")
-                            //i.material-icons menu
-                            span.material-design-hamburger__layer.material-design-hamburger__icon--from-arrow
 
                     .header-title.col.s5.m6
                         span.chapter-title
@@ -32,18 +28,18 @@ block header
                                 = 'eService Dashboard - ' + title
                             else
                                 = 'eService - ' + title
+                    if (user.isMechanic)
+                        form.left.search.col.s6.hide-on-small-and-down.input-field
+                                input#search(type="search",placeholder="Search",autocomplete="off")
+                                label.active(for="search")
+                                    i.material-icons.search-icon search
 
                     if !user.isMechanic
                         ul.right.hide-on-med-and-down
-                            li: a(href="#") Vehicles
+                            li: a(href="/client/vehicles") Vehicles
                             li: a(href="#") History
                             li: a(href="/logout") Logout
 
-                    form.left.search.col.s6.hide-on-small-and-down
-                        .input-field
-                            input#search(type="search",placeholder="Search",autocomplete="off")
-                            label.active(for="search")
-                                i.material-icons.search-icon search
                 if (user && !user.profile_img)
                     -var letter = user.username.substr(0,1)
                     .right.col.s9.m6.nav-right-menu

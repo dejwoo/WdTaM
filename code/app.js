@@ -31,6 +31,7 @@ const upload = multer({dest: path.join(__dirname, 'uploads')});
 
 const homeController = require('./controllers/home');
 const userController = require('./controllers/users');
+const clientController = require('./controllers/client');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -150,8 +151,10 @@ app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000}));
 /**
  * Primary app routes.
  */
-app.use('/', homeController);
+
+// app.use('/', homeController);
 app.use('/', userController);
+app.use('/client', clientController);
 /*
  Disabled for testing
 
