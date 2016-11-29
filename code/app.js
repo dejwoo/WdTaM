@@ -60,10 +60,11 @@ const app = express();
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI,
     {user: process.env.MONGODB_USER, pass: process.env.MONGODB_PASS});
-mongoose.connection.on('error', () => {
+mongoose.connection.on('error', function () {
     console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
     process.exit();
 });
+
 
 /**
  * Express configuration.
@@ -95,13 +96,13 @@ app.use(session({
 app.use(lusca({
     csrf: true,
     csp: {
-    	policy: {
-    		"default-src": "'self' dejwoo.com api.dejwoo.com",
-    		"image-src":"*",
-    		"style-src": "'self' fonts.googleapis.com cdnjs.cloudflare.com",
-    		"script-src": "'self' code.jquery.com cdnjs.cloudflare.com",
-    		"font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com"
-    	}
+        policy: {
+            "default-src": "'self' dejwoo.com api.dejwoo.com",
+            "image-src": "*",
+            "style-src": "'self' fonts.googleapis.com cdnjs.cloudflare.com",
+            "script-src": "'self' code.jquery.com cdnjs.cloudflare.com",
+            "font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com"
+        }
     },
     xframe: 'SAMEORIGIN',
     p3p: 'ABCDEF',
@@ -113,19 +114,21 @@ app.use(lusca({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use((req, res, next) => {
+app.use(function (req, res, next) {
     if (req.path === '/api/upload') {
         next();
     } else {
         lusca.csrf()(req, res, next);
     }
 });
-app.use((req, res, next) => {
+
+app.use(function (req, res, next) {
     res.locals.user = req.user;
     res.locals.token = req.csrfToken();
     next();
 });
-app.use((req, res, next) => {
+
+app.use(function (req, res, next) {
     // After successful login, redirect back to the intended page
     if (!req.user &&
         req.path !== '/login' &&

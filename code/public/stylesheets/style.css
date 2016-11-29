@@ -1,5 +1,11 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+
+main {
+  flex: 1 0 auto; }
 
 .mn-header {
   z-index: 999; }
@@ -33,7 +39,7 @@ body {
   line-height: 2.5em;
   text-align: center;
   border-radius: 50%;
-  background: #9b12a2;
+  background: #da4c17;
   vertical-align: middle;
   margin-right: 1em;
   color: white; }

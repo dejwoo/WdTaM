@@ -3,7 +3,6 @@ extends layout
 include mixins
 
 block content
-    +namedHeader('Home')
     if user && user.isMechanic
         .mn-content.fixed-sidebar
             // Desktop left sidebar
@@ -47,48 +46,48 @@ block content
                         a.btn-large.wavers-effect.waves-light.teal.lighthen-1(href="/login") Get Started!
                 .parallax
                     img.responsive-img(src="/media/main.jpg")
-            main.container
-                section.section
-                    .row
-                        .col.s12.m4
-                            .icon-block
-                                h2.center.brown-text
-                                    i.material-icons my_location
-                                h5.center.
-                                    Lorem ipsum dolor sit amet
-                                p.light.
-                                    Consectetur adipiscing elit. Duis aliquet, tortor ut malesuada finibus, justo mauris sollicitudin nisl, a tempus lacus magna a leo, malesuada sed tempus a, lobortis congue metus.
-                        .col.s12.m4
-                            .icon-block
-                                h2.center.brown-text
-                                    i.material-icons query_builder
-                                h5.center.
-                                    Pellentesque diam massa
-                                p.light.
-                                    Pellentesque diam massa, malesuada sed tempus a, lobortis congue metus. Integer laoreet libero et leo vestibulum posuere. Morbi egestas elementum congue. Sed laoreet sit amet tortor.
-                        .col.s12.m4
-                            .icon-block
-                                h2.center.brown-text
-                                    i.material-icons perm_phone_msg
-                                h5.center.
-                                    Integer laoreet libero
-                                p.light.
-                                    Integer laoreet libero et leo vestibulum posuere. Morbi egestas elementum congue. Sed laoreet sit amet tortor.
-            .parallax-container.valign-wrapper.make-flex-center
-                .center.main_v2-readable
-                        h5.header.col.s12.white-text
-                            i "Old car as a new in no time"
-                .parallax
-                    img.responsive-img(src="/media/main_v2.jpg")
-            aside.container
-                section.section
-                    .row
-                        .col.s12.center
-                            h3
-                                i.mdi-content-send.brown-text
-                            h4 Contact us
-                            p.left-align.light.
-           Consectetur adipiscing elit. Duis aliquet, tortor ut malesuada finibus, justo mauris sollicitudin nisl, a tempus lacus magna a leo, malesuada sed tempus a, lobortis congue metus.
+            block inner-content
+                main.container
+                    section.section
+                        .row
+                            .col.s12.m4
+                                .icon-block
+                                    h2.center.brown-text
+                                        i.material-icons my_location
+                                    h5.center.
+                                        Lorem ipsum dolor sit amet
+                                    p.light.
+                                        Consectetur adipiscing elit. Duis aliquet, tortor ut malesuada finibus, justo mauris sollicitudin nisl, a tempus lacus magna a leo, malesuada sed tempus a, lobortis congue metus.
+                            .col.s12.m4
+                                .icon-block
+                                    h2.center.brown-text
+                                        i.material-icons query_builder
+                                    h5.center
+                                        ="Pellentesque diam massa"
+                                    p.light.
+                                        ="Pellentesque diam massa, malesuada sed tempus a, lobortis congue metus. Integer laoreet libero et leo vestibulum posuere. Morbi egestas elementum congue. Sed laoreet sit amet tortor."
+                            .col.s12.m4
+                                .icon-block
+                                    h2.center.brown-text
+                                        i.material-icons perm_phone_msg
+                                    h5.center
+                                        ="Integer laoreet libero"
+                                    p.light
+                                        ="Integer laoreet libero et leo vestibulum posuere. Morbi egestas elementum congue. Sed laoreet sit amet tortor."
+                .parallax-container.valign-wrapper.make-flex-center
+                    .center.main_v2-readable
+                            h5.header.col.s12.white-text
+                                i "Old car as a new in no time"
+                    .parallax
+                        img.responsive-img(src="/media/main_v2.jpg")
+                aside.container
+                    section.section
+                        .row
+                            .col.s12.center
+                                h3: i.mdi-content-send.brown-text
+                                h4 Contact us
+                                p.left-align.light
+                                    ="Consectetur adipiscing elit. Duis aliquet, tortor ut malesuada finibus, justo mauris sollicitudin nisl, a tempus lacus magna a leo, malesuada sed tempus a, lobortis congue metus."
 
 
 

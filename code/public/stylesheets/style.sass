@@ -1,5 +1,11 @@
 body
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+main
+  flex: 1 0 auto
 
 .mn-header
   z-index: 999
@@ -43,19 +49,24 @@ body
 
 .space
   margin: 7px 0
+
 .space-switch
   margin: 3em 0
 
 .make-flex-center
   justify-content: center
+
 .main-readable
   padding: 2%
   border: 1px transparent
   border-radius: 2em
-  background-color: rgba(0,0,0,0.5)
+  background-color: rgba(0, 0, 0, 0.5)
+
 .main_v2-readable
   padding: 0.5%
-  background-color: rgba(0,0,0,0.5)
+  background-color: rgba(0, 0, 0, 0.5)
+
+
 
 @media only screen and (min-width: 993px)
   .col.25p_width

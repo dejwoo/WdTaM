@@ -19,49 +19,18 @@ html(lang="en")
             //Import materialize.css
             link(type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css", media="screen,projection")
             link(type="text/css" rel="stylesheet" href="stylesheets/style.css", media="screen,projection")
-            //- link(type="text/css" rel='stylesheet', href='/stylesheets/alpha.css')
+            //link(type="text/css" rel='stylesheet', href='/stylesheets/alpha.css')
             link(type="text/css" rel='stylesheet', href='/stylesheets/style.css')
 
     body
         .messages
             include includes/flash
+        include includes/header
+
         .content
             block content
 
-        block footer
-            footer.page-footer.blue
-                .container
-                    .row
-                        div.col.l6.s12
-                            h5.white-text E-Servis Bio
-                            p.grey-text.text-lighten-4.
-                                We are a team of college students working on this project like it's our full time job. We are Addicted Penguins!
-                        div.col.l2.s12
-                            h5.white-text Menu
-                            ul
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Link 1
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Link 1
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Link 1
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Link 1
-                        div.col.l2.s12
-                            h5.white-text Connect
-                            ul
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Facebook
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Google +
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Twitter
-                                li
-                                    a.grey-text.text-lighten-4(href="#") Snapchat :D
-                .footer-copyright.blue
-                    .container
-                        p.grey-text.text-lighten-4.
-                            Made by Addicted Pinguins for WdTaM with <3
+        include includes/footer
 
         include includes/foot
 

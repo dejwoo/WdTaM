@@ -10,7 +10,7 @@ router.get('/login', function (req, res) {
     if (req.user) {
         return res.redirect('/');
     }
-    res.render('account/login', {user: req.user});
+    res.render('account/login', {user: req.user, title: "Login"});
 });
 
 router.post('/login', function (req, res, next) {
@@ -21,7 +21,7 @@ router.post('/login', function (req, res, next) {
         }
         //nepodarilo sa authentifikovat
         if (!user) {
-            return res.render('account/login', {reason: info});
+            return res.render('account/login', {reason: info, title: "Login"});
         }
         req.logIn(user, function (err) {
             if (err) {
@@ -33,7 +33,7 @@ router.post('/login', function (req, res, next) {
 });
 
 router.get('/register', function (req, res) {
-    res.render('account/register', {});
+    res.render('account/register', {title: "Register"});
 });
 
 router.post('/register', function (req, res) {
@@ -45,7 +45,7 @@ router.post('/register', function (req, res) {
         isMechanic: req.body.isMechanic
     }), req.body.password, function (err, account) {
         if (err) {
-            return res.render('account/register', {account: account});
+            return res.render('account/register', {account: account, title: "Register"});
         }
 
         passport.authenticate('local')(req, res, function () {
