@@ -1,4 +1,4 @@
-extends layouts/default
+extends layout
 
 include mixins
 
@@ -20,6 +20,27 @@ block content
                             +menuitem("Statistics",'/stats','description')
                             +menuitem("Logout",'/logout','exit_to_app')
 
+                if user && !user.isMechanic
+                    // Mobile right sidebar
+                    aside#nav-mobile.side-nav
+                        ul
+                            li: a(href="#") Vehicles
+                            li: a(href="#") History
+                            li: a(href="/logout") Logout
+
+                    .hide-on-large-only
+                        .row.center
+                            +menuitem_mobile("#","Your problems")
+                            +menuitem_mobile("#","History")
+                            +menuitem_mobile("#","Help")
+                        .fixed-action-btn
+                            a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
+                                i.material-icons add
+                else if !user
+                        .row.center
+                            +menuitem_mobile("/index", "About")
+                            +menuitem_mobile("/login", "Login")
+                            +menuitem_mobile("/register", "Register")
 
 
 
