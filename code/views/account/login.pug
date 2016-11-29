@@ -13,6 +13,7 @@ block content
                         =reason.message
         .row
             form(role='form',action="/login",method="post", class="col s12 m6 offset-m3")
+                input(type='hidden', name='_csrf', value=token)
                 .row.input-field
                     input#login.validate(type='text', name="username", placeholder='Enter Username')
                     label(for="login") User Name
