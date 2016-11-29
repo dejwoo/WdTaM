@@ -7,7 +7,12 @@ const router = express.Router();
  */
 router.get('/', function (req, res) {
     if (req.user) {
-        res.redirect('/home')
+    	if (req.user.isMechanic) {
+	        res.redirect('/home')
+    	}
+	    else {
+	    	res.redirect('/client/home')
+	    }
     }
     res.render('index');
 });

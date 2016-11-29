@@ -6,6 +6,27 @@ const passport = require('passport');
 const Account = require('../models/account');
 const router = express.Router();
 
+router.get('/', function (req, res) {
+    if (req.user) {
+        if (req.user.isMechanic) {
+            res.redirect('/home');
+        }
+        else {
+            res.redirect('/client/home');
+        }
+    }
+    res.render('index');
+});
+
+router.get('/home', isAuthenticated, function (req, res) {
+    if (req.user.isMechanic) {
+        res.render('mechanic/home', {title: 'Home'});
+    } else {
+        res.redirect('/client/home')
+    }
+});
+
+
 router.get('/login', function (req, res) {
     if (req.user) {
         return res.redirect('/');
@@ -69,14 +90,6 @@ function isAuthenticated(req, res, next) {
 router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
-});
-
-router.get('/home', isAuthenticated, function (req, res) {
-    if (req.user.isMechanic) {
-        res.render('mechanic/home', {title: 'Home'});
-    } else {
-        res.render('client/home', {title: 'Client Home'});
-    }
 });
 
 router.get('/tickets', isAuthenticated, function (req, res) {
