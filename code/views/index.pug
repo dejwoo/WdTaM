@@ -1,29 +1,46 @@
 extends layout
 
-block header
-    header
-        nav(class="light-blue lighten-1" role="navigation")
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">$TODO_LOGO</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="#">Vehicles</a></li>
-                    <li><a href="#">Your problems</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
-            </div>
+include mixins
 
 block content
+    +namedHeader('Home')
+    .mn-content.fixed-sidebar
+        .section.no-pad-bot.index-banner
+            .container
+                h1.header.center.orange-text Automobile Service Application
+                .row.center
+                    h5.header.col.s12.light A modern approach to car troubles!
 
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <h1 class="header center orange-text">Starter Template</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-            </div>
-            <div class="row center">
-                <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-            </div>
-        </div>
-    </div>
+                if user && user.isMechanic
+                    // Desktop left sidebar
+                    aside#slide-out.side-nav.white.fixed
+                        ul.sidebar-menu.collapsible(data-collapsible="accordion")
+                            +menuitem("Tickets",'/tickets','move_to_inbox')
+                            +menuitem("Clients",'/clients','people')
+                            +menuitem("Statistics",'/stats','description')
+                            +menuitem("Logout",'/logout','exit_to_app')
+
+                if user && !user.isMechanic
+                    // Mobile right sidebar
+                    aside#nav-mobile.side-nav
+                        ul
+                            li: a(href="#") Vehicles
+                            li: a(href="#") History
+                            li: a(href="/logout") Logout
+
+                    .hide-on-large-only
+                        .row.center
+                            +menuitem_mobile("#","Your problems")
+                            +menuitem_mobile("#","History")
+                            +menuitem_mobile("#","Help")
+                        .fixed-action-btn
+                            a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
+                                i.material-icons add
+                else if !user
+                        .row.center
+                            +menuitem_mobile("/index", "About")
+                            +menuitem_mobile("/login", "Login")
+                            +menuitem_mobile("/register", "Register")
+
+
 
