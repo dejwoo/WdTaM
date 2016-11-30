@@ -13,3 +13,13 @@
 $(document).ready(function () {
     $('.parallax').parallax();
 });
+
+$('.grid').isotope({
+    // options
+    itemSelector: '.grid-item',
+    layoutMode: 'fitRows',
+    cellsByRow: {
+        columnWidth: 200,
+        rowHeight: 50
+    }
+});

@@ -116,5 +116,13 @@ router.get('/statistics', isAuthenticated, function (req, res) {
     }
 });
 
+router.get('/td', isAuthenticated, function (req, res) {
+    if (req.user.isMechanic) {
+        res.render('mechanic/ticket-detail', {title: 'Statistics'});
+    } else {
+        res.redirect('/')
+    }
+});
+
 
 module.exports = router;
