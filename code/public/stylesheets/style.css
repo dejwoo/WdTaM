@@ -1,80 +1,254 @@
-/*
-Error: Invalid CSS after ".col.": expected class name, was "25p_width"
-        on line 249 of style.sass
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
 
-244:   background-color: rgba(0, 0, 0, 0.5)
-245: 
-246: 
-247: 
-248: @media only screen and (min-width: 993px)
-249:   .col.25p_width
-250:     width: 25%
-251:     margin-left: auto
-252:     left: auto
-253:     right: auto
-254: 
+main {
+  flex: 1 0 auto; }
 
-Backtrace:
-style.sass:249
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/parser.rb:1189:in `expected'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/parser.rb:1125:in `expected'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/parser.rb:1120:in `tok!'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/static_parser.rb:190:in `class_selector'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/static_parser.rb:158:in `simple_selector_sequence'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/static_parser.rb:111:in `selector'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/static_parser.rb:86:in `selector_comma_sequence'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/parser.rb:1103:in `expr!'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/scss/static_parser.rb:20:in `parse_selector'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:427:in `visit_rule'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:515:in `visit_media'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:159:in `visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:8:in `visit'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:381:in `_render_with_sourcemap'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:298:in `render_with_sourcemap'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin.rb:82:in `update_stylesheets'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:51:in `process_result'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/base.rb:52:in `parse'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/exec/base.rb:19:in `parse!'
-C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/bin/sass:13:in `<top (required)>'
-C:/Ruby23-x64/bin/sass:23:in `load'
-C:/Ruby23-x64/bin/sass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \".col.\": expected class name, was \"25p_width\"\A         on line 249 of style.sass\A \A 244:   background-color: rgba(0, 0, 0, 0.5)\A 245: \A 246: \A 247: \A 248: @media only screen and (min-width: 993px)\A 249:   .col.25p_width\A 250:     width: 25%\A 251:     margin-left: auto\A 252:     left: auto\A 253:     right: auto\A 254: "; }
+.header-title, nav {
+  position: relative; }
+
+.loaded .loader-bg {
+  opacity: 0;
+  position: relative; }
+
+.mn-header {
+  z-index: 999; }
+
+.header-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 60px;
+  float: left;
+  color: #fff;
+  margin-left: 8px;
+  cursor: pointer; }
+
+.header-title span {
+  margin: 1px 0;
+  display: block; }
+
+.navbar-fixed .header-title {
+  margin-left: 56px; }
+
+nav {
+  padding: 0 16px;
+  line-height: 60px !important; }
+
+.mn-header.navbar-fixed nav .nav-wrapper {
+  padding-left: 44px; }
+
+nav .nav-wrapper {
+  padding-right: 44px; }
+
+/* Left Side Naviganion */
+.side-nav .sidenav-logo, .side-nav-wrapper {
+  position: relative; }
+
+@media only screen and (max-width: 992px) {
+  .side-nav.fixed {
+    -webkit-transform: translateX(0);
+    transform: translateX(0); } }
+
+.side-nav {
+  padding: 0 !important;
+  height: calc(100% - 60px) !important;
+  margin-top: 60px;
+  z-index: 997;
+  width: 220px; }
+
+#sidenav-overlay {
+  display: none; }
+
+.sidebar-menu {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important; }
+
+@media (min-width: 600px) {
+  .drag-target {
+    display: none; } }
+
+.side-nav-wrapper {
+  min-height: 100% !important;
+  padding-bottom: 96px; }
+
+.side-nav ul li, .side-nav.fixed ul li {
+  padding: 0;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all 0.3s; }
+
+.side-nav ul li a, .side-nav.fixed ul li a {
+  font-size: 13px;
+  height: auto !important;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 15px 0 15px 24px !important;
+  line-height: 1em !important; }
+
+.side-nav ul li a.active:hover, .side-nav.fixed ul li a.active:hover {
+  background: 0 0 !important; }
+
+.side-nav ul li a span.badge, .side-nav.fixed ul li a span.badge {
+  padding: 3px 6px;
+  margin-top: -3px;
+  font-size: 12px;
+  min-width: auto !important;
+  margin-right: 5px; }
+
+.side-nav ul li a span.badge.new:after, .side-nav.fixed ul li a span.badge.new:after {
+  content: "" !important; }
+
+.side-nav ul li a.active-page, .side-nav.fixed ul li a.active-page {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.9); }
+
+.side-nav ul ul li a, .side-nav.fixed ul ul li a {
+  border-left: 2px solid transparent;
+  color: rgba(0, 0, 0, 0.9);
+  display: block;
+  font-weight: 400;
+  letter-spacing: .1px;
+  padding: 11.5px 24px 11.5px 60px !important;
+  white-space: nowrap;
+  margin: 0 !important; }
+
+.side-nav ul ul li a:hover, .side-nav.fixed ul ul li a:hover {
+  background-color: #E3E3E3 !important; }
+
+.side-nav ul li:hover, .side-nav.fixed ul li:hover {
+  background: 0 0; }
+
+.side-nav ul li.divider:hover, .side-nav.fixed ul li.divider:hover {
+  background-color: #ECECEC; }
+
+.side-nav li a {
+  -webkit-transition: all 0s;
+  -moz-transition: all 0s;
+  -o-transition: all 0s;
+  transition: all 0s; }
+  .side-nav li a:hover {
+    background-color: #ECECEC !important;
+    -webkit-transition: all 0s;
+    -moz-transition: all 0s;
+    -o-transition: all 0s;
+    transition: all 0s; }
+
+.card-options > ul > li > a, .dd-handle {
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -o-transition: all 0.3s; }
+
+.side-nav ul li.active, .side-nav ul li:focus {
+  background-color: #F3F3F3 !important; }
+
+.side-nav.fixed ul li.active, .side-nav.fixed ul li:focus {
+  background-color: #F3F3F3 !important; }
+
+.side-nav.fixed ul li.active > a {
+  font-weight: 500; }
+  .side-nav.fixed ul li.active > a.collapsible-header {
+    font-weight: 500; }
+
+.side-nav ul li a i {
+  font-size: 19px;
+  vertical-align: middle;
+  margin-right: 20px;
+  color: #67696A; }
+  .side-nav ul li a i.material-icons {
+    line-height: inherit;
+    margin: 0 20px 0 0;
+    width: auto; }
+
+.side-nav .collapsible-header {
+  margin: 0;
+  line-height: 1em; }
+
+.side-nav .collapsible-body, .side-nav.fixed .collapsible-body {
+  background-color: transparent; }
+
+.collapsible-header i {
+  width: auto;
+  font-size: 20px;
+  line-height: inherit;
+  display: inline-block;
+  text-align: left;
+  margin-right: 15px; }
+
+.side-nav .sidenav-logo a {
+  padding: 12px 0 11px 24px;
+  color: #767676;
+  line-height: 40px;
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 1px solid #E0E0E0; }
+
+@media (max-width: 600px) {
+  .side-nav .sidenav-logo a {
+    height: 56px;
+    padding: 8px 0 7px 24px; } }
+
+.navbar-fixed nav .navigation-toggle {
+  position: fixed;
+  left: 12px; }
+
+.material-design-hamburger a {
+  display: block;
+  border: none;
+  background: 0 0;
+  outline: 0;
+  padding-top: 30px; }
+
+.material-design-hamburger__icon {
+  padding: 3rem 1rem;
+  cursor: pointer; }
+
+.material-design-hamburger__layer {
+  display: block;
+  width: 13px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.9);
+  position: relative;
+  animation-duration: .2s;
+  animation-timing-function: ease-in-out; }
+
+[data-letters]:before {
+  content: attr(data-letters);
+  display: inline-block;
+  font-size: 1em;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  text-align: center;
+  border-radius: 50%;
+  background: #fe3ef6;
+  vertical-align: middle;
+  margin-right: 1em;
+  color: white; }
+
+.space {
+  margin: 7px 0; }
+
+.space-switch {
+  margin: 3em 0; }
+
+.make-flex-center {
+  justify-content: center; }
+
+.main-readable {
+  padding: 2%;
+  border: 1px transparent;
+  border-radius: 2em;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.main_v2-readable {
+  padding: 0.5%;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.grid-item {
+  width: 50px;
+  margin-bottom: 5px; }
+
+/*# sourceMappingURL=style.css.map */
