@@ -6,7 +6,9 @@ var VehicleSchema = new Schema({
     name: String,
     model: String,
     type: String,
-    owner: [{type: Schema.Types.ObjectId, ref: 'Account'}]
+    owner: [{type: Schema.Types.ObjectId, ref: 'Account'}],
+    ecv: String,
+    vin: String,
 });
 
 var Vehicle = mongoose.model('Vehicle', VehicleSchema);

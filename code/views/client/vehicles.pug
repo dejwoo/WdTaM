@@ -15,7 +15,39 @@ block content
             .fixed-action-btn.hide-on-large-only
                 a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
                     i.material-icons add
-
-
+    else
+        main.valign-wrapper.container
+            each vehicle in vehicles
+                .col.s12.m7
+                    h4.header
+                        =vehicle.name
+                    .card.horizontal
+                        .card-image
+                            img.responsive(src="https://unsplash.it/100/190/?random")
+                        .card-stacked
+                            .card-content
+                                ul.collection
+                                    li.collection-item
+                                        =vehicle.model
+                                        .secondary-content
+                                            p Model
+                                    li.collection-item
+                                        =vehicle.type
+                                        .secondary-content
+                                            p Type
+                                    li.collection-item
+                                        =vehicle.ecv
+                                        .secondary-content
+                                            p ECV
+                                    li.collection-item
+                                        =vehicle.vin
+                                        .secondary-content
+                                            p VIN
+                            .card-action
+                                - var link = "/vehicle/" + vehicle._id
+                                a(href=link) Details
+            .fixed-action-btn
+                a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='/client/vehicle/add')
+                    i.material-icons add
 
 

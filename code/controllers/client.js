@@ -26,18 +26,39 @@ router.get('/vehicles', isAuthenticated, function (req, res) {
 	var vehicleArray = [];
 	cursor.on('data', function(doc) {
   		// Called once for every document
-  		vechicleArray.push(doc);
+  		vehicleArray.push(doc);
 	});
-	cursor.on('close', function() {
+	cursor.on('end', function() {
+		console.log(vehicleArray)
   		res.render('client/vehicles', {title: 'Vehicles', vehicles:vehicleArray });
 	});
 });
-router.post('/vehicles', isAuthenticated, function (req, res) {
+
+router.get('/vehicle/add', isAuthenticated, function (req, res) {
 	if (req.user.isMechanic) {
-		res.send("Tu by mal byt mechanic");
-	} else {
-		res.render('client/home', {title: 'Home'});
+		res.redirect('/home');
 	}
+	res.render('client/vehicle_add', {title: 'Add vehicle'});
+});
+
+router.post('/vehicle/add', isAuthenticated, function (req, res) {
+	if (req.user.isMechanic) {
+		res.redirect('/home');
+	}
+	 (new Vehicle({
+        name: req.body.name,
+        model: req.body.model,
+        type: req.body.type,
+        owner: res.locals.user._id,
+        ecv: req.body.ecv,
+        vin: req.body.vin
+    })).save(function (err, vehicle) {
+        if (err) {
+        	console.err(err);
+            return res.render('client/vehicle_add', {vehicle: vehicle, title: "Register"});
+        }
+        res.redirect('/client/vehicles');
+    });
 });
 
 

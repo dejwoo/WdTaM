@@ -99,9 +99,9 @@ app.use(lusca({
     csp: {
         policy: {
             "default-src": "'self' dejwoo.com api.dejwoo.com",
-            "image-src": "*",
+            "img-src": "*",
             "style-src": "'self' fonts.googleapis.com cdnjs.cloudflare.com",
-            "script-src": "'self' code.jquery.com cdnjs.cloudflare.com",
+            "script-src": "'self' code.jquery.com cdnjs.cloudflare.com unpkg.com",
             "font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com"
         }
     },
