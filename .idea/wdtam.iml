@@ -12,5 +12,7 @@
     <orderEntry type="library" name="jquery-2.1.1" level="application" />
     <orderEntry type="library" name="jquery-2.1.4" level="application" />
     <orderEntry type="library" name="materialize" level="application" />
+    <orderEntry type="library" name="masonry.pkgd" level="application" />
+    <orderEntry type="library" name="isotope.pkgd" level="application" />
   </component>
 </module>

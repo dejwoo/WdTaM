@@ -1,5 +1,19 @@
-extends ../layout
+extends home
 
-block content
-    block inner-content
+
+block inner-content
+    main.mn-inner.inner-active-sidebar
+        div(style='padding-left:245px')
+            ul.collection
+
+                each ticket in [{user:{name:'Test'}},{user:{name:'gg'}}]
+                    li.collection-item.avatar
+                        img.circle(src="images/yuna.jpg" alt="")
+                        span.title= ticket.user.name
+                        p= 'First Line <br>Line'
+
+                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+
+
+
 
