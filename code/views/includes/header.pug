@@ -1,5 +1,5 @@
 block header
-    header.mn-header.navbar-fixed
+    header.header
         nav.light-blue
             .nav-wrapper.row
                 if (!user)
@@ -18,21 +18,23 @@ block header
                         li: a(href="#") Help
                         li: a(href="/login") Login
                 else
+                    if user.isMechanic
+                        a.hamburger(href='#')
+                            span.material-icons menu
+                    a.brand-logo(href='#')
+                        if(user.isMechanic)
+                            = 'eService Dashboard - '+ title
+                        else
+                            = 'eService - ' + title
                     if (user.isMechanic)
-                        section.material-design-hamburger.navigation-toggle
-                            a.show-on-large.material-design-hamburger__icon.reverse-icon( href="javascript:void(0)" data-activates="slide-out" )
-
-                    .header-title.col.s5.m6
-                        span.chapter-title
-                            if(user.isMechanic)
-                                = 'eService Dashboard - ' + title
-                            else
-                                = 'eService - ' + title
-                    if (user.isMechanic)
-                        form.left.search.col.s6.hide-on-small-and-down.input-field
+                        //form.left.search.col.s6.hide-on-small-and-down.input-field
                                 input#search(type="search",placeholder="Search",autocomplete="off")
                                 label.active(for="search")
                                     i.material-icons.search-icon search
+
+                        ul#nav-mobile.right.hide-on-med-and-down
+                            li
+                                a(href='/logout') Logout
 
                     if !user.isMechanic
                         ul.right.hide-on-med-and-down

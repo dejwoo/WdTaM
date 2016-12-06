@@ -19,16 +19,22 @@ html(lang="en")
             //Import materialize.css
             link(type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css", media="screen,projection")
             link(type="text/css" rel="stylesheet" href="/stylesheets/style.css", media="screen,projection")
+            link(media='all', type='text/css', rel='stylesheet', href='stylesheets/main.css')
             //link(type="text/css" rel='stylesheet', href='/stylesheets/alpha.css')
 
     body
         .messages
             include includes/flash
         include includes/header
-        block content
-            block inner-context
-        include includes/footer
 
+        if user && user.isMechanic
+            include includes/sidebar
+
+        .parent
+            .content-panel
+                .main-content
+                    block content
+            include includes/footer
         include includes/foot
 
 

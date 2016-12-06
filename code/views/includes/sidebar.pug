@@ -1,0 +1,14 @@
+mixin menuitem(title, link, icon)
+    li.no-padding
+        a.waves-effect.waves-blue(href=link)
+            i.material-icons #{icon}
+            =title
+
+if user && user.isMechanic
+    .left-panel.opened
+        aside.sidebar-nav
+            .sidebar-menu
+                +menuitem("Tickets",'/tickets','move_to_inbox')
+                +menuitem("Clients",'/clients','people')
+                +menuitem("Statistics",'/stats','description')
+                +menuitem("Logout",'/logout','exit_to_app')
