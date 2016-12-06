@@ -46,14 +46,12 @@
     "gulp-jshint": "^2.0.4",
     "gulp-nodemon": "^2.2.1",
     "gulp-pug": "^3.1.0",
-    "gulp-pug-beautify": "0.0.1",
     "gulp-pug-lint": "^0.1.6",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
     "jshint": "^2.9.4",
     "mocha": "^3.2.0",
-    "should": "^11.1.1",
-    "vinyl-transform": "^1.0.0"
+    "should": "^11.1.1"
   }
 }

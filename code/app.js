@@ -55,6 +55,14 @@ passport.deserializeUser(Account.deserializeUser());
 const app = express();
 
 /**
+ * Adding utility libraries for use in Pug templates
+ */
+
+app.locals._      = require('underscore');
+app.locals._.str  = require('underscore.string');
+app.locals.moment = require('moment');
+
+/**
  * Connect to MongoDB.
  */
 
