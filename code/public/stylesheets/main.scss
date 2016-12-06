@@ -63,8 +63,9 @@ a.hamburger {
     color:#000;
     text-decoration: none;
     i.material-icons {
-      vertical-align: bottom;
+      vertical-align: middle;
       margin-right:8px;
+      margin-top:-2px;
     }
     @include transition(0.2s);
     &:hover {
