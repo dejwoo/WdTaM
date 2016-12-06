@@ -24,7 +24,7 @@ block content
                                                 | asdasdasdasdqegfvvnjkjhasdqwvklsidfqerlksdfpovererw
                                             .row
                                                 .row
-                                                    .a.btn.light-blue(href="#") Reply
+                                                    .a.btn.show-reply-form.light-blue(href="#") Reply
                                                     | &nbsp;
                                                     .a.offset-3.btn.light-blue(href="#") Reply
                                         .col.l4
@@ -32,6 +32,11 @@ block content
                                                 each x in [1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6]
                                                     .grid-float
                                                         img(src="media/temp_img.jpg" alt)
+                                    .row.reply-message.hidden-el
+                                        .input-field.col.s12.l12
+                                            textarea.materialize-textarea(id="reply-textarea")
+                                            label(for="reply-textarea") Write message...
+                                        input.btn.light-blue(value="Send message")
 
 
 
