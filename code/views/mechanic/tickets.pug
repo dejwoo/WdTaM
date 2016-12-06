@@ -1,18 +1,21 @@
-extends home
+extends ../layout_mechanic
 
 
-block inner-content
-    main.mn-inner.inner-active-sidebar
-        div(style='padding-left:245px')
-            ul.collection
-
-                each ticket in [{user:{name:'Test'}},{user:{name:'gg'}}]
-                    li.collection-item.avatar
-                        img.circle(src="images/yuna.jpg" alt="")
-                        span.title= ticket.user.name
-                        p= 'First Line <br>Line'
-
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+block content
+    h4 Tickets
+    ul.collection
+        each item in [{name:'Jozo',title:'Critical car malfunction',id:1},{name:'Jano',title:'Minor car malfunction',id:2}]
+            li.collection-item.avatar
+                i.material-icons.circle folder
+                span.title
+                = item.title
+                p
+                    b
+                    = item.name
+                    br
+                    | Test test
+                a.secondary-content(href='/ticket-detail?id='+item.id)
+                    i.material-icons send
 
 
 

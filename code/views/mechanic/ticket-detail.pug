@@ -1,37 +1,44 @@
-extends ../layout
+extends ../layout_mechanic
 
 block content
-    block inner-content
-        main
-            .container.row
-                .card
-                    .card-content
-                        .card-options
-                            i.material-icons.right more_vert
-                        .card-title
-                            span Ticket
-                            span.card-subtitle subtitle
-                        .card-image
-                            .ticket-images.container.col.m5.l5
-                                .grid
-                                    each x in [1,2,3,4,5]
-                                        .grid-item
-                                            img(src="media/temp_img.jpg" alt)
-                        .card-stacked
-                        .container
-                            .row
-                                .col.l2 img
-                                .col.l10
-                                    .row.ticket-author
-                                        = "Author"
-                                    .row.ticket-date
-                                        = "01.01.2016"
-                            .ticket-text.col.l8
-                                asdasdasdasdqegfvvnjkjhasdqwvklsidfqerlksdfpovererw
 
-                    .card-action.row
-                        .a.col.m2.l2.btn.btn-block(href="#") Reply
-                        .a.col.m2.l2.offset-3.btn.btn-block(href="#") Reply
+    main
+        .container.row
+            .card.detail-card
+                .card-title
+                    span Ticket
+                    span.card-subtitle subtitle
+                    .card-options.right
+                        i.material-icons more_vert
+                .card-content
+
+
+                    .card-stacked
+                    .container2
+                        .row
+                            .col.l1
+                                img.circle(src="media/temp_img.jpg" alt)
+                            .col.l7
+                                .row.ticket-author
+                                    = "Author"
+                                .row.ticket-date
+                                    = "01.01.2016"
+                                .row
+                                    | asdasdasdasdqegfvvnjkjhasdqwvklsidfqerlksdfpovererw
+                                .row
+                                    .row
+                                        .a.btn.light-blue(href="#") Reply
+                                        | &nbsp;
+                                        .a.offset-3.btn.light-blue(href="#") Reply
+                            .col.l4
+                                .image-grid
+                                    each x in [1,2,3,4,5]
+                                        .grid-float
+                                            img(src="media/temp_img.jpg" alt)
+
+
+
+
 
 
 

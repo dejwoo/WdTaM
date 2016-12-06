@@ -1,0 +1,64 @@
+mixin menuitem(title, link, icon)
+    a.waves-effect.waves-dark(href=link)
+        i.material-icons #{icon}
+        = title
+
+doctype html
+html
+    head
+        meta(http-equiv='content-type', content='text/html; charset=utf-8')
+        meta(name='author', content='Addictive Penguins')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='keywords', content='')
+        meta(name='description', content='')
+        title eService
+        // <link media="all" rel="stylesheet" type="text/css"
+        // href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        // Import Google Icons
+        link(href='http://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        // link(type="text/stylesheets" rel="stylesheet" href="//cdn.materialdesignicons.com/1.7.22/stylesheets/materialdesignicons.min.stylesheets")
+        // Import materialize.stylesheets
+        link(type='text/css', rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css', media='screen,projection')
+        link(type='text/css', rel='stylesheet', href='stylesheets/style.css', media='screen,projection')
+        link(media='all', type='text/css', rel='stylesheet', href='stylesheets/main.css')
+        // link(type="text/stylesheets" rel='stylesheet', href='/stylesheets/alpha.stylesheets')
+    body
+        header.header
+            nav.light-blue
+                .nav-wrapper
+                    a.hamburger(href='#')
+                        span.material-icons menu
+                    a.brand-logo(href='#') eService Dashboard - Home
+                    ul#nav-mobile.right.hide-on-med-and-down
+                        li
+                            a(href='/logout') Logout
+        .left-panel.opened
+            aside.sidebar-nav
+                .sidebar-menu
+                    +menuitem("Tickets",'/tickets','move_to_inbox')
+                    +menuitem("Clients",'/clients','people')
+                    +menuitem("Statistics",'/stats','description')
+                    +menuitem("Logout",'/logout','exit_to_app')
+        .parent
+            .content-panel
+                .main-content
+                    block content
+            footer.footer.page-footer.light-blue
+                .container-fluid
+                    .row
+                        .col.l6.s12
+                            h5.white-text E-Servis Bio
+                            p.grey-text.text-lighten-4
+                                | We are a team of college students working on this project like it's our full time job. We are Addicted Penguins!
+                .footer-copyright
+                    .container-fluid
+                        .row
+                            .col.l6.s12
+                                | Made by Addicted Pinguins for WdTaM with
+
+script(src='https://code.jquery.com/jquery-2.1.4.min.js', type='text/javascript')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js', type='text/javascript')
+// script(src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js" type="text/javascript")
+script(src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js', type='text/javascript')
+script(src='/js/mechanic.js', type='text/javascript')
+

@@ -99,6 +99,13 @@ router.get('/tickets', isAuthenticated, function (req, res) {
         res.redirect('/')
     }
 });
+router.get('/ticket-detail', isAuthenticated, function (req, res) {
+    if (req.user.isMechanic) {
+        res.render('mechanic/ticket-detail', {title: 'Tickets'});
+    } else {
+        res.redirect('/')
+    }
+});
 
 router.get('/clients', isAuthenticated, function (req, res) {
     if (req.user.isMechanic) {
