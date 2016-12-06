@@ -25,4 +25,6 @@ $(function(){
         e.preventDefault();
         toggleSide();
     })
+    $('.collapsible.show-first li:eq(0)').addClass('active');
+    $('.collapsible.show-first li:eq(0) .collapsible-body').slideDown(200);
 });

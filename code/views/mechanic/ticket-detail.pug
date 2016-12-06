@@ -3,37 +3,35 @@ extends ../layout
 block content
     main
         .container.row
-            .card.detail-card
-                .card-title
-                    span Ticket
-                    span.card-subtitle subtitle
-                    .card-options.right
-                        i.material-icons more_vert
-                .card-content
-
-
-                    .card-stacked
-                    .container2
-                        .row
-                            .col.l1
-                                img.circle(src="media/temp_img.jpg" alt)
-                            .col.l7
-                                .row.ticket-author
-                                    = "Author"
-                                .row.ticket-date
-                                    = "01.01.2016"
-                                .row
-                                    | asdasdasdasdqegfvvnjkjhasdqwvklsidfqerlksdfpovererw
-                                .row
+            ul.collapsible.show-first.popout(data-collapsible='accordion')
+                each item in [{title:'Last message'},{title:'Message 2',first:0}]
+                    li.detail-card
+                        .collapsible-header
+                            i.material-icons message
+                            = item.title
+                        .collapsible-body
+                            .card-content
+                                .container2
                                     .row
-                                        .a.btn.light-blue(href="#") Reply
-                                        | &nbsp;
-                                        .a.offset-3.btn.light-blue(href="#") Reply
-                            .col.l4
-                                .image-grid
-                                    each x in [1,2,3,4,5]
-                                        .grid-float
-                                            img(src="media/temp_img.jpg" alt)
+                                        .col.l1
+                                            img.circle(src="media/temp_img.jpg" alt)
+                                        .col.l7
+                                            .row.ticket-author
+                                                = "Author"
+                                            .row.ticket-date
+                                                = "01.01.2016"
+                                            .row
+                                                | asdasdasdasdqegfvvnjkjhasdqwvklsidfqerlksdfpovererw
+                                            .row
+                                                .row
+                                                    .a.btn.light-blue(href="#") Reply
+                                                    | &nbsp;
+                                                    .a.offset-3.btn.light-blue(href="#") Reply
+                                        .col.l4
+                                            .image-grid
+                                                each x in [1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6]
+                                                    .grid-float
+                                                        img(src="media/temp_img.jpg" alt)
 
 
 

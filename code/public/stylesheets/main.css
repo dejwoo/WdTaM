@@ -3,6 +3,9 @@ html, body {
   height: 100%;
   min-height: 100%; }
 
+body {
+  position: relative; }
+
 nav .brand-logo {
   left: 80px; }
 
@@ -76,7 +79,8 @@ a.hamburger {
   z-index: 100; }
 
 .image-grid {
-  width: 100%; }
+  width: 100%;
+  max-height: 200px; }
   .image-grid:after {
     clear: both; }
 
@@ -87,6 +91,9 @@ a.hamburger {
 
 .detail-card .card-title {
   background: #eee;
+  padding: 25px; }
+
+.card-content {
   padding: 25px; }
 
 @media all and (max-width: 768px) {
