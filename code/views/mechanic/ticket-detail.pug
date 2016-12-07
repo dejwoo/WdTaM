@@ -4,6 +4,8 @@ extends ../layout
 append head
     link(type='text/css' rel='stylesheet' href='/stylesheets/main.css' media='all')
 
+append foot
+    script(src='/js/materialbox.js', type='text/javascript')
 
 
 block content
@@ -34,7 +36,7 @@ block content
                         .collapsible-body: .card-content: .container2
                             .row
                                 .col.l1
-                                    p.profile-icon(data-letters=item.author.firstName.charAt(0)+item.author.lastName.charAt(0))
+                                    p.profile-icon(data-letters=item.author.firstName.charAt(0) + item.author.lastName.charAt(0))
                                 .col.l7
                                     .row.ticket-author: = "Written by " + item.author.firstName + " " + item.author.lastName
                                     .row.ticket-date: = "On " + item.createdate
@@ -49,10 +51,41 @@ block content
                                             .grid-float
                                                 img.ticket-img.materialboxed(src=image alt data-original=image)
                             .row.reply-message.hidden-el
-                                .input-field.col.s12.l12
-                                    textarea.materialize-textarea(id="reply-textarea")
-                                    label(for="reply-textarea") Write message...
-                                input.btn.light-blue(value="Send message")
+                                .col.s12.left-column
+                                    .card
+                                        .card-title
+                                            p Reply message
+                                        .card-content
+                                            .input-field
+                                                textarea.materialize-textarea(id="reply-textarea")
+                                                label(for="reply-textarea") Write message...
+                                            input.btn.light-blue(value="Send message")
+                                .col.s12.right-column
+                                    .card
+                                        table.costs-table.responsive-table
+                                            thead
+                                                tr
+                                                    th(data-field='id') Name
+                                                    th(data-field='name') Item Name
+                                                    th(data-field='price') Item Price
+                                            tbody
+                                                tr
+                                                    td Alvin
+                                                    td Eclair
+                                                    td $0.87
+                                                tr
+                                                    td Alan
+                                                    td Jellybean
+                                                    td $3.76
+                                                tr
+                                                    td Jonathan
+                                                    td Lollipop
+                                                    td $7.00
+                                                tr
+                                                    td Shannon
+                                                    td KitKat
+                                                    td $9.99
+
 
 
 
