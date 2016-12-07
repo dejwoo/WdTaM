@@ -1,42 +1,58 @@
 extends ../layout
 
+
+append head
+    link(type='text/css' rel='stylesheet' href='/stylesheets/main.css' media='all')
+
+
+
 block content
+    - var lipsum = "Curabitur non ex feugiat, consequat diam at, fermentum purus. Maecenas tincidunt faucibus mattis. Vivamus non nibh vitae justo dignissim luctus at et leo. Nam tristique porta elit. Donec gravida ex eget quam ultricies, vel commodo nisi venenatis. Morbi eget magna at lorem blandit fringilla eget at metus. Maecenas dapibus rutrum odio vel placerat. Nam tortor ante, mollis quis volutpat ut, tincidunt eu augue. Pellentesque sodales consectetur lorem eget pretium."
+    - var temp_date = moment(new Date('1.12.2016'));
+    -
+        var messages = [
+        {title: "Last Message", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
+        {title: "Message 5", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
+        {title: "Message 4", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
+        {title: "Message 3", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
+        {title: "Message 2", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
+        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]}]
     main
-        .container.row
+        .container-fluid.row
             ul.collapsible.show-first.popout(data-collapsible='accordion')
-                each item in [{title:'Last message'},{title:'Message 2',first:0}]
+                each item in messages
                     li.detail-card
                         .collapsible-header
                             i.material-icons message
                             = item.title
-                        .collapsible-body
-                            .card-content
-                                .container2
+                        .collapsible-body: .card-content: .container2
+                            .row
+                                .col.l1
+                                    p.profile-icon(data-letters=item.author.firstName.charAt(0)+item.author.lastName.charAt(0))
+                                .col.l7
+                                    .row.ticket-author: = "Written by " + item.author.firstName + " " + item.author.lastName
+                                    .row.ticket-date: = "On " + item.createdate
+                                    .row: =item.messageContent
                                     .row
-                                        .col.l1
-                                            img.circle(src="media/temp_img.jpg" alt)
-                                        .col.l7
-                                            .row.ticket-author
-                                                = "Author"
-                                            .row.ticket-date
-                                                = "01.01.2016"
-                                            .row
-                                                | asdasdasdasdqegfvvnjkjhasdqwvklsidfqerlksdfpovererw
-                                            .row
-                                                .row
-                                                    .a.btn.show-reply-form.light-blue(href="#") Reply
-                                                    | &nbsp;
-                                                    .a.offset-3.btn.light-blue(href="#") Reply
-                                        .col.l4
-                                            .image-grid
-                                                each x in [1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6]
-                                                    .grid-float
-                                                        img(src="media/temp_img.jpg" alt)
-                                    .row.reply-message.hidden-el
-                                        .input-field.col.s12.l12
-                                            textarea.materialize-textarea(id="reply-textarea")
-                                            label(for="reply-textarea") Write message...
-                                        input.btn.light-blue(value="Send message")
+                                        .a.btn.show-reply-form.light-blue(href="#") Reply
+                                        | &nbsp;
+                                        .a.offset-3.btn.light-blue(href="/home") Close
+                                .col.l4
+                                    .image-grid
+                                        each image in item.images
+                                            .grid-float
+                                                img.ticket-img.materialboxed(src=image alt data-original=image)
+                            .row.reply-message.hidden-el
+                                .input-field.col.s12.l12
+                                    textarea.materialize-textarea(id="reply-textarea")
+                                    label(for="reply-textarea") Write message...
+                                input.btn.light-blue(value="Send message")
 
 
 

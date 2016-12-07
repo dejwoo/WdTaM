@@ -1,133 +1,174 @@
 @mixin transition($t...) {
   -webkit-transition: $t;
-  -moz-transition: $t ;
-  -ms-transition: $t ;
-  -o-transition: $t ;
-  transition: $t ;
+  -moz-transition: $t;
+  -ms-transition: $t;
+  -o-transition: $t;
+  transition: $t;
 }
 
 $leftPanelWidth: 250px;
 
 html {
-  height:100%;
+  height: 100%;
 }
-html,body {
-  width:100%;
-  min-height:100%;
+
+html, body {
+  width: 100%;
+  min-height: 100%;
 }
+
 body {
   position: relative;
 }
-nav .brand-logo {
-  left:80px;
 
+nav .brand-logo {
+  left: 80px;
+  font-size: 1.4rem;
 }
+
 a.hamburger {
-  width:64px;
+  width: 64px;
   height: 64px;
-  line-height:64px;
+  line-height: 64px;
   text-align: center;
   display: block;
   position: absolute;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
   span {
-    padding-top:20px;
+    padding-top: 20px;
   }
 }
+
 .parent {
-  min-height:100%;
+  min-height: 100%;
   //position: relative;
-  margin-left:$leftPanelWidth;
-  padding-top:64px;
-  padding-bottom:250px;
+  margin-left: $leftPanelWidth;
+  padding-top: 64px;
+  padding-bottom: 250px;
 }
 
 .left-panel {
   position: fixed;
-  display:block;
-  width:$leftPanelWidth;
-  left:0;
-  top:64px;
-  height:100%;
-  z-index:99;
-  box-shadow:0px 0px 8px rgba(0,0,0,0.2);
-  background:#fff;
+  display: block;
+  width: $leftPanelWidth;
+  left: 0;
+  top: 64px;
+  height: 100%;
+  z-index: 99;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  background: #fff;
 }
+
 .content-panel {
-  position:relative;
+  position: relative;
 
 }
+
 .main-content {
-  padding:25px;
+  padding: 25px;
 
 }
+
 .sidebar-menu {
   a {
     display: block;
-    padding:20px 20px;
-    color:#000;
+    padding: 20px 20px;
+    color: #000;
     text-decoration: none;
     i.material-icons {
       vertical-align: middle;
-      margin-right:8px;
-      margin-top:-2px;
+      margin-right: 8px;
+      margin-top: -2px;
     }
     @include transition(0.2s);
     &:hover {
-      background:#f5f5f5;
+      background: #f5f5f5;
     }
   }
 }
 
 .footer {
   position: absolute;
-  left:0;
-  bottom:0;
-  width:100%;
-  background:#555;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #555;
   padding-left: $leftPanelWidth;
   .container-fluid {
-    padding-left:25px;
+    padding-left: 25px;
   }
 }
+
 .header {
   position: fixed;
-  left:0;
-  top:0;
-  width:100%;
-  z-index:100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }
+
 .image-grid {
-  width:100%;
-  max-height:200px;
-  overflow:auto;
+  width: 100%;
+  max-height: 200px;
+  overflow: auto;
   &:after {
-    clear:both;
+    clear: both;
   }
 }
+
 .grid-float {
-  float:left;
-  margin-right:5px;
-  margin-bottom:5px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
+
 .detail-card {
   .card-title {
     background: #eee;
     padding: 25px;
   }
 }
+
 .card-content {
-  padding:25px;
+  padding: 25px;
 }
+
 .hidden-el {
-  display:none;
+  display: none;
 }
-@media all and (max-width:768px) {
+
+@media all and (max-width: 768px) {
   nav .brand-logo {
-    left:50%;
+    left: 50%;
   }
   .footer {
-    padding-left:0px;
+    padding-left: 0;
   }
+}
+
+p.profile-icon {
+  margin: 0;
+  padding: 0;
+}
+
+[data-letters]:before {
+  content: attr(data-letters);
+  display: inline-block;
+  font-size: 1.2em;
+  width: 2.7em;
+  height: 2.7em;
+  line-height: 2.7em;
+  text-align: center;
+  border-radius: 50%;
+  background: #dd90cf;
+  vertical-align: middle;
+  margin-right: 1em;
+  color: white;
+}
+
+.ticket-img {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
 }
