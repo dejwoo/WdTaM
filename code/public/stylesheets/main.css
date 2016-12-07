@@ -94,7 +94,12 @@ a.hamburger {
   margin-bottom: 5px; }
 
 .detail-card .card-title {
-  background: #eee; }
+  background: #eee;
+  font-size: 18px; }
+
+.collapsible-body p {
+  padding: 0.4rem 1rem 0.4rem 1rem;
+  margin: 0; }
 
 .card-content {
   padding: 25px; }
@@ -143,5 +148,8 @@ p.profile-icon {
   -webkit-flex: 7 0 0;
   flex: 7 0 0;
   margin-left: 5px; }
+
+.add-new-line-row {
+  padding: 5px 5px; }
 
 /*# sourceMappingURL=main.css.map */

@@ -126,8 +126,13 @@ a.hamburger {
 .detail-card {
   .card-title {
     background: #eee;
-    //padding: 25px;
+    font-size: 18px
   }
+}
+
+.collapsible-body p {
+  padding: 0.4rem 1rem 0.4rem 1rem;
+  margin: 0;
 }
 
 .card-content {
@@ -173,22 +178,23 @@ p.profile-icon {
   overflow: hidden;
 }
 
-.reply-message{
-  display:flex
+.reply-message {
+  display: flex
 }
 
-.left-column{
+.left-column {
   -webkit-flex: 5 0 0;
   flex: 5 0 0;
   margin-right: 5px;
 }
 
-.right-column{
+.right-column {
   -webkit-flex: 7 0 0;
   flex: 7 0 0;
   margin-left: 5px;
 }
 
-.costs-table{
-
+.add-new-line-row{
+  padding: 5px 5px
 }
+

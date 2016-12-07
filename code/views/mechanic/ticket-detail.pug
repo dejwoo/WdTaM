@@ -59,32 +59,40 @@ block content
                                             .input-field
                                                 textarea.materialize-textarea(id="reply-textarea")
                                                 label(for="reply-textarea") Write message...
-                                            input.btn.light-blue(value="Send message")
+                                            a.btn.btn-small.waves-effect.waves-light.light-blue(href='#') Send
                                 .col.s12.right-column
                                     .card
-                                        table.costs-table.responsive-table
+                                        table.highlight.card-content.responsive-table
                                             thead
                                                 tr
-                                                    th(data-field='id') Name
-                                                    th(data-field='name') Item Name
-                                                    th(data-field='price') Item Price
+                                                    th(data-field='checkbox')
+                                                        input(type='checkbox')
+                                                    th(data-field='name') Procedure Name
+                                                    th(data-field='time') Est. Time required
+                                                    th(data-field='price') Est. Price
                                             tbody
                                                 tr
                                                     td Alvin
                                                     td Eclair
+                                                    td 3h
                                                     td $0.87
                                                 tr
                                                     td Alan
                                                     td Jellybean
+                                                    td 1.5 h
                                                     td $3.76
+                                                tr.add-new-line-row
+                                                    td
+                                                    td
+                                                    td
+                                                    td
+                                                        a.btn.right.btn-floating.waves-effect.waves-light.grey
+                                                            i.material-icons add
                                                 tr
-                                                    td Jonathan
-                                                    td Lollipop
-                                                    td $7.00
-                                                tr
-                                                    td Shannon
-                                                    td KitKat
-                                                    td $9.99
+                                                    td Total
+                                                    td
+                                                    td 4.5 h
+                                                    td $3.76
 
 
 
