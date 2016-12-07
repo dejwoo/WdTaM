@@ -17,10 +17,19 @@ router.get('/home', isAuthenticated, function (req, res) {
 		res.render('client/home', {title: 'Home'});
 	}
 });
-router.get('/vehicles', isAuthenticated, function (req, res) {
+router.get('/vehicles/:page', isAuthenticated, function (req, res) {
 	if (req.user.isMechanic) {
 		res.redirect('/home');
 	}
+	// default
+	if (!req.params.page) {
+		req.params.page = 1
+	}
+	// default
+	if (!req.params.perPage) {
+		req.params.perPage = 3
+	}
+
 	//treba vybrat vsetky auta
 	var cursor = Vehicle.find({owner:req.user._id}).cursor();
 	var vehicleArray = [];
@@ -30,7 +39,7 @@ router.get('/vehicles', isAuthenticated, function (req, res) {
 	});
 	cursor.on('end', function() {
 		console.log(vehicleArray)
-  		res.render('client/vehicles', {title: 'Vehicles', vehicles:vehicleArray });
+  		res.render('client/vehicles', {title: 'Vehicles', vehicles:vehicleArray, page:parseInt(req.params.page), pagesTotal: vehicleArray.length, perPage:parseInt(req.params.perPage)});
 	});
 });
 

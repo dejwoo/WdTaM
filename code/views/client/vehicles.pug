@@ -5,8 +5,6 @@ mixin menuitem_mobile(link,title)
 
 block content
     if vehicles
-        p
-            =vehicles.length
         if (vehicles.length == 0)
             main.valign-wrapper.container
                 h3.grey-text.text-lighten-1.hide-on-med-and-down.
@@ -17,38 +15,74 @@ block content
                     a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
                         i.material-icons add
         else
-            main.valign-wrapper.container
-                each vehicle in vehicles
-                    .col.s12.m7
-                        h4.header
-                            =vehicle.name
-                        .card.horizontal
-                            .card-image
-                                img.responsive(src="https://unsplash.it/100/190/?random")
-                            .card-stacked
-                                .card-content
-                                    ul.collection
-                                        li.collection-item
-                                            =vehicle.model
-                                            .secondary-content
-                                                p Model
-                                        li.collection-item
-                                            =vehicle.type
-                                            .secondary-content
-                                                p Type
-                                        li.collection-item
-                                            =vehicle.ecv
-                                            .secondary-content
-                                                p ECV
-                                        li.collection-item
-                                            =vehicle.vin
-                                            .secondary-content
-                                                p VIN
-                                .card-action
-                                    - var link = "/vehicle/" + vehicle._id
-                                    a(href=link) Details
+            main.valign-wrapper.container.row
+                - for (var x = (page-1)*perPage; x < page*perPage && x < vehicles.length; x++)
+                        .col.s12.m10
+                            h4.header
+                                =vehicles[x].name
+                            .card.horizontal
+                                .card-image
+                                    img.responsive()
+                                .card-stacked
+                                    .card-content
+                                        ul.collection
+                                            li.collection-item
+                                                =vehicles[x].model
+                                                .secondary-content
+                                                    p Model
+                                            li.collection-item
+                                                =vehicles[x].type
+                                                .secondary-content
+                                                    p Type
+                                            li.collection-item
+                                                =vehicles[x].ecv
+                                                .secondary-content
+                                                    p ECV
+                                            li.collection-item
+                                                =vehicles[x].vin
+                                                .secondary-content
+                                                    p VIN
+                                    .card-action
+                                        - var link = "/vehicle/" + vehicles[x]._id
+                                        a(href=link) Details
                 .fixed-action-btn
                     a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='/client/vehicle/add')
                         i.material-icons add
+            ul.pagination.hide-on-low.center
+                if page == 1
+                    li.disabled
+                        - var link = "page/" + (page-1)
+                        a(href=link)
+                            i.material-icons chevron_left
+                else
+                    li.waves-effect
+                        - var link = "page/" + (page-1)
+                        a(href=link)
+                            i.material-icons chevron_left
+                - for (var i = 1; i < pagesTotal; i++)
+                    if i == page
+                        li.active
+                            - var link = "page/" + page
+                            a(href=link)
+                                =page
+                    else
+                        li.waves-effect
+                            - var link = "page/" + i
+                            a(href=link)
+                                =i
+                if page*perPage > vehicles.length
+                    li.disabled
+                        - var link = "page/" + (page+1)
+                        a(href=link)
+                            i.material-icons chevron_right
+                else
+                    li.waves-effect
+                        - var link = "page/" + (page+1)
+                        a(href=link)
+                            i.material-icons chevron_right
+    else
+        h3
+            ="Whoops, it seems something bad happend, try refreshing page later."
+
 
 
