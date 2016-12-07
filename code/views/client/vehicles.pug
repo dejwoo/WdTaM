@@ -51,33 +51,31 @@ block content
             ul.pagination.hide-on-low.center
                 if page == 1
                     li.disabled
-                        - var link = "page/" + (page-1)
-                        a(href=link)
+                        a(href="#!" disabled)
                             i.material-icons chevron_left
                 else
                     li.waves-effect
-                        - var link = "page/" + (page-1)
+                        - var link = (page-1)
                         a(href=link)
                             i.material-icons chevron_left
-                - for (var i = 1; i < pagesTotal; i++)
+                - for (var i = 1; i <= pagesTotal; i++)
                     if i == page
                         li.active
-                            - var link = "page/" + page
+                            - var link = page
                             a(href=link)
                                 =page
                     else
                         li.waves-effect
-                            - var link = "page/" + i
+                            - var link = i
                             a(href=link)
                                 =i
-                if page*perPage > vehicles.length
+                if page*perPage >= vehicles.length
                     li.disabled
-                        - var link = "page/" + (page+1)
-                        a(href=link)
+                        a(href="#!" disabled)
                             i.material-icons chevron_right
                 else
                     li.waves-effect
-                        - var link = "page/" + (page+1)
+                        - var link = (page+1)
                         a(href=link)
                             i.material-icons chevron_right
     else
