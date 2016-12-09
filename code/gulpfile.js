@@ -19,7 +19,8 @@ var pump = require('pump');
 var htmlbeautify = require('gulp-html-beautify');
 var responsive = require('gulp-responsive');
 var responsiveConfig = require('gulp-responsive-config');
-
+var htmlv = require('gulp-html-validator');
+var foreach = require('gulp-foreach');
 
 var BUILD_PATH = "./../build";
 var DIST_PATH = "./../dist";
@@ -48,7 +49,7 @@ gulp.task('sass', function () {
         .pipe(uncss({
             html: [BUILD_PATH + '/**/*.html', DIST_PATH + '/**/*.html']
         }))
-        .on('error',function (error) {
+        .on('error', function (error) {
             console.log(error)
         })
         .pipe(nano())
@@ -87,6 +88,10 @@ gulp.task('views', function () {
     return gulp.src(paths.views)
         .pipe(pug())
         .pipe(htmlbeautify())
+        .pipe(foreach(function (stream, file) {
+            return stream
+                .pipe(htmlv({format: 'html'}))
+        }))
         .pipe(gulp.dest(DIST_PATH))
 });
 

@@ -143,6 +143,11 @@ a.hamburger {
   display: none;
 }
 
+.hidden-el.showing {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
 @media all and (max-width: 768px) {
   nav .brand-logo {
     left: 50%;
@@ -178,10 +183,6 @@ p.profile-icon {
   overflow: hidden;
 }
 
-.reply-message {
-  display: flex
-}
-
 .left-column {
   -webkit-flex: 5 0 0;
   flex: 5 0 0;
@@ -190,11 +191,30 @@ p.profile-icon {
 
 .right-column {
   -webkit-flex: 7 0 0;
-  flex: 7 0 0;
+  flex: 6 0 0;
   margin-left: 5px;
 }
 
-.add-new-line-row{
+.add-new-line-row {
   padding: 5px 5px
 }
 
+.add-new-line-button {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  float: none !important;
+}
+
+.add-new-line-button-inner {
+  font-size: 1.3rem !important;
+  line-height: inherit !important;
+}
+
+.custom-input-field  {
+  margin-top: -2.5rem;
+
+}
+.custom-input-field  input {
+  border-bottom: none;
+}

@@ -58,9 +58,32 @@ const app = express();
  * Adding utility libraries for use in Pug templates
  */
 
-app.locals._      = require('underscore');
-app.locals._.str  = require('underscore.string');
+app.locals._ = require('underscore');
+app.locals._.str = require('underscore.string');
 app.locals.moment = require('moment');
+app.locals.humanizeDuration = require('humanize-duration');
+app.locals.money = require('money');
+app.locals.numeral = require('numeral');
+app.locals.numeral.register('locale', 'sk', {
+    delimiters: {
+        thousands: ' ',
+        decimal: ','
+    },
+    abbreviations: {
+        thousand: 'tis.',
+        million: 'mil.',
+        billion: 'b',
+        trillion: 't'
+    },
+    ordinal: function () {
+        return '.';
+    },
+    currency: {
+        symbol: '€'
+    }
+});
+app.locals.numeral.locale('sk');
+
 
 /**
  * Connect to MongoDB.

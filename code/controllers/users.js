@@ -29,7 +29,7 @@ router.get('/home', isAuthenticated, function (req, res) {
 
 router.get('/login', function (req, res) {
     if (req.user) {
-        return res.redirect('/');
+        res.redirect(req.session.returnTo || "/");
     }
     res.render('account/login', {user: req.user, title: "Login"});
 });
@@ -48,7 +48,7 @@ router.post('/login', function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            res.redirect('/home')
+            res.redirect(req.session.returnTo || "/");
         });
     })(req, res, next);
 });
@@ -83,6 +83,8 @@ router.post('/register', function (req, res) {
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
+    } else {
+        req.session.returnTo = req.path;
     }
     res.redirect('/login');
 }

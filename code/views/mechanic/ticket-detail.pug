@@ -13,17 +13,17 @@ block content
     - var temp_date = moment(new Date('1.12.2016'));
     -
         var messages = [
-        {title: "Last Message", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        {title: "Last Message", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date, messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 5", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        {title: "Message 5", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 4", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        {title: "Message 4", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 3", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        {title: "Message 3", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 2", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        {title: "Message 2", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day').format('DD.MM.YYYY h:mm'), messageContent:lipsum,
+        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]}]
     main
         .container-fluid.row
@@ -39,12 +39,13 @@ block content
                                     p.profile-icon(data-letters=item.author.firstName.charAt(0) + item.author.lastName.charAt(0))
                                 .col.l7
                                     .row.ticket-author: = "Written by " + item.author.firstName + " " + item.author.lastName
-                                    .row.ticket-date: = "On " + item.createdate
+                                    .row.ticket-date
+                                        time(datetime=item.createdate.format())="On " + item.createdate.format('Do MMMM YYYY, h:mm')
                                     .row: =item.messageContent
                                     .row
-                                        .a.btn.show-reply-form.light-blue(href="#") Reply
+                                        .a#show-reply-form.btn.light-blue(href="#") Reply
                                         | &nbsp;
-                                        .a.offset-3.btn.light-blue(href="/home") Close
+                                        .a#hide-reply-form.btn.offset-3.light-blue(href="/home") Close
                                 .col.l4
                                     .image-grid
                                         each image in item.images
@@ -57,42 +58,49 @@ block content
                                             p Reply message
                                         .card-content
                                             .input-field
-                                                textarea.materialize-textarea(id="reply-textarea")
+                                                textarea.materialize-textarea(id="reply-textarea" length="1024")
                                                 label(for="reply-textarea") Write message...
                                             a.btn.btn-small.waves-effect.waves-light.light-blue(href='#') Send
                                 .col.s12.right-column
                                     .card
-                                        table.highlight.card-content.responsive-table
+                                        table.bordered.highlight.card-content.responsive-table
                                             thead
                                                 tr
-                                                    th(data-field='checkbox')
-                                                        input(type='checkbox')
-                                                    th(data-field='name') Procedure Name
-                                                    th(data-field='time') Est. Time required
-                                                    th(data-field='price') Est. Price
+                                                    th
+                                                    th.tooltipped(data-field='name' data-position="top" data-delay="50" data-tooltip="Service or Product used or planned") Procedure Name
+                                                    th.tooltipped(data-field='time' data-position="top" data-delay="50" data-tooltip="Estimated time for the task completition") Est. Time required
+                                                    th.tooltipped(data-field='price' data-position="top" data-delay="50" data-tooltip="Estimated price for the task") Est. Price
                                             tbody
-                                                tr
-                                                    td Alvin
-                                                    td Eclair
-                                                    td 3h
-                                                    td $0.87
-                                                tr
-                                                    td Alan
-                                                    td Jellybean
-                                                    td 1.5 h
-                                                    td $3.76
+                                                -
+                                                    var expenses = [
+                                                    {name:"Product 1", est_time:{hours:1, minutes:30}, est_cost:7.99},
+                                                    {name:"Service 2", est_time:{hours:3, minutes:40}, est_cost:15.99},
+                                                    {name:"Product 3", est_time:{hours:1}, est_cost:5.99}];
+
+                                                each item in expenses
+                                                    tr
+                                                        td.center: a.delete-table-row(href='#!'): i.material-icons delete
+                                                        td
+                                                            .input-field.custom-input-field
+                                                                label
+                                                                    input(value=item.name type=text)
+                                                        td= humanizeDuration(moment.duration(item.est_time), {conjunction:' and ', serialComma: false})
+                                                        td= numeral(item.est_cost).format('$ 0,0[.]00')
                                                 tr.add-new-line-row
+                                                    td.center
+                                                        button.btn.right.btn-floating.waves-effect.waves-light.grey.add-new-line-button(href='#!')
+                                                            i.material-icons.add-new-line-button-inner add
                                                     td
                                                     td
                                                     td
-                                                    td
-                                                        a.btn.right.btn-floating.waves-effect.waves-light.grey
-                                                            i.material-icons add
                                                 tr
-                                                    td Total
+                                                    td.center Total
+                                                        -
+                                                            var time_sum = expenses.map(function(i){return i.est_time}).reduce(function(a,b){var t=a;if (!a.isDuration){t=moment.duration(a)}; t.add(moment.duration(b));return t});
+                                                            var cost_sum = expenses.map(function(i){return i.est_cost}).reduce(function(a,b){return a+b});
                                                     td
-                                                    td 4.5 h
-                                                    td $3.76
+                                                    td= humanizeDuration(time_sum, {conjunction:' and ', serialComma: false})
+                                                    td= numeral(cost_sum).format('$ 0,0[.]00')
 
 
 

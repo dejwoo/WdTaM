@@ -6,7 +6,9 @@ const Vehicle = require('../models/vehicle');
 function isAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
-	}
+	} else {
+        req.session.returnTo = "/client" + req.path;
+    }
 	res.redirect('/login');
 }
 
@@ -17,10 +19,19 @@ router.get('/home', isAuthenticated, function (req, res) {
 		res.render('client/home', {title: 'Home'});
 	}
 });
-router.get('/vehicles', isAuthenticated, function (req, res) {
+router.get('/vehicles/:page', isAuthenticated, function (req, res) {
 	if (req.user.isMechanic) {
 		res.redirect('/home');
 	}
+	// default
+	if (!req.params.page) {
+		req.params.page = 1
+	}
+	// default
+	if (!req.query.perPage) {
+		req.query.perPage = 3
+	}
+
 	//treba vybrat vsetky auta
 	var cursor = Vehicle.find({owner:req.user._id}).cursor();
 	var vehicleArray = [];
@@ -29,8 +40,11 @@ router.get('/vehicles', isAuthenticated, function (req, res) {
   		vehicleArray.push(doc);
 	});
 	cursor.on('end', function() {
-		console.log(vehicleArray)
-  		res.render('client/vehicles', {title: 'Vehicles', vehicles:vehicleArray });
+		if (req.params.page == "latest") {
+	  		res.render('client/vehicles', {title: 'Vehicles', vehicles:vehicleArray, page:Math.floor(vehicleArray.length/req.query.perPage)+1, pagesTotal:Math.floor(vehicleArray.length/req.query.perPage)+1 , perPage:parseInt(req.query.perPage)});
+		} else {
+	  		res.render('client/vehicles', {title: 'Vehicles', vehicles:vehicleArray, page:parseInt(req.params.page), pagesTotal: Math.floor(vehicleArray.length/req.query.perPage)+1, perPage:parseInt(req.query.perPage)});
+		}
 	});
 });
 
@@ -57,7 +71,7 @@ router.post('/vehicle/add', isAuthenticated, function (req, res) {
         	console.err(err);
             return res.render('client/vehicle_add', {vehicle: vehicle, title: "Register"});
         }
-        res.redirect('/client/vehicles');
+        res.redirect('/client/vehicles/latest');
     });
 });
 
