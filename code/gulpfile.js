@@ -17,8 +17,8 @@ var uncss = require('gulp-uncss');
 var nano = require('gulp-cssnano');
 var pump = require('pump');
 var htmlbeautify = require('gulp-html-beautify');
-var responsive = require('gulp-responsive');
-var responsiveConfig = require('gulp-responsive-config');
+//var responsive = require('gulp-responsive');
+//var responsiveConfig = require('gulp-responsive-config');
 var htmlv = require('gulp-html-validator');
 var foreach = require('gulp-foreach');
 

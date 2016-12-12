@@ -1,14 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Status = require('../models/status');
-var Client = require('../models/client');
 
-var Ticket = new Schema({
-    user: Client.schema,
-    date: Date,
-    text: String,
-    images: [String],
-    status: Status.schema
+var TicketSchema = new Schema({
+    user: {type: Schema.Types.ObjectId, ref: 'Account'},
+    mechanic: {type: Schema.Types.ObjectId, ref: 'Account'},
+    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}],
+    status: {type: Schema.Types.ObjectId, ref: 'Status'}
 });
 
-module.exports = mongoose.model('Ticket', Ticket);
+var Ticket = mongoose.model('Ticket', TicketSchema);
+module.exports = Ticket;

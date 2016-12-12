@@ -50,7 +50,10 @@ $(function () {
     });
     $('.add-new-line-button').click(function () {
         var el = $(this).closest('tr');
-        el.before('<tr><td class="center"><a class="delete-table-row" href="#!"><i class="material-icons">delete</i></a></td><td><div class="input-field custom-input-field"><label><input value=""></label></div></td><td><div class="custom-input-field"><input type="text" class="datepicker"></div></td><td><div class="input-field custom-input-field"><label><input value=""></label></div></td></tr>});');
+        el.before('<tr><td class="center"><a class="delete-table-row" href="#!"><i class="material-icons">delete</i></a></td>' +
+            '<td><div class="input-field custom-input-field"><label><input value=""></label></div></td>' +
+            '<td><div class="custom-input-field"><input type="text" class="datepicker"></div></td>' +
+            '<td><div class="input-field custom-input-field"><label><input value=""></label></div></td></tr>});');
         el = el.prev();
         el.children("td").each(function () {
             el.children("div").slideDown(function () {
