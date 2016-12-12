@@ -130,7 +130,7 @@ app.use(lusca({
     csp: {
         policy: {
             "default-src": "'self' dejwoo.com api.dejwoo.com",
-            "img-src": "*",
+            "img-src": "* 'self' data* 'unsafe-inline' 'unsafe-eval' w3.org",
             "style-src": "'self' fonts.googleapis.com cdnjs.cloudflare.com",
             "script-src": "'self' code.jquery.com cdnjs.cloudflare.com unpkg.com",
             "font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com"

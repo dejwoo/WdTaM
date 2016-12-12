@@ -3,12 +3,12 @@ block header
         nav.light-blue
             .nav-wrapper.row
                 if (!user)
-                    .brand-logo.col.s5.m3
-                        span.chapter-title
-                        if title
-                            = 'eService - ' + title
-                        else
-                            = 'eService'
+                    .col.s5.m3
+                        span.brand-logo
+                            if title
+                                = 'eService - ' + title
+                            else
+                                = 'eService'
                     ul.right.hide-on-med-and-down
                         li: a(href="#") Help
                         li: a(href="/register") Register

@@ -14,8 +14,9 @@ router.get('/', function (req, res) {
         else {
             res.redirect('/client/home');
         }
+    } else {
+        res.render('index');
     }
-    res.render('index');
 });
 
 router.get('/home', isAuthenticated, function (req, res) {
