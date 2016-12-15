@@ -4,20 +4,19 @@ append head
     link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
 
 block content
-    h4 Tickets
-    ul.collection
-        each item in [{name:'Jozo',title:'Critical car malfunction',id:1},{name:'Jano',title:'Minor car malfunction',id:2}]
-            li.collection-item.avatar
+    block content-header
+        .row
+            .col.l6
+                h4 Tickets
+            .col.l6
+                .chips.chips-placeholder(data-index='0' data-initialized='true')
+    .collection
+        each item in [{name:'Jozo',title:'Critical car malfunction',id:1, status:'Pending Customer'},{name:'Jano',title:'Minor car malfunction',id:2, status:'New'}]
+            a.collection-item.avatar(href='/ticket-detail?id='+item.id)
                 i.material-icons.circle folder
-                span.title
-                = item.title
-                p
-                    b
-                    = item.name
-                    br
-                    | Test test
-                a.secondary-content(href='/ticket-detail?id='+item.id)
-                    i.material-icons send
+                span.title: =item.title
+                p: =item.name
+                span.secondary-content.badge.new(data-badge-caption=item.status)
 
 
 

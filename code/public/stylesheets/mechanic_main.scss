@@ -24,6 +24,7 @@ body {
 nav .brand-logo {
   left: 80px;
   font-size: 1.4rem;
+  transform: unset!important;
 }
 
 a.hamburger {
@@ -157,6 +158,8 @@ a.hamburger {
   }
 }
 
+
+
 p.profile-icon {
   margin: 0;
   padding: 0;
@@ -215,6 +218,11 @@ p.profile-icon {
   margin-top: -2.5rem;
 
 }
-.custom-input-field  input {
+
+.custom-input-field input {
   border-bottom: none;
+}
+
+.collection .collection-item.avatar{
+  min-height:0;
 }

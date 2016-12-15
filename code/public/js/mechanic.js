@@ -6,22 +6,26 @@ function toggleSide() {
         $('.left-panel').stop(true, true).animate({
             left: '-300px'
         }, 300).removeClass('opened');
-        $('.parent').stop(true, true).animate({
-            marginLeft: '0px'
-        }, 300);
-        $('.footer').stop(true, true).animate({
-            paddingLeft: '0px'
-        }, 300);
+
+            $('.parent').stop(true, true).animate({
+                marginLeft: '0px'
+            }, 300);
+            $('.footer').stop(true, true).animate({
+                paddingLeft: '0px'
+            }, 300);
+
     } else {
         $('.left-panel').stop(true, true).animate({
             left: '0px'
         }, 300).addClass('opened');
-        $('.parent').stop(true, true).animate({
-            marginLeft: $('.left-panel').width()
-        }, 300);
-        $('.footer').stop(true, true).animate({
-            paddingLeft: $('.left-panel').width()
-        }, 300);
+        if (!isMobile()) {
+            $('.parent').stop(true, true).animate({
+                marginLeft: $('.left-panel').width()
+            }, 300);
+            $('.footer').stop(true, true).animate({
+                paddingLeft: $('.left-panel').width()
+            }, 300);
+        }
     }
 }
 $(function () {
@@ -72,4 +76,17 @@ $(function () {
         })
     });
 
+    $('.chips').material_chip({
+        placeholder: 'Enter a filter',
+        secondaryPlaceholder: '+ Filter'
+    })
+    $('.chips').on('chip.add', function(e, chip){
+        console.log(chip.tag);
+    });
+    $('.chips').on('chip.delete', function(e, chip){
+        // you have the deleted chip here
+    });
+    $('.chips').on('chip.select', function(e, chip){
+        console.log(chip.tag);
+    });
 });
