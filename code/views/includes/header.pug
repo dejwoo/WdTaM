@@ -3,13 +3,12 @@ block header
         nav.light-blue
             .nav-wrapper.row
                 if (!user)
-                    .brand-logo.col.s5.m3
-                        span.chapter-title
-                        if title
-                            = 'eService - ' + title
-                        else
-                            = 'eService'
-                    ul.right.hide-on-med-and-down
+                    span.brand-logo
+                    if title
+                        = 'eService - ' + title
+                    else
+                        = 'eService'
+                    ul.right.hide-on-small-and-down
                         li: a(href="#") Help
                         li: a(href="/register") Register
                         li: a(href="/login") Login
@@ -32,17 +31,17 @@ block header
                                 label.active(for="search")
                                     i.material-icons.search-icon search
 
-                        ul#nav-mobile.right.hide-on-med-and-down
+                        ul.right.hide-on-med-and-up
                             li
                                 a(href='/logout') Logout
 
                     if !user.isMechanic
-                        ul.right.hide-on-med-and-down
+                        ul.right.hide-on-small-and-down
                             li: a(href="/client/vehicles/1") Vehicles
                             li: a(href="#") History
                             li: a(href="/logout") Logout
 
-                if (user && !user.profile_img)
+                //if (user && !user.profile_img)
                     -var letter = user.username.substr(0,1)
-                    .right.col.s9.m6.nav-right-menu
+                    .col.s9.m6.right
                         img.circle(src='' alt='' data-letters=letter)
