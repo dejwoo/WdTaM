@@ -17,10 +17,13 @@ var uncss = require('gulp-uncss');
 var nano = require('gulp-cssnano');
 var pump = require('pump');
 var htmlbeautify = require('gulp-html-beautify');
-var responsive = require('gulp-responsive');
-var responsiveConfig = require('gulp-responsive-config');
+//var responsive = require('gulp-responsive');
+//var responsiveConfig = require('gulp-responsive-config');
 var htmlv = require('gulp-html-validator');
 var foreach = require('gulp-foreach');
+var sourcemaps = require('gulp-sourcemaps');
+const sassError  = require('gulp-sass-error').gulpSassError;
+const throwError = true;
 
 var BUILD_PATH = "./../build";
 var DIST_PATH = "./../dist";
@@ -44,18 +47,17 @@ gulp.task('lint', function () {
 // Compile Our Sass
 gulp.task('sass', function () {
     return gulp.src(paths.styles)
-        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(sourcemaps.init())
+        .pipe(sass.sync().on('error', sassError(throwError)))
+        .pipe(sourcemaps.write('public/stylesheets/'))
         .pipe(gulp.dest('public/stylesheets/'))
         .pipe(uncss({
             html: [BUILD_PATH + '/**/*.html', DIST_PATH + '/**/*.html']
         }))
-        .on('error', function (error) {
-            console.log(error)
-        })
         .pipe(nano())
         .pipe(gulp.dest(DIST_PATH + '/assets/css'))
         .pipe(browserSync.stream({match: 'public/stylesheets/**/*.css'}));
-    //.pipe(concat('main.css'))
+    //.pipe(concat('mechanic_main.css'))
 });
 
 // Concatenate & Minify JS

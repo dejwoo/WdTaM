@@ -2,7 +2,7 @@ extends ../layout
 
 
 append head
-    link(type='text/css' rel='stylesheet' href='/stylesheets/main.css' media='all')
+    link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
 
 append foot
     script(src='/js/materialbox.js', type='text/javascript')
@@ -11,47 +11,52 @@ append foot
 block content
     - var lipsum = "Curabitur non ex feugiat, consequat diam at, fermentum purus. Maecenas tincidunt faucibus mattis. Vivamus non nibh vitae justo dignissim luctus at et leo. Nam tristique porta elit. Donec gravida ex eget quam ultricies, vel commodo nisi venenatis. Morbi eget magna at lorem blandit fringilla eget at metus. Maecenas dapibus rutrum odio vel placerat. Nam tortor ante, mollis quis volutpat ut, tincidunt eu augue. Pellentesque sodales consectetur lorem eget pretium."
     - var temp_date = moment(new Date('1.12.2016'));
+    - var humanize_setting = {conjunction: ' and ',serialComma: false};
     -
         var messages = [
-        {title: "Last Message", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date, messageContent:lipsum,
+        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum},
+        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:true}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum},
+        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 5", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
-        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 4", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
-        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 3", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
-        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 2", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
-        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
+        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:true}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum},
+        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
         images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]}]
     main
         .container-fluid.row
             ul.collapsible.show-first.popout(data-collapsible='accordion')
-                each item in messages
+                each item, index in messages
                     li.detail-card
-                        .collapsible-header
+                        - var side = item.author.isMechanic?"right": "left"
+                        div(class="collapsible-header" + " message-card-header-" + side)
                             i.material-icons message
-                            = item.title
-                        .collapsible-body: .card-content: .container2
+                            if index == 0
+                                = "Newest Message"
+                            else if index == messages.length - 1
+                                = item.title
+                            else
+                                = 'Re:'.repeat(messages.length - 1 - index) + item.title
+                        .collapsible-body: .card-content
                             .row
-                                .col.l1
-                                    p.profile-icon(data-letters=item.author.firstName.charAt(0) + item.author.lastName.charAt(0))
-                                .col.l7
-                                    .row.ticket-author: = "Written by " + item.author.firstName + " " + item.author.lastName
-                                    .row.ticket-date
-                                        time(datetime=item.createdate.format())="On " + item.createdate.format('Do MMMM YYYY, h:mm')
-                                    .row: =item.messageContent
-                                    .row
-                                        .a#show-reply-form.btn.light-blue(href="#") Reply
-                                        | &nbsp;
-                                        .a#hide-reply-form.btn.offset-3.light-blue(href="/home") Close
-                                .col.l4
-                                    .image-grid
-                                        each image in item.images
-                                            .grid-float
-                                                img.ticket-img.materialboxed(src=image alt data-original=image)
-                            .row.reply-message.hidden-el
+                                - var temp = item.images? "col s12 m6 l7 "+ side :"col s12 m8 l8 "+ side;
+                                div(class=temp)
+                                    div(class="row" + " message-header-" + side)
+                                        p.profile-icon(data-letters=item.author.firstName.charAt(0) + item.author.lastName.charAt(0))
+                                        div
+                                            p.message-author
+                                                = "Written by " + item.author.firstName + " " + item.author.lastName
+                                            p.message-date
+                                                time(datetime=item.createdate.format())="On " + item.createdate.format('Do MMMM YYYY, h:mm')
+                                        if side == "left" && index == 0
+                                            a.show-reply-form.btn.light-blue(href="#") Reply
+                                    .row.message-content
+                                        =item.messageContent
+                                if item.images
+                                    .col.s12.m4.l5
+                                        .image-grid
+                                            each image in item.images
+                                                .grid-float
+                                                    img.message-img.materialboxed(src=image alt data-original=image)
+                            .row.message-reply.hidden-el
                                 .col.s12.left-column
                                     .card
                                         .card-title
@@ -61,6 +66,7 @@ block content
                                                 textarea.materialize-textarea(id="reply-textarea" length="1024")
                                                 label(for="reply-textarea") Write message...
                                             a.btn.btn-small.waves-effect.waves-light.light-blue(href='#') Send
+                                            a.hide-reply-form.btn.offset-3.light-blue(href="#onCancelModal") Cancel
                                 .col.s12.right-column
                                     .card
                                         table.bordered.highlight.card-content.responsive-table
@@ -84,7 +90,7 @@ block content
                                                             .input-field.custom-input-field
                                                                 label
                                                                     input(value=item.name type=text)
-                                                        td= humanizeDuration(moment.duration(item.est_time), {conjunction:' and ', serialComma: false})
+                                                        td= humanizeDuration(moment.duration(item.est_time), humanize_setting)
                                                         td= numeral(item.est_cost).format('$ 0,0[.]00')
                                                 tr.add-new-line-row
                                                     td.center
@@ -99,9 +105,16 @@ block content
                                                             var time_sum = expenses.map(function(i){return i.est_time}).reduce(function(a,b){var t=a;if (!a.isDuration){t=moment.duration(a)}; t.add(moment.duration(b));return t});
                                                             var cost_sum = expenses.map(function(i){return i.est_cost}).reduce(function(a,b){return a+b});
                                                     td
-                                                    td= humanizeDuration(time_sum, {conjunction:' and ', serialComma: false})
+                                                    td= humanizeDuration(time_sum, humanize_setting)
                                                     td= numeral(cost_sum).format('$ 0,0[.]00')
-
+        //Modal Structure
+        .modal#onCancelModal
+            .modal-content
+                h4 Cancel Reply
+                p Do you want to really cancel the reply? All edits will be lost!
+            .modal-footer
+                a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href="#!") Disagree
+                a.modal-action.modal-close.waves-effect.waves-green.btn-flat#modalAgree(href="#!") Agree
 
 
 

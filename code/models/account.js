@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 const Vehicle = require('./vehicle');
 
-var Account = new Schema({
+var AccountSchema = new Schema({
     username: String,
     password: String,
     isMechanic: { type: Boolean, default: false },
@@ -14,6 +14,7 @@ var Account = new Schema({
     vehicles: [{type:Schema.Types.ObjectId, ref: 'Vehicle'}]
 });
 
-Account.plugin(passportLocalMongoose);
+AccountSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('Account', Account);
+var Account = mongoose.model('Account', AccountSchema);
+module.exports = Account;

@@ -13,8 +13,9 @@ router.get('/', function (req, res) {
 	    else {
 	    	res.redirect('/client/home')
 	    }
-    }
-    res.render('index');
+    }else{
+        res.render('index');
+	}
 });
 
 module.exports = router;
