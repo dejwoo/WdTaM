@@ -11,6 +11,7 @@ append foot
 block content
     - var lipsum = "Curabitur non ex feugiat, consequat diam at, fermentum purus. Maecenas tincidunt faucibus mattis. Vivamus non nibh vitae justo dignissim luctus at et leo. Nam tristique porta elit. Donec gravida ex eget quam ultricies, vel commodo nisi venenatis. Morbi eget magna at lorem blandit fringilla eget at metus. Maecenas dapibus rutrum odio vel placerat. Nam tortor ante, mollis quis volutpat ut, tincidunt eu augue. Pellentesque sodales consectetur lorem eget pretium."
     - var temp_date = moment(new Date('1.12.2016'));
+    - var humanize_setting = {conjunction: ' and ',serialComma: false};
     -
         var messages = [
         {title: "Last Message", author:{firstName:'Robert',lastName:'Tester'}, createdate:temp_date, messageContent:lipsum,
@@ -85,6 +86,7 @@ block content
                                                                 label
                                                                     input(value=item.name type=text)
                                                         td= humanizeDuration(moment.duration(item.est_time), {conjunction:' and ', serialComma: false})
+                                                        td= humanizeDuration(moment.duration(item.est_time), humanize_setting)
                                                         td= numeral(item.est_cost).format('$ 0,0[.]00')
                                                 tr.add-new-line-row
                                                     td.center
@@ -100,6 +102,7 @@ block content
                                                             var cost_sum = expenses.map(function(i){return i.est_cost}).reduce(function(a,b){return a+b});
                                                     td
                                                     td= humanizeDuration(time_sum, {conjunction:' and ', serialComma: false})
+                                                    td= humanizeDuration(time_sum, humanize_setting)
                                                     td= numeral(cost_sum).format('$ 0,0[.]00')
 
 
