@@ -3,8 +3,10 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const express = require('express');
 const passport = require('passport');
-const Account = require('../models/account');
 const router = express.Router();
+
+const Account = require('../models/account');
+const Status = require('../models/status');
 
 router.get('/', function (req, res) {
     if (req.user) {
@@ -14,7 +16,7 @@ router.get('/', function (req, res) {
         else {
             res.redirect('/client/home');
         }
-    }else{
+    } else {
         res.render('index');
     }
 });
@@ -31,8 +33,9 @@ router.get('/home', isAuthenticated, function (req, res) {
 router.get('/login', function (req, res) {
     if (req.user) {
         res.redirect(req.session.returnTo || "/");
+    } else {
+        res.render('account/login', {user: req.user, title: "Login"});
     }
-    res.render('account/login', {user: req.user, title: "Login"});
 });
 
 router.post('/login', function (req, res, next) {
@@ -97,7 +100,10 @@ router.get('/logout', function (req, res) {
 
 router.get('/tickets', isAuthenticated, function (req, res) {
     if (req.user.isMechanic) {
-        res.render('mechanic/tickets', {title: 'Tickets'});
+        let stateList = [];
+        const cursor = Status.find().cursor();
+        cursor.on('data', (doc) => stateList.push(doc.name));
+        cursor.on('end', () => res.render('mechanic/tickets', {title: 'Tickets', states: stateList}));
     } else {
         res.redirect('/')
     }
