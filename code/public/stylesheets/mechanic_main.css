@@ -11,8 +11,7 @@ body {
 nav .brand-logo {
   left: 80px;
   font-size: 1.4rem;
-  transform: unset!important;
-}
+  transform: unset !important; }
 
 a.hamburger {
   width: 64px;
@@ -113,11 +112,10 @@ a.hamburger {
   display: flex !important;
   flex-wrap: wrap; }
 
-@media all and (max-width: 768px) {
-  nav .brand-logo {
-    /*left: 50%;*/
-  }
+.hide-reply-form {
+  display: none; }
 
+@media all and (max-width: 768px) {
   .footer {
     padding-left: 0; } }
 p.profile-icon {
@@ -138,11 +136,6 @@ p.profile-icon {
   margin-right: 1em;
   color: white; }
 
-.ticket-img {
-  width: 100px;
-  height: 100px;
-  overflow: hidden; }
-
 .left-column {
   -webkit-flex: 5 0 0;
   flex: 5 0 0;
@@ -152,6 +145,46 @@ p.profile-icon {
   -webkit-flex: 7 0 0;
   flex: 6 0 0;
   margin-left: 5px; }
+
+div[class*="message-card-header-"] {
+  display: flex;
+  flex-wrap: wrap; }
+
+.message-card-header-right {
+  flex-direction: row-reverse; }
+  .message-card-header-right > i {
+    margin-left: 15px; }
+
+.message-card-header-left {
+  flex-direction: row; }
+  .message-card-header-left > i {
+    margin-right: 15px; }
+
+.message-img {
+  width: 100px;
+  height: 100px;
+  overflow: hidden; }
+
+div[class*="message-header-"] {
+  display: flex; }
+  div[class*="message-header-"] div {
+    flex: 1; }
+  div[class*="message-header-"] a, div[class*="message-header-"] p.profile-icon {
+    flex: 0 0 45px;
+    align-self: center; }
+
+.message-header-left {
+  flex-direction: row; }
+  .message-header-left .profile-icon {
+    order: -1; }
+
+.message-header-right {
+  flex-direction: row-reverse; }
+  .message-header-right div {
+    flex: none !important; }
+
+.message-content {
+  margin: 0; }
 
 .add-new-line-row {
   padding: 5px 5px; }
@@ -171,6 +204,15 @@ p.profile-icon {
 
 .custom-input-field input {
   border-bottom: none; }
+
+td {
+  transition: padding 1s; }
+
+.collapsed > td {
+  padding: 0; }
+
+.opened > td {
+  padding: 15px 5px; }
 
 .collection .collection-item.avatar {
   min-height: 0; }

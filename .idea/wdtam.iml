@@ -14,5 +14,9 @@
     <orderEntry type="library" name="materialize" level="application" />
     <orderEntry type="library" name="masonry.pkgd" level="application" />
     <orderEntry type="library" name="isotope.pkgd" level="application" />
+    <orderEntry type="library" name="underscore" level="application" />
+    <orderEntry type="library" name="autocomplete.jquery" level="application" />
+    <orderEntry type="library" name="typeahead.bundle" level="application" />
+    <orderEntry type="library" name="jquery.easing" level="application" />
   </component>
 </module>

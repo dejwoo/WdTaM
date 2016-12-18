@@ -7,12 +7,12 @@ function toggleSide() {
             left: '-300px'
         }, 300).removeClass('opened');
 
-            $('.parent').stop(true, true).animate({
-                marginLeft: '0px'
-            }, 300);
-            $('.footer').stop(true, true).animate({
-                paddingLeft: '0px'
-            }, 300);
+        $('.parent').stop(true, true).animate({
+            marginLeft: '0px'
+        }, 300);
+        $('.footer').stop(true, true).animate({
+            paddingLeft: '0px'
+        }, 300);
 
     } else {
         $('.left-panel').stop(true, true).animate({
@@ -47,31 +47,37 @@ $(function () {
         $('#hide-reply-form').delay(400).fadeIn(400);
         $('.reply-message').addClass('showing');
     });
-    $('#hide-reply-form').click(function () {
-        $(this).parents('.card-content').find('.reply-message').stop(true, true).slideToggle();
-        $(this).fadeOut(400);
-        $('#show-reply-form').delay(400).fadeIn(400);
-        $('.reply-message').removeClass('showing');
+
     });
+    $('.show-reply-form').click(function () {
+        const card = $(this).parents('.card-content');
+        card.find('.message-reply').stop(true, true).slideToggle();
+        $(this).after().toggle();
+        card.find('.hide-reply-form:hidden').css("display", "inline-block");
+        card.find('.message-reply').addClass('showing');
+    });
+
     $('.add-new-line-button').click(function () {
         var el = $(this).closest('tr');
-        el.before('<tr><td class="center"><a class="delete-table-row" href="#!"><i class="material-icons">delete</i></a></td>' +
+        el.before('<tr><td class="center"><div><a class="delete-table-row" href="#!"><i class="material-icons">delete</i></a></div></td>' +
             '<td><div class="input-field custom-input-field"><label><input value=""></label></div></td>' +
             '<td><div class="custom-input-field"><input type="text" class="datepicker"></div></td>' +
-            '<td><div class="input-field custom-input-field"><label><input value=""></label></div></td></tr>});');
+            '<td><div class="input-field custom-input-field"><label><input value=""></label></div></td></tr>)');
         el = el.prev();
+        el.addClass('opened');
         el.children("td").each(function () {
-            el.children("div").slideDown(function () {
-                el.fadeIn();
+            $(this).wrapInner('<div style="display: none;" />').children("div").slideDown(400, "easeOutCirc", function () {
+                var $set = $(this);
+                $set.replaceWith($set.contents());
             });
         });
     });
-
     $(document).on('click', '.delete-table-row i', function () {
-        console.log("asdasdasd");
         const el = $(this).closest('tr');
+        el.removeClass('opened');
+        el.addClass('collapsed');
         el.children("td").each(function () {
-            $(this).wrapInner("<div/>").children("div").slideUp(function () {
+            $(this).wrapInner("<div/>").children("div").slideUp(500, "easeInExpo", function () {
                 el.remove();
             });
         })

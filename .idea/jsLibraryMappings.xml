@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{isotope.pkgd, jquery, jquery-2.1.1, jquery-2.1.4, masonry.pkgd, materialize}" />
+    <file url="PROJECT" libraries="{autocomplete.jquery, isotope.pkgd, jquery, jquery-2.1.1, jquery-2.1.4, jquery.easing, masonry.pkgd, materialize, typeahead.bundle, underscore}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
