@@ -41,14 +41,27 @@ $(function () {
     $('.collapsible.show-first li:eq(0)').addClass('active');
     $('.collapsible.show-first li:eq(0) .collapsible-body').slideDown(200);
 
-    $('#show-reply-form').click(function () {
-        $(this).parents('.card-content').find('.reply-message').stop(true, true).slideToggle();
-        $(this).after().fadeOut(400);
-        $('#hide-reply-form').delay(400).fadeIn(400);
-        $('.reply-message').addClass('showing');
+    $(document).ready(function () {
+        $('.modal').modal({
+            dismissible: false, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            starting_top: '4%', // Starting top style attribute
+            ending_top: '10%', // Ending top style attribute
+        });
     });
 
+    $('#modalAgree').click(function(){
+        const cancelButton = $('li.detail-card.active .hide-reply-form');
+        const card = cancelButton.parents('.card-content');
+        card.find('.message-reply').stop(true, true).slideToggle();
+        cancelButton.toggle();
+        card.find('.show-reply-form').delay(400).toggle();
+        card.find('.message-reply').removeClass('showing');
+        $('#reply-textarea').value = '';
     });
+
     $('.show-reply-form').click(function () {
         const card = $(this).parents('.card-content');
         card.find('.message-reply').stop(true, true).slideToggle();
@@ -56,6 +69,8 @@ $(function () {
         card.find('.hide-reply-form:hidden').css("display", "inline-block");
         card.find('.message-reply').addClass('showing');
     });
+
+
 
     $('.add-new-line-button').click(function () {
         var el = $(this).closest('tr');
