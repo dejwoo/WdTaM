@@ -3,20 +3,42 @@ extends ../layout
 append head
     link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
 
+
+
 block content
+    - var temp_date = moment(new Date('1.12.2016'));
+    -
+        var tickets = [
+        {name:'Jozo',title:'Critical car malfunction',messages:[{subject: "Re:Re:Tckt1",creation_date:temp_date.subtract(1,'day')}],id:1, status:{name:'Pending Customer', rank:2}},
+        {name:'John',title:'Critical car malfunction',messages:[{subject: "Re:Tckt8",creation_date:temp_date.subtract(5,'day')}],id:2, status:{name:'In Progress', rank:3}},
+        {name:'Jake',title:'Critical car malfunction',messages:[{subject: "Re:Re:Re:Tckt3",creation_date:temp_date.subtract(2,'day')}],id:3, status:{name:'Pending Maintenance', rank:2}},
+        {name:'Jenny',title:'Critical car malfunction',messages:[{subject: "Re:Re:Tckt6",creation_date:temp_date.subtract(33,'day')}],id:4, status:{name:'Closed', rank:2}},
+        {name:'Julien',title:'Critical car malfunction',messages:[{subject: "Re:Re:Re:Re:Tckt4",creation_date:temp_date.subtract(9,'day')}],id:5, status:{name:'Solved', rank:2}},
+        {name:'James',title:'Critical car malfunction',messages:[{subject: "Re:Re:Tckt5",creation_date:temp_date.subtract(11,'day')}],id:6, status:{name:'Pending Vendor', rank:2}},
+        {name:'Jano',title:'Minor car malfunction',messages:[{subject: "Tckt1",creation_date:temp_date.subtract(0,'day')}],id:7, status:{name:'New', rank:4}}
+        ];
     block content-header
         .row
-            .col.l6
+            .col.s12.m6.l6
                 h4 Tickets
-            .col.l6
-                .chips.chips-placeholder(data-index='0' data-initialized='true')
-    .collection
-        each item in [{name:'Jozo',title:'Critical car malfunction',id:1, status:'Pending Customer'},{name:'Jano',title:'Minor car malfunction',id:2, status:'New'}]
-            a.collection-item.avatar(href='/ticket-detail?id='+item.id)
-                i.material-icons.circle folder
-                span.title: =item.title
-                p: =item.name
-                span.secondary-content.badge.new(data-badge-caption=item.status)
+            .col.s12.m6.l6.input-field
+                label(for="tags") Filter
+                input#ticket-filter.typeahead(type="text" name="tags")
+    .collection#ticket-list
+        each item in tickets
+            a.collection-item.avatar(href='/ticket-detail?id=' + item.id data-status=item.status.name)
+                .row
+                    .col
+                        i.material-icons.circle folder
+                        span.title: =item.title
+                        p: =item.name
+                    .col
+                        p: =item.messages[0].subject
+                        p: =item.messages[0].creation_date.format('Do MMMM YYYY, h:mm')
+                span.secondary-content.badge.new(data-badge-caption=item.status.name)
+prepend foot
+    script(type='text/javascript').
+        const states = !{JSON.stringify(states)};
 
 
 

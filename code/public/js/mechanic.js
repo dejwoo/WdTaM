@@ -28,6 +28,7 @@ function toggleSide() {
         }
     }
 }
+
 $(function () {
     if (isMobile()) {
         $('.parent').css('margin-left', '0px');
@@ -76,17 +77,54 @@ $(function () {
         })
     });
 
-    $('.chips').material_chip({
-        placeholder: 'Enter a filter',
-        secondaryPlaceholder: '+ Filter'
-    })
-    $('.chips').on('chip.add', function(e, chip){
-        console.log(chip.tag);
+    let current_filter_chips = [];
+
+    function updateTicketList() {
+        $('#ticket-list').find("a").each(function (index, value) {
+                if ($.inArray($(this).attr('data-status').toLowerCase(), current_filter_chips.map((s) => s.toLowerCase()))
+                    && (current_filter_chips.length > 0)) {
+                    $(this).delay(200).slideUp("fast").hide();
+                } else {
+                    $(this).delay(200).slideDown("fast").show();
+                }
+            }
+        );
+    }
+
+    const states = ["New", "In Progress", "Pending Customer", "Pending Vendor", "Pending Maintenance", "Transferred", "Solved", "Closed"];
+    let statesList = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: states
     });
-    $('.chips').on('chip.delete', function(e, chip){
-        // you have the deleted chip here
+
+    statesList.initialize();
+
+    const elt = $('#ticket-filter');
+    const settings = {
+        freeInput: false,
+        typeaheadjs: [{
+            autoselect: true,
+            highlight: true,
+            hint: true,
+            minLength: 1
+        }, {
+            name: 'states',
+            source: statesList.ttAdapter()
+        }]
+    };
+    elt.materialtags(settings);
+    elt.on('itemAdded', function (event) {
+        if (($.inArray(event.item, current_filter_chips) == -1) && ($.inArray(event.item, states) > -1)) {
+            console.log(event.item);
+            current_filter_chips.push(event.item);
+            updateTicketList();
+        }
     });
-    $('.chips').on('chip.select', function(e, chip){
-        console.log(chip.tag);
+    elt.on('itemRemoved', function (event) {
+        if (event.item) {
+            current_filter_chips.splice($.inArray(event.item, current_filter_chips), 1);
+            updateTicketList();
+        }
     });
 });

@@ -223,6 +223,6 @@ p.profile-icon {
   border-bottom: none;
 }
 
-.collection .collection-item.avatar{
-  min-height:0;
+.autocomplete-content {
+  position: absolute !important;
 }

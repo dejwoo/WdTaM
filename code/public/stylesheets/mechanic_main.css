@@ -172,6 +172,10 @@ p.profile-icon {
 .custom-input-field input {
   border-bottom: none; }
 
-.collection .collection-item.avatar{
-  min-height:0;
-}
+.collection .collection-item.avatar {
+  min-height: 0; }
+
+.autocomplete-content {
+  position: absolute !important; }
+
+/*# sourceMappingURL=mechanic_main.css.map */

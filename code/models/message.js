@@ -9,6 +9,7 @@ var MessageSchema = new Schema({
     autor: {type: Schema.Types.ObjectId, ref: 'Account'},
     ticket: {type: Schema.Types.ObjectId, ref: 'Ticket'},
     items: {type: Schema.Types.ObjectId, ref: 'Item'},
+    subject: String,
     text: String,
     creation_date: Date,
     images: [String],
