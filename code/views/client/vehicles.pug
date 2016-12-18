@@ -13,11 +13,11 @@ block content
                     It appears you don't have any vehicles yet. Add one by clicking on a #[i.material-icons add] button in right corner!
                 .fixed-action-btn.hide-on-large-only
                     a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
-                        i.material-icons add
+                        i.material-icons edit
         else
-            main.valign-wrapper.container.row
+            main.container.row.hide-on-med-and-down
                 - for (var x = (page-1)*perPage; x < page*perPage && x < vehicles.length; x++)
-                        .col.s12.m10
+                        div.col.s12.m4
                             h4.header
                                 =vehicles[x].name
                             .card.horizontal
@@ -47,8 +47,48 @@ block content
                                         a(href=link) Details
                 .fixed-action-btn
                     a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='/client/vehicle/add')
-                        i.material-icons add
-            ul.pagination.hide-on-low.center
+                        i.material-icons edit
+            main.container.row.hide-on-large-only
+                .swiper-container
+                    .swiper-wrapper.push-down2
+                        - for (var x = 0; x < vehicles.length; x++)
+                                .col.s12.swiper-slide
+                                    h4.header
+                                        =vehicles[x].name
+                                    .card.horizontal
+                                        .card-image
+                                            img.responsive()
+                                        .card-stacked
+                                            .card-content
+                                                ul.collection
+                                                    li.collection-item
+                                                        =vehicles[x].model
+                                                        .secondary-content
+                                                            p Model
+                                                    li.collection-item
+                                                        =vehicles[x].type
+                                                        .secondary-content
+                                                            p Type
+                                                    li.collection-item
+                                                        =vehicles[x].ecv
+                                                        .secondary-content
+                                                            p ECV
+                                                    li.collection-item
+                                                        =vehicles[x].vin
+                                                        .secondary-content
+                                                            p VIN
+                                            .card-action
+                                                - var link = "/vehicle/" + vehicles[x]._id
+                                                a(href=link) Details
+                    //- .swiper-button-prev
+                    //-     i.material-icons fast_rewind
+                    //- .swiper-button-next
+                    //-     i.material-icons fast_forward
+                    .swiper-pagination
+                .fixed-action-btn
+                    a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='/client/vehicle/add')
+                        i.material-icons edit
+            ul.pagination.hide-on-med-and-down.center
                 if page == 1
                     li.disabled
                         a(href="#!" disabled)
