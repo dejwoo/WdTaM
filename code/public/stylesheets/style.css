@@ -33,7 +33,6 @@ nav {
 .mn-header.navbar-fixed nav .nav-wrapper {
   padding-left: 44px; }
 
-/* preco je toto na tak vysokej urovni? */
 /* Left Side Naviganion */
 .side-nav .sidenav-logo, .side-nav-wrapper {
   position: relative; }
@@ -213,5 +212,25 @@ nav {
 
 .push-down2 {
   margin-bottom: 2em; }
+
+[data-letters]:before {
+  content: attr(data-letters);
+  display: inline-block;
+  font-size: 1.2em;
+  width: 2.7em;
+  height: 2.7em;
+  line-height: 2.7em;
+  text-align: center;
+  border-radius: 50%;
+  background: #6f57bc;
+  vertical-align: middle;
+  margin-right: 1em;
+  color: white; }
+
+.mobile-main {
+  height: 50%; }
+
+main {
+  flex: 1 0 auto; }
 
 /*# sourceMappingURL=style.css.map */

@@ -10,5 +10,7 @@ script(src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/js/swiper.js" ty
 script(type="text/javascript" src="/js/core-typeahead.bundle.js")
 script(type="text/javascript" src="/js/materialize-tags.js" )
 block foot
-    script(type="text/javascript" src='/js/mechanic.js')
-    script(type="text/javascript" src="/js/main.js" )
+	if loadClientAddProblemJs
+		script(type="text/javascript" src='/js/client-add-problem.js')
+	script(type="text/javascript" src='/js/mechanic.js')
+	script(type="text/javascript" src="/js/main.js" )

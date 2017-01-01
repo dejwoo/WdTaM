@@ -31,12 +31,13 @@ html(lang="en")
 
         if user && user.isMechanic
             include includes/sidebar
-
-        .parent
-            .content-panel
-                .main-content
-                    block content
-            include includes/footer
+            .parent
+                .content-panel
+                    .main-content
+                        block content
+        else
+            block content
+        include includes/footer
 
         include includes/foot
 

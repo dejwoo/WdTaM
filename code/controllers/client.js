@@ -75,6 +75,21 @@ router.post('/vehicle/add', isAuthenticated, function (req, res) {
     });
 });
 
+router.get('/problem/add', isAuthenticated, function (req, res) {
+	if (req.user.isMechanic) {
+		res.redirect('/home');
+	}
+	//treba vybrat vsetky auta
+	var cursor = Vehicle.find({owner:req.user._id}).cursor();
+	var vehicleArray = [];
+	cursor.on('data', function(doc) {
+  		// Called once for every document
+  		vehicleArray.push(doc);
+	});
+	cursor.on('end', function() {
+		res.render('client/problem_add', {title: 'Add problem', vehicles:vehicleArray, currentLevel:0, loadClientAddProblemJs:true});
+	});
+});
 
 
 module.exports = router;
