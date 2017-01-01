@@ -33,9 +33,7 @@ nav {
 .mn-header.navbar-fixed nav .nav-wrapper {
   padding-left: 44px; }
 
-nav .nav-wrapper {
-  padding-right: 44px; }
-
+/* preco je toto na tak vysokej urovni? */
 /* Left Side Naviganion */
 .side-nav .sidenav-logo, .side-nav-wrapper {
   position: relative; }

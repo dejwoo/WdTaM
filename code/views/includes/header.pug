@@ -9,14 +9,18 @@ block header
                                 = 'eService - ' + title
                             else
                                 = 'eService'
+
                     ul.right.hide-on-med-and-down
                         li: a(href="#") Help
                         li: a(href="/register") Register
                         li: a(href="/login") Login
-
-                    ul#nav-mobile.side-nav
-                        li: a(href="#") Help
+                    a.right.hide-on-large-only.dropdown-button(href="#" data-activates="nav-mobile" data-beloworigin="true")
+                        i.material-icons more_vert
+                    ul#nav-mobile.dropdown-content.right
                         li: a(href="/login") Login
+                        li: a(href="/register") Register
+                        li: a(href="/help") Help
+                        li: a(href="/register") Register
                 else
                     if user.isMechanic
                         a.hamburger(href='#')
@@ -41,6 +45,24 @@ block header
                             li: a(href="/client/vehicles/1") Vehicles
                             li: a(href="#") History
                             li: a(href="/logout") Logout
+                        a.right.hide-on-large-only.button-collapse(href="#" data-activates="nav-mobile")
+                            i.material-icons more_vert
+                        ul#nav-mobile.side-nav
+                            if user
+                                li
+                                    div.userView
+                                        a(href="#!user")
+                                            if (user && !user.profile_img)
+                                                -var letter = user.username.substr(0,1)
+                                                img.circle(src='' alt='' data-letters=letter)
+                                        a(href="#!name")
+                                            span.name
+                                                =user.username
+                                        a(href="#!email")
+                                            span.email
+                                                =user.email
+                            li: a(href="/login") Login
+                            li: a(href="/register") Register
 
                 //if (user && !user.profile_img)
                     -var letter = user.username.substr(0,1)

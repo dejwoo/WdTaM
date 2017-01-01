@@ -9,13 +9,14 @@ block content
         // Mobile right sidebar
         aside#nav-mobile.side-nav
             ul
-                li: a(href="#") Vehicles
-                li: a(href="#") History
+                li: a(href="#") Reported problems
+                li: a(href="/vehicle/latest") Vehicles
                 li: a(href="/logout") Logout
 
         .hide-on-large-only
             .row.center
-                +menuitem_mobile("#","Your problems")
+                +menuitem_mobile("#","Reported problems")
+                +menuitem_mobile("#","Vehicles")
                 +menuitem_mobile("#","History")
                 +menuitem_mobile("#","Help")
             .fixed-action-btn
