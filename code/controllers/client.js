@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Vehicle = require('../models/vehicle');
+const Template = require('../models/template');
 
 function isAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
