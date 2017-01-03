@@ -173,9 +173,19 @@ function hideAddNewProblemCancelButton() {
 
 
 
+function addNewProblemToggleProblemTemplateForm(elem) {
+	var $this = $(elem);
+	if ($this.find("i").html() == "check_box_outline_blank") {
+		$this.find("i").html("check_box");
+		$this.find("input").attr("value", $this.attr('id'));
+	} else {
+		$this.find("i").html("check_box_outline_blank");
+		$this.find("input").attr("value", "");
+	}
+}
+
 function addNewProblemToggleProblemTemplate(elem) {
 	var $this = $(elem);
-	console.log($this.find("input"));
 	if ($this.find("i").html() == "check_box_outline_blank") {
 		$this.find("i").html("check_box");
 		$this.find("input").attr("value", $this.attr('id'));

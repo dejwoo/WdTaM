@@ -23,6 +23,15 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 
 const upload = multer({dest: path.join(__dirname, 'uploads')});
+/**
+ * Create Express server.
+ */
+
+var app = express();
+var server = require('http').Server(app);
+var socketApi = require('./socket');
+var io = socketApi.io;
+io.attach(server);
 
 /**
  * Controllers (route handlers).
@@ -30,7 +39,7 @@ const upload = multer({dest: path.join(__dirname, 'uploads')});
 
 const homeController = require('./controllers/home');
 const userController = require('./controllers/users');
-const clientController = require('./controllers/client');
+const clientController = require('./controllers/client')(io);
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -47,12 +56,7 @@ passport.use(Account.createStrategy());
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-/**
- * Create Express server.
- */
-
-const app = express();
-
+// var io = require('socket.io')(server);
 /**
  * Adding utility libraries for use in Pug templates
  */
@@ -103,8 +107,6 @@ mongoose.connection.on('error', function () {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(expressStatusMonitor());
-app.use(compression());
 app.use(sass({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
@@ -114,7 +116,7 @@ app.use(sass({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(expressValidator());
+// app.use(expressValidator());
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -124,23 +126,24 @@ app.use(session({
     //    autoReconnect: true
     //})
 }));
-app.use(lusca({
-    csrf: true,
-    csp: {
-        policy: {
-            "default-src": "'self' dejwoo.com api.dejwoo.com",
-            "img-src": "* 'self' data* 'unsafe-inline' 'unsafe-eval' w3.org",
-            "style-src": "'unsafe-inline' 'self' fonts.googleapis.com cdnjs.cloudflare.com",
-            "script-src": "'unsafe-inline' 'self' code.jquery.com cdnjs.cloudflare.com unpkg.com",
-            "font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com"
-        }
-    },
-    xframe: 'SAMEORIGIN',
-    p3p: 'ABCDEF',
-    hsts: {maxAge: 31536000, includeSubDomains: true, preload: true},
-    xssProtection: true,
-    nosniff: true
-}));
+// app.use(lusca({
+//     csrf: true,
+//     csp: {
+//         policy: {
+//             "default-src": "* 'self' dejwoo.com api.dejwoo.com",
+//             "img-src": "* 'self' data* 'unsafe-inline' 'unsafe-eval' w3.org",
+//             "style-src": "'unsafe-inline' 'self' fonts.googleapis.com cdnjs.cloudflare.com",
+//             "script-src": "'unsafe-inline' 'self' code.jquery.com cdnjs.cloudflare.com unpkg.com",
+//             "font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com",
+//             "connect-src": "'self' *"
+//         }
+//     },
+//     xframe: 'SAMEORIGIN',
+//     p3p: 'ABCDEF',
+//     hsts: {maxAge: 31536000, includeSubDomains: true, preload: true},
+//     xssProtection: true,
+//     nosniff: true
+// }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -177,6 +180,15 @@ app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000}));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
+// io.on('connection', function(socket){
+//     console.log('A user connected ' + socket.id);
+//     socket.on("disconnect", function () {
+//         console.log("A user disconnected " + socket.id)
+//     });
+//     socket.on("hello", function(data){
+//         console.log(data.msg);
+//     });
+// });
 
 /**
  * Primary app routes.
@@ -217,4 +229,4 @@ app.use('/client', clientController);
 
 app.use(errorHandler());
 
-module.exports = app;
+module.exports = {app: app, server: server};
