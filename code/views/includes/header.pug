@@ -5,10 +5,7 @@ block header
                 if (!user)
                     .col.s5.m3
                         span.brand-logo
-                            if title
-                                = 'eService - ' + title
-                            else
-                                = 'eService'
+                            a(href="/") eService
 
                     ul.right.hide-on-med-and-down
                         li: a(href="#") Help
@@ -20,16 +17,15 @@ block header
                         li: a(href="/login") Login
                         li: a(href="/register") Register
                         li: a(href="/help") Help
-                        li: a(href="/register") Register
                 else
                     if user.isMechanic
                         a.hamburger(href='#')
                             span.material-icons menu
-                    a.brand-logo(href='#')
+                    a.brand-logo(href='/')
                         if(user.isMechanic)
-                            = 'eService Dashboard - '+ title
+                            = 'eService Dashboard'
                         else
-                            = 'eService - ' + title
+                            = 'eService'
                     if (user.isMechanic)
                         //form.left.search.col.s6.hide-on-small-and-down.input-field
                                 input#search(type="search",placeholder="Search",autocomplete="off")
@@ -41,7 +37,7 @@ block header
                                 a(href='/logout') Logout
 
                     if !user.isMechanic
-                        ul.right.hide-on-small-and-down
+                        ul.right.hide-on-med-and-down
                             li: a(href="/client/vehicles/1") Vehicles
                             li: a(href="#") History
                             li: a(href="/logout") Logout
@@ -51,18 +47,23 @@ block header
                             if user
                                 li
                                     div.userView
+                                        div.background
+                                            img(src="https://unsplash.it/500/375?image=1019" alt="background picture")
                                         a(href="#!user")
                                             if (user && !user.profile_img)
                                                 -var letter = user.username.substr(0,1)
-                                                img.circle(src='' alt='' data-letters=letter)
+                                                span(data-letters=letter)
                                         a(href="#!name")
-                                            span.name
+                                            span.white-text.name
                                                 =user.username
                                         a(href="#!email")
-                                            span.email
+                                            span.white-text.email
                                                 =user.email
-                            li: a(href="/login") Login
-                            li: a(href="/register") Register
+                            li: a.btn-flat.waves-effect(href="/client/problems/open/latest") Open Problems
+                            li: a.btn-flat.waves-effect(href="/client/problems/resolved/latest") Resolved Problems
+                            li: a.btn-flat.waves-effect(href="/client/problems/resolved/latest") History
+                            li: a.btn-flat.waves-effect(href="/client/vehicles/latest") Vehicles
+                            li: a.btn-flat.waves-effect(href="/logout") Logout
 
                 //if (user && !user.profile_img)
                     -var letter = user.username.substr(0,1)

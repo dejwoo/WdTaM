@@ -167,20 +167,6 @@ p.profile-icon {
   padding: 0;
 }
 
-[data-letters]:before {
-  content: attr(data-letters);
-  display: inline-block;
-  font-size: 1.2em;
-  width: 2.7em;
-  height: 2.7em;
-  line-height: 2.7em;
-  text-align: center;
-  border-radius: 50%;
-  background: #dd90cf;
-  vertical-align: middle;
-  margin-right: 1em;
-  color: white;
-}
 
 .left-column {
   -webkit-flex: 5 0 0;

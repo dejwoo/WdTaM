@@ -1,0 +1,46 @@
+//
+   Created by Ákos on 2016. 11. 28.
+
+doctype html
+html(lang="en")
+    head
+        title "Service application"
+        meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='csrf-token', content=_csrf)
+        meta(name="keywords", content="{{ pkg.keywords.join(',') }}")
+        meta(name="description", content="{{ pkg.description }}")
+        block head
+            //Import Google Icons
+            link(href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+            //Import materialize.css
+            link(type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen,projection")
+            link(type="text/css" rel="stylesheet" href="/stylesheets/style.css" media="screen,projection")
+
+            //- import swiper
+            link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.css")
+            //- import materialize-tags for better chips
+            link(type="text/css" rel="stylesheet" href="/stylesheets/materialize-tags.css" media="all")
+
+
+    body
+        .messages
+            include includes/flash
+        include includes/header
+
+        if user && user.isMechanic
+            include includes/sidebar
+            
+        .parent
+            .content-panel
+                .main-content
+                    block content
+                        block content-header
+                include includes/footer
+
+        include includes/foot
+
+
+
+

@@ -1,26 +1,19 @@
-extends ../index
+extends ../layout_client
 
 mixin menuitem_mobile(link,title)
     a.col.s12.space.btn-large.waves-effect.waves-light.orange(href=link) #{title}
 
 block content
     main
-    if user && !user.isMechanic
-        // Mobile right sidebar
-        aside#nav-mobile.side-nav
-            ul
-                li: a(href="#") Reported problems
-                li: a(href="/vehicle/latest") Vehicles
-                li: a(href="/logout") Logout
-
         .hide-on-large-only
-            .row.center
-                +menuitem_mobile("#","Reported problems")
-                +menuitem_mobile("#","Vehicles")
-                +menuitem_mobile("#","History")
-                +menuitem_mobile("#","Help")
-            .fixed-action-btn
-                a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
-                    i.material-icons add
+            .container
+                .row.center-align.section
+                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/problem/add") Add Problem
+                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/problems/open/latest") Open Problems
+                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/help") Help
+                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/logout") Logout
+            //- .fixed-action-btn
+            //-     a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
+            //-         i.material-icons add
 
 
