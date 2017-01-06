@@ -29,14 +29,7 @@ html(lang="en")
             include includes/flash
         include includes/header
 
-        if user && user.isMechanic
-            include includes/sidebar
-            .parent
-                .content-panel
-                    .main-content
-                        block content
-        else
-            block content
+        block content
         include includes/footer
 
         include includes/foot
