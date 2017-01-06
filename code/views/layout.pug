@@ -1,6 +1,3 @@
-//
-   Created by Ákos on 2016. 11. 28.
-
 doctype html
 html(lang="en")
     head
@@ -17,7 +14,6 @@ html(lang="en")
             //Import materialize.css
             link(type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" media="screen")
             link(type="text/css" rel="stylesheet" href="/stylesheets/style.css" media="screen")
-
             //- import swiper
             link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.css")
             //- import materialize-tags for better chips
@@ -25,19 +21,13 @@ html(lang="en")
 
 
     body
-        .messages
-            include includes/flash
-        include includes/header
+        include includes/flash
 
-        if user && user.isMechanic
+        block body-inner
+            include includes/header
             include includes/sidebar
-            
-        .parent
-            .content-panel
-                .main-content
-                    block content
-                        block content-header
-                include includes/footer
+            block content
+            include includes/footer
 
         include includes/foot
 
