@@ -84,6 +84,10 @@ router.post('/register', function (req, res) {
     });
 });
 
+router.get('/help', function(req, res){
+    res.render('help');
+});
+
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
