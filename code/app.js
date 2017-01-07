@@ -61,8 +61,7 @@ passport.deserializeUser(Account.deserializeUser());
  * Adding utility libraries for use in Pug templates
  */
 
-app.locals._ = require('underscore');
-app.locals._.str = require('underscore.string');
+app.locals._ = require('lodash');
 app.locals.moment = require('moment');
 app.locals.humanizeDuration = require('humanize-duration');
 app.locals.money = require('money');
