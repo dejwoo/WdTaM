@@ -1,7 +1,10 @@
 mixin menuitem(title, link, icon)
     .no-padding
         a.waves-effect.waves-blue(href=link)
-            i.material-icons #{icon}
+            if icon == 'logout'
+                i.material-icons.mdi.mdi-logout-variant.mdi-24px
+            else
+                i.material-icons #{icon}
             =title
 
 if user
@@ -12,7 +15,8 @@ if user
                     +menuitem("Tickets",'/tickets','move_to_inbox')
                     +menuitem("Clients",'/clients','people')
                     +menuitem("Statistics",'/stats','description')
-                    +menuitem("Logout",'/logout','exit_to_app')
+                    +menuitem("Help",'/help','help')
+                    +menuitem("Logout",'/logout','logout')
 
     else
         ul#nav-mobile.side-nav

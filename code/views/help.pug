@@ -2,12 +2,14 @@ extends layout
 
 append head
     link(type='text/css' rel='stylesheet' href='/stylesheets/help.css' media='all')
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
 
 append foot
     script(src='/js/help.js', type='text/javascript')
 
 
-block content
+block body-inner
     -
         var headerCount = 0;
         var chapters = {
@@ -20,8 +22,7 @@ block content
         "User: Client":{"Create a ticket":[""],"Respond to ticket":[""],"Add a vehicle":[""],"Edit vehicle":[""],"Use live chat":[""]},
         "User: Mechanic":{"View clients":[""],"Viewing incoming tickets":[""],"Reply to tickets":[""]}
         }
-
-    main.row
+    mixin navigation
         aside.col.hide-on-small-only.m3.l3
             .toc-wrapper
                 h4 Navigation
@@ -38,6 +39,7 @@ block content
                                     each value2, index2 in value
                                         li: span.waves-block.waves-effect.waves-green
                                             a(href="#" + _.kebabCase(index2))= index2
+    mixin help-content
         article.col.s12.m9.l9
             h1 Help
             each value, index in chapters
@@ -54,3 +56,19 @@ block content
                                     h3.scrollspy(id= _.kebabCase(index2))= index2
                                     each paragraph in value2
                                         p= paragraph
+    include includes/header
+    include includes/sidebar
+
+    block content
+    if user && user.isMechanic
+        .parent
+            .content-panel
+                main.row.main-content
+                    +help-content
+                    +navigation
+            include includes/footer
+    else
+        main.row.main-content
+            +navigation
+            +help-content
+        include includes/footer

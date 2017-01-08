@@ -128,7 +128,7 @@ router.get('/clients', isAuthenticated, function (req, res) {
     }
 });
 
-router.get('/statistics', isAuthenticated, function (req, res) {
+router.get('/stats', isAuthenticated, function (req, res) {
     if (req.user.isMechanic) {
         res.render('mechanic/statistics', {title: 'Statistics'});
     } else {

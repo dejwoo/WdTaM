@@ -4,27 +4,27 @@ function isMobile() {
 function toggleSide() {
     if ($('.left-panel').hasClass('opened')) {
         $('.left-panel').stop(true, true).animate({
-            left: '-300px'
-        }, 300).removeClass('opened');
+            left: '-250px'
+        }, 250).removeClass('opened');
 
         $('.parent').stop(true, true).animate({
             marginLeft: '0px'
-        }, 300);
-        $('.footer').stop(true, true).animate({
+        }, 250);
+        $('.page-footer').stop(true, true).animate({
             paddingLeft: '0px'
-        }, 300);
+        }, 250);
 
     } else {
         $('.left-panel').stop(true, true).animate({
             left: '0px'
-        }, 300).addClass('opened');
+        }, 250).addClass('opened');
         if (!isMobile()) {
             $('.parent').stop(true, true).animate({
                 marginLeft: $('.left-panel').width()
-            }, 300);
-            $('.footer').stop(true, true).animate({
+            }, 250);
+            $('.page-footer').stop(true, true).animate({
                 paddingLeft: $('.left-panel').width()
-            }, 300);
+            }, 250);
         }
     }
 }

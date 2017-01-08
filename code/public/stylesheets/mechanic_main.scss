@@ -19,6 +19,7 @@ html, body {
 
 body {
   position: relative;
+  background-color: #fcfcfc;
 }
 
 nav .brand-logo {
@@ -43,10 +44,11 @@ a.hamburger {
 
 .parent {
   min-height: 100%;
-  //position: relative;
   margin-left: $leftPanelWidth;
   padding-top: 64px;
   padding-bottom: 250px;
+  display: flex;
+  flex-direction: column;
 }
 
 .left-panel {
@@ -62,13 +64,11 @@ a.hamburger {
 }
 
 .content-panel {
-  position: relative;
-
+  flex: 1;
 }
 
 .main-content {
   padding: 25px;
-
 }
 
 .sidebar-menu {
@@ -89,7 +89,8 @@ a.hamburger {
   }
 }
 
-.footer {
+.page-footer {
+  flex: 1;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -167,7 +168,6 @@ p.profile-icon {
   padding: 0;
 }
 
-
 .left-column {
   -webkit-flex: 5 0 0;
   flex: 5 0 0;
@@ -231,7 +231,7 @@ div[class*="message-header-"] {
 .message-header-right {
   flex-direction: row-reverse;
   div {
-    flex: none!important;
+    flex: none !important;
   }
 }
 
@@ -276,14 +276,30 @@ td {
   padding: 15px 5px;
 }
 
-.collection .collection-item.avatar {
-  min-height: 0;
+.collection {
+  border: 0;
+}
+
+.collection-item {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  margin: 10px 5px !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  div {
+    margin-left: 0;
+    flex: 0 1 auto;
+  }
+}
+
+.collection .collection-item.avatar .secondary-content {
+  flex: 0 1 130px !important;
+  position: inherit;
+  top: 0;
+  right: 0;
 }
 
 .autocomplete-content {
   position: absolute !important;
-}
-
-.page-footer{
-
 }
