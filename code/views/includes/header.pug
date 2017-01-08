@@ -11,9 +11,9 @@ block header
                         li: a(href="/help") Help
                         li: a(href="/register") Register
                         li: a(href="/login") Login
-                    a.right.hide-on-large-only.dropdown-button(href="#" data-activates="nav-mobile" data-beloworigin="true")
-                        i.material-icons more_vert
-                    ul#nav-mobile.dropdown-content.right
+                    a.right.hide-on-large-only.dropdown-button(href="#" data-activates="nav-mobile" data-beloworigin="true" data-constrainWidth="false")
+                        i.material-icons menu
+                    ul#nav-mobile.dropdown-content.right.col.s12
                         li: a(href="/login") Login
                         li: a(href="/register") Register
                         li: a(href="/help") Help
@@ -42,7 +42,7 @@ block header
                             li: a(href="#") History
                             li: a(href="/logout") Logout
                         a.right.hide-on-large-only.button-collapse(href="#" data-activates="nav-mobile")
-                            i.material-icons more_vert
+                            i.material-icons menu
                 //if (user && !user.profile_img)
                     -var letter = user.username.substr(0,1)
                     .col.s9.m6.right

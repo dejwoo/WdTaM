@@ -28,6 +28,9 @@ function setAddNewProblemStage(n, simulateTabSwitch) {
 	if (n > 3 || n < 0 ) {
 		return;
 	}
+	if (!validateAddNewProblemStage(currentLevel)) {
+		return;
+	}
 	setAddNewProblemStageForm(n, simulateTabSwitch);
 	currentLevel = n;
 	if (typeof(Storage) !== "undefined") {
@@ -35,6 +38,29 @@ function setAddNewProblemStage(n, simulateTabSwitch) {
 	} else {
 		console.log("Your browser does not support localStorage, please consider upgrade for beter user experience! Thx, addictedPenguins.")
 	}
+}
+function validateAddNewProblemStage(n) {
+	var vehicleInput = $("#vehicle");
+	var vehicleInputHtml = vehicleInput.get(0);
+	if (vehicleInput.val() == null) {
+		Materialize.toast('Please select a vehicle!', 4000, 'orange center-aligned large black-text flow-text')
+		return false
+	}
+	if ($("input[name='problems[]']").length > 0 && n > 0) {
+		var selectedTemplate = false;
+		$("input[name='problems[]']").each(function() {
+			console.log($(this).val());
+			if ($(this).val() != null && $(this).val() != "" && $(this).val() != undefined) {
+				selectedTemplate = true;
+				return;
+			}
+		});
+		if (!selectedTemplate) {
+			Materialize.toast('Please select a template!', 4000, 'orange center-aligned large black-text flow-text')
+			return false;
+		}
+	}
+	return true;
 }
 function setAddNewProblemStageForm(n, simulateTabSwitch) {
 	if (n == 0){
@@ -46,7 +72,11 @@ function setAddNewProblemStageForm(n, simulateTabSwitch) {
 	} else {
 		setAddNewProblemContinousStage();
 		// console.log(currentLevel, "->", n, "setAddNewProblemContinousStage");
-
+	}
+	if (n == 1){
+		showAddNewProblemTemplateFab();
+	} else {
+		hideAddNewProblemTemplateFab();
 	}
 	var mapping = {0:"chooseVehicleLevel", 1:"selectProblemLevel", 2:"additionalInfoLevel", 3:"confirmationLevel"};
 	var mappingLeadText = {0:"Please select your vehicle!", 1:"Please select a problem from the template which describes your situation the best or create one!", 2:"Add any additional information or photo/video!", 3:"Please review all information and confirm to create the problem!"};
@@ -169,18 +199,20 @@ function hideAddNewProblemCancelButton() {
 		}
 	}
 }
-
-
-
-
-function addNewProblemToggleProblemTemplateForm(elem) {
-	var $this = $(elem);
-	if ($this.find("i").html() == "check_box_outline_blank") {
-		$this.find("i").html("check_box");
-		$this.find("input").attr("value", $this.attr('id'));
-	} else {
-		$this.find("i").html("check_box_outline_blank");
-		$this.find("input").attr("value", "");
+function showAddNewProblemTemplateFab() {
+	var $button = $("#templateFab");
+	if ($button){
+		if ($button.hasClass("hide")) {
+			$button.removeClass('hide');
+		}
+	}
+}
+function hideAddNewProblemTemplateFab() {
+	var $button = $("#templateFab");
+	if ($button){
+		if (!$button.hasClass("hide")) {
+			$button.addClass('hide');
+		}
 	}
 }
 
@@ -193,4 +225,21 @@ function addNewProblemToggleProblemTemplate(elem) {
 		$this.find("i").html("check_box_outline_blank");
 		$this.find("input").attr("value", "");
 	}
+}
+function createTemplate(form) {
+	if ((form.title.value == "") && (form.description.value == "")) {
+		Materialize.toast("Empty template can't be created!", 4000, 'orange center-aligned large black-text flow-text')
+		return;
+	}
+	if (form.title.value == "") {
+		Materialize.toast("Template is missing title!", 4000, 'orange center-aligned large black-text flow-text')
+		return;
+	}
+	if (form.description.value == "") {
+		Materialize.toast("Template is missing description!", 4000, 'orange center-aligned large black-text flow-text')
+		return;
+	}
+	socket.emit("createTemplate", {userId:userId, title:form.title.value, description:form.description.value});
+	form.title.value = "";
+	form.description.value = "";
 }

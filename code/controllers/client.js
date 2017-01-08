@@ -26,6 +26,9 @@ module.exports = function(io) {
 	        	socketsDetails[data.userId] = {username:data.username, sockedId:data.socketId};
 	        }
 	    });
+	    socket.on("createTemplate", function(data){
+	        console.log("createTemplate event fired", data);
+	    });
 	});
 
 	function sendUser(req, res, next) {
