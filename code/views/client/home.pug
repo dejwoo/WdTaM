@@ -4,16 +4,16 @@ mixin menuitem_mobile(link,title)
     a.col.s12.space.btn-large.waves-effect.waves-light.orange(href=link) #{title}
 
 block content
-    main
-        .hide-on-large-only
-            .container
-                .row.center-align.section
-                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/problem/add") Add Problem
-                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/problems/open/latest") Open Problems
-                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/help") Help
-                    a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/logout") Logout
-            //- .fixed-action-btn
-            //-     a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
-            //-         i.material-icons add
-
+    main.hide-on-large-only
+        .container
+            .row.center-align.section
+                a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/problem/add") Add Problem
+                a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/problems/open/latest") Open Problems
+                a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/client/help") Help
+                a.col.s12.space.btn-large.waves-effect.waves-light.orange(href="/logout") Logout
+    main.hide-on-med-and-down.valign-wrapper
+        .container
+            h4.grey-text.text-lighten-2.center-align
+                p Please use #[i.material-icons.large.center-text phone_iphone]
+                |This part of application was not implemented, view  the client version on mobile device.
 
