@@ -31,10 +31,10 @@ block header
                                 input#search(type="search",placeholder="Search",autocomplete="off")
                                 label.active(for="search")
                                     i.material-icons.search-icon search
-                        a.profile.profile-menu.right.btn-flat.waves-effect.waves-light(href="#!" data-activates='profile-menu-dropdown')
-                            p= user.username
+                        a.profile.profile-menu.right(href="#!" data-activates='profile-menu-dropdown')
+                            p.hide-on-med-and-down= user.username
                             if (!user.profile_img)
-                                span.profile-letter-circle(data-letters=user.username.substr(0, 1))
+                                span.profile-letter-circle.btn-flat.waves-effect(data-letters=user.username.substr(0, 1))
 
                         ul#profile-menu-dropdown.dropdown-content.card
                             li: a(href="/settings") Account settings

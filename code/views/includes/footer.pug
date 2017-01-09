@@ -5,19 +5,28 @@ block footer
                 .col.l8.m6.s12
                     h5.white-text E-Servis Bio
                     p.grey-text.text-lighten-4
-                        = "We are a team of college students working on this project like it's our full time job. We are Addicted Penguins!"
+                        | We are a team of college students working on this project like it's our full time job.
+                        br
+                        | We are Addicted Penguins!
                 .col.l2.m3.s12.hide-on-small-only
                     h5.white-text Menu
                     ul
-                        li: a.grey-text.text-lighten-4(href="#") About
-                        li: a.grey-text.text-lighten-4(href="#") Jobs
-                        li: a.grey-text.text-lighten-4(href="#") Support
+                        li: a.grey-text.text-lighten-4(href="/about") About us
+                        li: a.grey-text.text-lighten-4(href="/about") Contact us
+                        li: a.grey-text.text-lighten-4(href="/jobs") Jobs
+                        li: a.grey-text.text-lighten-4(href="/support") Support
                 .col.l2.m3.s12
                     h5.white-text Connect
                     ul
-                        li: a.grey-text.text-lighten-4(href="#") Facebook
-                        li: a.grey-text.text-lighten-4(href="#") Google +
-                        li: a.grey-text.text-lighten-4(href="#") Twitter
+                        li: a.grey-text.text-lighten-4(href="/contact#facebook")
+                            i.mdi.mdi-facebook.mdi-18px
+                            = "Facebook"
+                        li: a.grey-text.text-lighten-4(href="/contact#google")
+                            i.mdi.mdi-google-plus.mdi-18px
+                            = "Google +"
+                        li: a.grey-text.text-lighten-4(href="/contact#twitter")
+                            i.mdi.mdi-twitter.mdi-18px
+                            | Twitter
         .footer-copyright
             .container
                 p.grey-text.text-lighten-4

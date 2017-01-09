@@ -1,0 +1,27 @@
+extends layout
+
+append head
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
+
+
+mixin aboutContent
+    main.row.main-content
+        article.col.s10.push-s1.m8.push-m2
+            h3 Jobs
+            p.flow-text Currently there are no available positions in our company. But if you are interested, send your CV to us and we will contact you if there is any available.
+
+
+
+block body-inner
+    include includes/header
+    include includes/sidebar
+    block content
+    if user && user.isMechanic
+        .parent
+            .content-panel
+                +aboutContent
+            include includes/footer
+    else
+        +aboutContent
+        include includes/footer

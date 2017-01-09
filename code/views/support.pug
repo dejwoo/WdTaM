@@ -1,0 +1,30 @@
+extends layout
+
+append head
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
+
+
+mixin aboutContent
+    main.row.main-content
+        article
+            h4 Technical support
+            p For technical support please first check the help page. In the occasion that you cant find a solution there, please our contacts are below on this page.
+
+            .card
+
+            .card
+
+
+block body-inner
+    include includes/header
+    include includes/sidebar
+    block content
+    if user && user.isMechanic
+        .parent
+            .content-panel
+                +aboutContent
+            include includes/footer
+    else
+        +aboutContent
+        include includes/footer
