@@ -1,0 +1,12 @@
+
+
+.edit-field{
+  display: flex;
+  align-items: center;
+  .input-field{
+    flex: 1 1 auto;
+  }
+  a.btn-flat{
+    padding: 0 1rem;
+  }
+}

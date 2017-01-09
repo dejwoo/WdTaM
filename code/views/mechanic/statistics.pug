@@ -1,6 +1,15 @@
-extends ../layout_mechanic
+extends ../layout
 
 append head
     link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
 
 block content
+    .parent
+        .content-panel
+            main.main-content
+                h4.grey-text.text-lighten-2.center-align
+                    p This part of application was not implemented.
+                    | Please accept our apologies.
+
+
+        include ../includes/footer

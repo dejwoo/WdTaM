@@ -8,12 +8,12 @@ block header
                             a(href="/") eService
 
                     ul.right.hide-on-med-and-down
-                        li: a(href="#") Help
+                        li: a(href="/help") Help
                         li: a(href="/register") Register
                         li: a(href="/login") Login
-                    a.right.hide-on-large-only.dropdown-button(href="#" data-activates="nav-mobile" data-beloworigin="true")
-                        i.material-icons more_vert
-                    ul#nav-mobile.dropdown-content.right
+                    a.right.hide-on-large-only.dropdown-button(href="#" data-activates="nav-mobile" data-beloworigin="true" data-constrainWidth="false")
+                        i.material-icons menu
+                    ul#nav-mobile.dropdown-content.right.col.s12
                         li: a(href="/login") Login
                         li: a(href="/register") Register
                         li: a(href="/help") Help
@@ -31,10 +31,16 @@ block header
                                 input#search(type="search",placeholder="Search",autocomplete="off")
                                 label.active(for="search")
                                     i.material-icons.search-icon search
+                        a.profile.profile-menu.right(href="#!" data-activates='profile-menu-dropdown')
+                            p.hide-on-med-and-down= user.username
+                            if (!user.profile_img)
+                                span.profile-letter-circle.btn-flat.waves-effect(data-letters=user.username.substr(0, 1))
 
-                        ul.right.hide-on-med-and-up
-                            li
-                                a(href='/logout') Logout
+                        ul#profile-menu-dropdown.dropdown-content.card
+                            li: a(href="/settings") Account settings
+                            li: a.mdi.mdi-logout-variant.mdi-24px.center(href="/logout") Logout
+
+
 
                     if !user.isMechanic
                         ul.right.hide-on-med-and-down
@@ -42,30 +48,4 @@ block header
                             li: a(href="#") History
                             li: a(href="/logout") Logout
                         a.right.hide-on-large-only.button-collapse(href="#" data-activates="nav-mobile")
-                            i.material-icons more_vert
-                        ul#nav-mobile.side-nav
-                            if user
-                                li
-                                    div.userView
-                                        div.background
-                                            img(src="https://unsplash.it/500/375?image=1019" alt="background picture")
-                                        a(href="#!user")
-                                            if (user && !user.profile_img)
-                                                -var letter = user.username.substr(0,1)
-                                                span(data-letters=letter)
-                                        a(href="#!name")
-                                            span.white-text.name
-                                                =user.username
-                                        a(href="#!email")
-                                            span.white-text.email
-                                                =user.email
-                            li: a.btn-flat.waves-effect(href="/client/problems/open/latest") Open Problems
-                            li: a.btn-flat.waves-effect(href="/client/problems/resolved/latest") Resolved Problems
-                            li: a.btn-flat.waves-effect(href="/client/problems/resolved/latest") History
-                            li: a.btn-flat.waves-effect(href="/client/vehicles/latest") Vehicles
-                            li: a.btn-flat.waves-effect(href="/logout") Logout
-
-                //if (user && !user.profile_img)
-                    -var letter = user.username.substr(0,1)
-                    .col.s9.m6.right
-                        img.circle(src='' alt='' data-letters=letter)
+                            i.material-icons menu

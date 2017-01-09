@@ -3,8 +3,9 @@ const Account = require('./account');
 var Schema = mongoose.Schema;
 
 var TemplateSchema = new Schema({
-    name: String,
+    title: String,
     desc: String,
+    createdBy: {type: Schema.Types.ObjectId, ref: 'Account'},
     timestamp: String,
     used: Number
 });

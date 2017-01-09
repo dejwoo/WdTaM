@@ -15,25 +15,48 @@ function isAuthenticated(req, res, next) {
 
 module.exports = function(io) {
 	var socketsDetails = {};
-	io.on('connection', function(socket){
-	    console.log('A user connected ' + socket.id);
-	    socket.on("disconnect", function () {
-	        console.log("A user disconnected " + socket.id)
-	    });
-	    socket.on("socketInfo", function(data){
-	        console.log("SockInfoData", data);
-	        if (data.username && data.userId && data.socketId) {
-	        	socketsDetails[data.userId] = {username:data.username, sockedId:data.socketId};
-	        }
-	    });
+	io.on('connection', function(socket) {
+		console.log('A user connected ' + socket.id);
+		socket.on("disconnect", function() {
+			console.log("A user disconnected " + socket.id)
+		});
+		socket.on("socketInfo", function(data) {
+			console.log("SockInfoData", data);
+			if (data.username && data.userId && data.socketId) {
+				socketsDetails[data.userId] = {
+					username: data.username,
+					sockedId: data.socketId
+				};
+			}
+		});
+		socket.on("createTemplate", function(data) {
+			console.log("Creating a new template: ", data);
+			(new Template({
+				title: data.title,
+				desc: data.description,
+				createdBy: data.userId,
+				timestamp: Date.now(),
+				used: 0
+			})).save(function(err, template) {
+				if (err) {
+					console.log(err);
+					socket.emit("createTemplateResponse", {
+						template: null,
+						error: err
+					});
+				}
+				socket.emit("createTemplateResponse", {
+					template: template,
+					error: null
+				});
+			});
+		});
 	});
 
 	function sendUser(req, res, next) {
-		console.log(0);
 		res.on('finish', function() {
-			console.log(socketsDetails,req.user.toObject()._id.toString('utf8'));
+			console.log(socketsDetails, req.user.toObject()._id.toString('utf8'));
 			if (req.user._id && socketsDetails && socketsDetails[req.user._id]) {
-				console.log(2);
 				io.to(socketsDetails[req.user._id].sockedId).emit("contectedUser", JSON.stringify(req.user.toObject()));
 			}
 		});
@@ -96,9 +119,6 @@ module.exports = function(io) {
 		if (req.user.isMechanic) {
 			res.redirect('/home');
 		}
-		io.on('connection', function(socket) {
-			socket.emit("contectedUser", req.user);
-		});
 
 		res.render('client/vehicle_add', {
 			title: 'Add vehicle'
@@ -146,11 +166,20 @@ module.exports = function(io) {
 			vehicleArray.push(doc);
 		});
 		cursor.on('end', function() {
-			res.render('client/problem_add', {
-				title: 'Add problem',
-				vehicles: vehicleArray,
-				currentLevel: 0,
-				loadClientAddProblemJs: true
+			var cursorTemplate = Template.find({}).cursor();
+			var templateArray = [];
+			cursorTemplate.on('data', function(doc) {
+				// Called once for every document
+				templateArray.push(doc);
+			});
+			cursorTemplate.on('end', function() {
+				res.render('client/problem_add', {
+					title: 'Add problem',
+					vehicles: vehicleArray,
+					templates: templateArray,
+					currentLevel: 0,
+					loadClientAddProblemJs: true
+				});
 			});
 		});
 	});

@@ -1,14 +1,43 @@
 mixin menuitem(title, link, icon)
     .no-padding
         a.waves-effect.waves-blue(href=link)
-            i.material-icons #{icon}
+            if icon == 'logout'
+                i.material-icons.mdi.mdi-logout-variant.mdi-24px
+            else
+                i.material-icons #{icon}
             =title
 
-if user && user.isMechanic
-    .left-panel.opened
-        aside.sidebar-nav
-            .sidebar-menu
-                +menuitem("Tickets",'/tickets','move_to_inbox')
-                +menuitem("Clients",'/clients','people')
-                +menuitem("Statistics",'/stats','description')
-                +menuitem("Logout",'/logout','exit_to_app')
+if user
+    if user.isMechanic
+        .left-panel.opened
+            aside.sidebar-nav
+                .sidebar-menu
+                    +menuitem("Tickets",'/tickets','move_to_inbox')
+                    +menuitem("Clients",'/clients','people')
+                    +menuitem("Statistics",'/stats','description')
+                    +menuitem("Help",'/help','help')
+                    +menuitem("Logout",'/logout','logout')
+
+    else
+        ul#nav-mobile.side-nav
+            if user
+                li
+                    div.userView
+                        div.background
+                            img(src="https://unsplash.it/500/375?image=1019" alt="background picture")
+                        a(href="#!user")
+                            if (user && !user.profile_img)
+                                -var letter = user.username.substr(0,1)
+                                span.profile-letter-circle(data-letters=letter)
+                        a(href="#!name")
+                            span.white-text.name
+                                =user.username
+                        a(href="#!email")
+                            span.white-text.email
+                                =user.email
+            li: a.btn-flat.waves-effect(href="/client/problem/add") Add a new problem
+            li: a.btn-flat.waves-effect(href="/client/problems/open/latest") Open Problems
+            li: a.btn-flat.waves-effect(href="/client/problems/resolved/latest") Resolved Problems
+            li: a.btn-flat.waves-effect(href="/help") Help
+            li: a.btn-flat.waves-effect(href="/client/vehicles/latest") Vehicles
+            li: a.btn-flat.waves-effect(href="/logout") Logout

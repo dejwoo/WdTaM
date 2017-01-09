@@ -1,0 +1,35 @@
+extends layout
+
+append head
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
+
+
+mixin aboutContent
+    main.row.main-content
+        article.col.s10.push-s1.m8.push-m2
+            h3 About us
+            p.flow-text eService is a general automotive repair shop application, specializing in computer diagnostics.  We fix the problems other shops cannot. Some of the more common problems we address are driveability, electrical, brakes, suspension, rear ends, tune-ups, cooling, power windows, heating and air conditioning, state inspections, emission repair, engines, and transmissions.
+            p.flow-text In addition, we are a proud member of the Independent Tire Dealers Association, which means we can offer you the best tires at competitive prices.
+            p.flow-text Below are some of the highlights at eService’s that we are proud of, and help make us stand out from the average auto repair shop.
+            ul.flow-text.browser-default
+                li ASE Certified Master Technicians
+                li ASE Blue Seal Shop
+                li Shuttle Service Available in the Bratislava and Trnava regions
+                li Diesel Repair Certified
+                li Member of the BBB
+                li Emission Inspection Station
+
+
+block body-inner
+    include includes/header
+    include includes/sidebar
+    block content
+    if user && user.isMechanic
+        .parent
+            .content-panel
+                +aboutContent
+            include includes/footer
+    else
+        +aboutContent
+        include includes/footer

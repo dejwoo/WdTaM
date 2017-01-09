@@ -1,0 +1,91 @@
+extends layout
+
+append head
+    link(type='text/css' rel='stylesheet' href='/stylesheets/help.css' media='all')
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
+
+append foot
+    script(src='/js/help.js', type='text/javascript')
+
+
+block body-inner
+    -
+        var headerCount = 0;
+        var chapters = {
+        "Introduction":[
+            "This application is destined to serve as your companion, guide and a way to contact your car service, if you are in the need of " +
+            "roadside assistance, or your car just does something, that you don't understand.",
+            "The purpose of this page is to be a guide and help you to navigate in our application, and make you understand it's capabilities.",
+            "In the event that you can't find an answer to your question here, please write us a mail. Our contacts are on the page below."],
+        "FAQ: Account settings":{
+            "How do I change my password?":["Go to your Account settings -> Change password, then fill in your actual password and then the new password."],
+            "How do I change my email address?":["Go to your Account settings, fill in your new e-mail in the e-mail field and then click at save."],
+            "How do I delete my user account?":["In order to delete your account, you need to contact our e-mail support which will delete your account as soon as possible."]},
+        "User Manual: Client":{
+            "Create a problem":["Before you proceed with creating a problem, you need to add your car into your account(to do skip this part to Add a vehicle section). " +
+                                "Open the menubar in the right top corner and click Add new problem. Then fill all the neccessary fields in the form and click Add."],
+            "View responses to a problem":["Click the hamburger to open Menu in the right top corner and click Open problems. A list of all your open problems will appear. In order to see" +
+                                            " the responses to that particular problem, just click on it and it will show you the conversations between you and mechanic."],
+            "Add a vehicle":["Click the hamburger to open Menu, then click on Vehicles. In the right bottom corner, there is a red button, which you need to click to show the form for adding" +
+            " new vehicle. Follow the steps and click save."],
+            "Edit vehicle":["Click the hamburger to open Menu, then click on Vehicles. A list of all your vehicles shows up. Find the vehicle you want to edit and click on the Edit icon on the right side of the item. Edit form should show up."],
+            "Use live chat":["This feature is only for premium customers. If you are interested in this feature, please contact our e-mail support and we will give you further information about this feature."]},
+        "User Manual: Mechanic":{
+            "View your clients":["In the left menu, click on Clients. The list of all your clients will show up."],
+            "View the incoming tickets":["In the left menu, click on Tickets. The list of all your tickets will show up."],
+            "Reply to tickets":["Proceed to your ticket listing by clicking on Tickets in the left menu. Then click on the ticket you want to reply." +
+                                " In the message list, choose the one you want to reply to and click on Reply button."],
+            "Found bug?":["If you found any bug in our application, please send the bug description to our e-mail support and we will fix it afterwards."]
+        }
+        }
+    mixin navigation
+        aside.col.hide-on-med-and-down.m3.l3
+            .toc-wrapper
+                h4 Navigation
+                ul.table-of-contents
+                    each value, index in chapters
+                        li
+                            if _.isArray(value)
+                                span.waves-block.waves-effect.waves-green
+                                    a(href="#" + _.kebabCase(index))= index
+                            else
+                                span.waves-block.waves-effect.waves-green
+                                    a(href="#" + _.kebabCase(index))= index
+                                ul
+                                    each value2, index2 in value
+                                        li: span.waves-block.waves-effect.waves-green
+                                            a(href="#" + _.kebabCase(index2))= index2
+    mixin help-content
+        article.col.s12.m9.l9
+            h1 Help
+            each value, index in chapters
+                section
+                    if _.isArray(value)
+                        h3.scrollspy(id= _.kebabCase(index))= index
+                        each paragraph in value
+                            p.flow-text= paragraph
+                    else
+                        h3.scrollspy(id=_.kebabCase(index))= index
+                        section
+                            each value2, index2 in value
+                                section
+                                    h4.scrollspy(id= _.kebabCase(index2))= index2
+                                    each paragraph in value2
+                                        p.flow-text= paragraph
+    include includes/header
+    include includes/sidebar
+
+    block content
+    if user && user.isMechanic
+        .parent
+            .content-panel
+                main.row.main-content
+                    +help-content
+                    +navigation
+            include includes/footer
+    else
+        main.row.main-content
+            +navigation
+            +help-content
+        include includes/footer

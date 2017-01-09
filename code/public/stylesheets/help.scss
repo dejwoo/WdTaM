@@ -1,0 +1,38 @@
+.row {
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+.toc-wrapper {
+  margin-top: 70px;
+  width: 270px;
+}
+
+.table-of-contents {
+  margin-left: 5px;
+  margin-right: 40px;
+  > li {
+    > span a {
+      font-weight: bolder;
+    }
+    border-bottom: 1px solid rgba(46, 181, 26, 0.58);
+  }
+  li {
+
+    a {
+      padding-left: 10px;
+    }
+    a:hover {
+      border-left: 2px solid #62f461;
+      padding-left: 8px;
+      color: #a8a8a8;
+    }
+    a.active {
+      border-left: 2px solid #6eb52c;
+      padding-left: 8px;
+      color: #6eb52c;
+    }
+
+  }
+}
+

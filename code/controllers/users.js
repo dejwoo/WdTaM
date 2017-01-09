@@ -84,6 +84,36 @@ router.post('/register', function (req, res) {
     });
 });
 
+router.get('/help', function(req, res){
+    res.render('help');
+});
+
+router.get('/about', function(req, res){
+    res.render('about');
+});
+
+router.get('/jobs', function(req, res){
+    res.render('jobs');
+});
+
+router.get('/support', function(req, res){
+    res.render('support');
+});
+router.get('/contact', function(req, res){
+    res.render('contact');
+});
+
+
+router.get('/settings', isAuthenticated, function (req, res) {
+    if (req.user) {
+        res.render('account/settings', {title: 'Settings', user:req.user});
+    } else {
+        res.redirect('/')
+    }
+});
+
+
+
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -124,7 +154,7 @@ router.get('/clients', isAuthenticated, function (req, res) {
     }
 });
 
-router.get('/statistics', isAuthenticated, function (req, res) {
+router.get('/stats', isAuthenticated, function (req, res) {
     if (req.user.isMechanic) {
         res.render('mechanic/statistics', {title: 'Statistics'});
     } else {
@@ -139,6 +169,4 @@ router.get('/td', isAuthenticated, function (req, res) {
         res.redirect('/')
     }
 });
-
-
 module.exports = router;

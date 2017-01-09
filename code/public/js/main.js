@@ -16,6 +16,8 @@ $(document).ready(function() {
 
     });
 
+
+
     //initialize swiper when document ready
     var mySwiper = new Swiper('.swiper-container', {
         // Optional parameters
@@ -39,6 +41,7 @@ var socket = io.connect("http://localhost:3000");
 socket.on("connect", function(){
     if (typeof(username) != 'undefined' && typeof(userId) != 'undefined') {
         socket.emit("socketInfo", {username: username, userId:userId, socketId:socket.id});
+        $('.profile-letter-circle').css('background', randomColor({seed:username, luminosity: 'light'}));
     }
 });
 socket.on("reconnect", function(){

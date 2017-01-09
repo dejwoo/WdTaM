@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Roboto", Helvetica, Arial, sans-serif;
   display: flex;
   min-height: 100vh;
   flex-direction: column; }
@@ -41,6 +41,7 @@ nav {
   .side-nav.fixed {
     -webkit-transform: translateX(0);
     transform: translateX(0); } }
+
 .side-nav {
   padding: 0 !important;
   height: calc(100% - 60px) !important;
@@ -58,50 +59,61 @@ nav {
 @media (min-width: 600px) {
   .drag-target {
     display: none; } }
+
 .side-nav-wrapper {
   min-height: 100% !important;
   padding-bottom: 96px; }
 
 .side-nav ul li, .side-nav.fixed ul li {
   padding: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -o-transition: all .3s;
   transition: all 0.3s; }
+
 .side-nav ul li a, .side-nav.fixed ul li a {
   font-size: 13px;
   height: auto !important;
   color: rgba(0, 0, 0, 0.7);
   padding: 15px 0 15px 24px !important;
   line-height: 1em !important; }
+
 .side-nav ul li a.active:hover, .side-nav.fixed ul li a.active:hover {
   background: 0 0 !important; }
+
 .side-nav ul li a span.badge, .side-nav.fixed ul li a span.badge {
   padding: 3px 6px;
   margin-top: -3px;
   font-size: 12px;
   min-width: auto !important;
   margin-right: 5px; }
+
 .side-nav ul li a span.badge.new:after, .side-nav.fixed ul li a span.badge.new:after {
   content: "" !important; }
+
 .side-nav ul li a.active-page, .side-nav.fixed ul li a.active-page {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.9); }
+
 .side-nav ul ul li a, .side-nav.fixed ul ul li a {
   border-left: 2px solid transparent;
   color: rgba(0, 0, 0, 0.9);
   display: block;
   font-weight: 400;
-  letter-spacing: 0.1px;
+  letter-spacing: .1px;
   padding: 11.5px 24px 11.5px 60px !important;
   white-space: nowrap;
   margin: 0 !important; }
+
 .side-nav ul ul li a:hover, .side-nav.fixed ul ul li a:hover {
   background-color: #E3E3E3 !important; }
+
 .side-nav ul li:hover, .side-nav.fixed ul li:hover {
   background: 0 0; }
+
 .side-nav ul li.divider:hover, .side-nav.fixed ul li.divider:hover {
   background-color: #ECECEC; }
+
 .side-nav li a {
   -webkit-transition: all 0s;
   -moz-transition: all 0s;
@@ -115,18 +127,21 @@ nav {
     transition: all 0s; }
 
 .card-options > ul > li > a, .dd-handle {
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
   -o-transition: all 0.3s; }
 
 .side-nav ul li.active, .side-nav ul li:focus {
   background-color: #F3F3F3 !important; }
+
 .side-nav.fixed ul li.active, .side-nav.fixed ul li:focus {
   background-color: #F3F3F3 !important; }
+
 .side-nav.fixed ul li.active > a {
   font-weight: 500; }
   .side-nav.fixed ul li.active > a.collapsible-header {
     font-weight: 500; }
+
 .side-nav ul li a i {
   font-size: 19px;
   vertical-align: middle;
@@ -136,9 +151,11 @@ nav {
     line-height: inherit;
     margin: 0 20px 0 0;
     width: auto; }
+
 .side-nav .collapsible-header {
   margin: 0;
   line-height: 1em; }
+
 .side-nav .collapsible-body, .side-nav.fixed .collapsible-body {
   background-color: transparent; }
 
@@ -162,6 +179,7 @@ nav {
   .side-nav .sidenav-logo a {
     height: 56px;
     padding: 8px 0 7px 24px; } }
+
 .navbar-fixed nav .navigation-toggle {
   position: fixed;
   left: 12px; }
@@ -195,24 +213,37 @@ nav {
 .push-down2 {
   margin-bottom: 2em; }
 
-[data-letters]:before {
-  content: attr(data-letters);
+span.profile-letter-circle {
+  padding: 0 !important;
   display: inline-block;
   font-size: 1.2em;
   width: 2.7em;
   height: 2.7em;
-  line-height: 2.7em;
+  line-height: 2.8em;
   text-align: center;
   border-radius: 50%;
-  background: #5d88e2;
   vertical-align: middle;
-  margin-right: 1em;
-  color: white; }
+  color: white;
+  background: #0fbbc9; }
+
+.profile-letter-circle[data-letters]:before {
+  content: attr(data-letters); }
 
 .mobile-main {
   height: 50%; }
 
 main {
   flex: 1 0 auto; }
+
+.profile {
+  display: flex;
+  height: 55px;
+  align-items: center; }
+  .profile p {
+    margin: 0;
+    padding-right: 20px;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.2rem; }
 
 /*# sourceMappingURL=style.css.map */

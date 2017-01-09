@@ -13,7 +13,9 @@ var MessageSchema = new Schema({
     text: String,
     creation_date: Date,
     images: [String],
-    messageNo: Number
+    messageNo: Number,
+    templates: [{type: Schema.Types.ObjectId, ref: 'Template'}]
+    additionalInfo: [{type: Schema.Types.ObjectId, ref: 'Template'}]
 });
 
 //Auto increment each new message in ticket thread

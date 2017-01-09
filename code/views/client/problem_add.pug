@@ -1,107 +1,135 @@
-extends ../layout_client
+extends ../layout
 
 block content
-    main.container
-        .row.center
-            h2 Add a new Problem!
-            p.lead Please select your vehicle!
-        .col.s12
-            ul.tabs.hide
-                li.tab.col.s3: a.teal-text(
-                    id="chooseVehicleLevelTab"
-                    href="#chooseVehicleLevel"
-                    onclick="setAddNewProblemStage(chooseVehicleLevel, 0)"
-                ) Choose vehicle
-                li.tab.col.s3.disabled: a.teal-text(
-                    id="selectProblemLevelTab"
-                    href="#selectProblemLevel"
-                ) Select Problem
-                li.tab.col.s3.disabled: a.teal-text(
-                    id="additionalInfoLevelTab"
-                    href="#additionalInfoLevel"
-                ) Add info
-                li.tab.col.s3.disabled: a.teal-text(
-                    id="confirmationLevelTab"
-                    href="#confirmationLevel"
-                ) Review
-        .row
-            form.col.s12(role='form',action="/client/problem/add",method="post", class="col s12 m6 offset-m3")
-                input(type='hidden', name='_csrf', value=token)
-                .row#chooseVehicleLevel
-                    .input-field.col.s12
-                        select#vehicle.validate(name="vehicle_id")
-                            option(value="" disabled selected) Choose your option
-                            - for (var x = 0; x < vehicles.length; x++)
-                                option(value=vehicles[x]._id)
-                                    =vehicles[x].name
-                        label(for="vehicle") Select your vehicle
-                .row#selectProblemLevel
-                    .input-field.col.s12
-                        ul.collapsible(data-collapsible="expandable")
-                            li
-                                .collapsible-header(onclick="addNewProblemToggleProblemTemplate(this)" id="problems[x]._id")
-                                    |Problem Title 1 <i class="material-icons right">check_box_outline_blank</i>
-                                    input.validate(type='hidden', name="problems[]" value="")
+    main.valign-wrapper
+        .container
+            .row.center
+                h2 Add a new Problem!
+                p.lead Please select your vehicle!
+            .col.s12
+                ul.tabs.hide
+                    li.tab.col.s3: a.teal-text(
+                        id="chooseVehicleLevelTab"
+                        href="#chooseVehicleLevel"
+                        onclick="setAddNewProblemStage(chooseVehicleLevel, 0)"
+                    ) Choose vehicle
+                    li.tab.col.s3.disabled: a.teal-text(
+                        id="selectProblemLevelTab"
+                        href="#selectProblemLevel"
+                    ) Select Problem
+                    li.tab.col.s3.disabled: a.teal-text(
+                        id="additionalInfoLevelTab"
+                        href="#additionalInfoLevel"
+                    ) Add info
+                    li.tab.col.s3.disabled: a.teal-text(
+                        id="confirmationLevelTab"
+                        href="#confirmationLevel"
+                    ) Review
+            .row
+                form.col.s12(role='form',action="/client/problem/add",method="post", class="col s12 l8 offset-l2")
+                    input(type='hidden', name='_csrf', value=token)
+                    .row#chooseVehicleLevel
+                        .input-field.col.s12
+                            select#vehicle.validate(name="vehicle_id" required)
+                                option(value="" disabled selected hidden) Choose your option
+                                - for (var x = 0; x < vehicles.length; x++)
+                                    option(value=vehicles[x]._id)
+                                        =vehicles[x].name
+                            label(for="vehicle" data-error="Please select car with a problem!" data-success="Car selected!") Select your vehicle
+                    .row#selectProblemLevel
+                        .input-field.col.s12
+                            ul.collapsible#templateList(data-collapsible="expandable")
+                                - for (var x = 0; x < templates.length; x++)
+                                    li
+                                        .collapsible-header(onclick="addNewProblemToggleProblemTemplate(this)" id=templates[x]._id)
+                                            |#[i.material-icons check_box_outline_blank]#[span.flow-text #{templates[x].title}]
+                                            input(type='hidden', name="problems[]" value="")
 
-                                .collapsible-body
-                                    p Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.
-                            li
-                                .collapsible-header(onclick="addNewProblemToggleProblemTemplate(this)")
-                                   |Problem Title 1 <i class="material-icons right">check_box_outline_blank</i>
-                                   input.validate(type='hidden', name="problems[]" value="")
-                                .collapsible-body
-                                    p Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.
-                    a(class="btn-floating btn-large waves-effect waves-light red right" href="#createTemplate")
-                        i.material-icons add
-                .row#additionalInfoLevel
-                     .container
-                        .row.center-align.section
-                            a.col.s12.space.btn-large.waves-effect.waves-light(href="#addDetailDescription") Add a detail description
-                            button.col.s12.space.btn-large.waves-effect.waves-light
-                                .file-field
-                                    span Add image
-                                    input#image(type='file' accept="image/*" capture="camera" name="image" multiple)
-                            button.col.s12.space.btn-large.waves-effect.waves-light
-                                .file-field
-                                    span Add video
-                                    input#video(type='file' accept="video/*" name="video" capture="camcorder" multiple)
-                            button.col.s12.space.btn-large.waves-effect.waves-light
-                                .file-field
-                                    span Add recording
-                                    input#recording(type='file' accept="audio/*" name="recording" capture="microphone" multiple)
-                .row#confirmationLevel
-                    .input-field.col.s12
-                        input#vin.validate(type='text', name="vin")
-                        label(for="vin") VIN number
-                .row.space
-                    a#addNewProblemCancelButtonInitial.btn.col.space.s12.m4.waves-effect.waves-light(href='/') Cancel
-                    button#addNewProblemBackButton.btn.col.space.s12.m4.offset-m4.waves-effect.waves-light.hide(type='button' onclick="setAddNewProblemStage(currentLevel-1, 1)") Back
-                    button#addNewProblemNextButton.btn.col.space.s12.m4.offset-m4.waves-effect.waves-light(type='button' onclick="setAddNewProblemStage(currentLevel+1, 1)") Next
-                    button#addNewProblemSubmitButton.btn.col.space.s12.m4.offset-m4.waves-effect.waves-light.hide(type='submit') Submit
-                    a#addNewProblemCancelButton.btn-flat.col.center.s12.m4.offset-m4.waves-effect.waves-light.hide(href='/') Cancel
-            .modal#createTemplate
-                    .modal-content
-                        form(role='form' action="/client/template/add" method="post" id="createTemplateForm")
-                            p.lead
-                                |Please provide title and description of your problem
-                            input(type='hidden', name='_csrf', value=token)
-                            .row
-                                .input-field
-                                    input#title.validate(type='text', name="title")
-                                    label(for="title") Title
+                                        .collapsible-body
+                                            p.flow-text #{templates[x].desc}
+                    .row#additionalInfoLevel
+                         .container
+                            .row.center-align.section
+                                a.col.s12.space.btn-large.waves-effect.waves-light(href="#addDetailDescription") Add a detail description
+                                a.col.s12.space.btn-large.waves-effect.waves-light(href="#addImage") Add an image
+                                a.col.s12.space.btn-large.waves-effect.waves-light(href="#addVideo") Add a video
+                                a.col.s12.space.btn-large.waves-effect.waves-light(href="#addRecording") Add a recording
+                    .row#confirmationLevel
+                        .container
+                            p#selectedCar.small.grey-text.flow-text Selected car:
+                            p#selectedTemplate.small.grey-text.flow-text Selected template:
+                            p#additionalInfo.small.grey-text.flow-text Additional info:
+                            p#mediaFiles.small.grey-text.flow-text Media files:
+                    .row.space.center-aligned
+                        a#addNewProblemCancelButtonInitial.btn.col.space.s12.m5.waves-effect.waves-light(href='/') Cancel
+                        button#addNewProblemBackButton.btn.col.space.s12.m5.waves-effect.waves-light.hide(type='button' onclick="setAddNewProblemStage(currentLevel-1, 1)") Back
+                        button#addNewProblemNextButton.btn.col.space.s12.m5.offset-m2.waves-effect.waves-light(type='button' onclick="setAddNewProblemStage(currentLevel+1, 1)") Next
+                        button#addNewProblemSubmitButton.btn.col.space.s12.m5.offset-m2.waves-effect.waves-light.hide(type='submit') Submit
+                        a#addNewProblemCancelButton.btn-flat.col.center.s12.m6.offset-m3.waves-effect.waves-light.space.hide(href='/') Cancel
+                    .row.space
+                        div#toast-container
+                .modal#createTemplate
+                        .modal-content
+                            form(role='form' action="javascript:void(0)" id="createTemplateForm" onsubmit="createTemplate(this)")
+                                p.lead.space
+                                    |Please provide title and description of your problem
+                                input(type='hidden', name='_csrf', value=token)
+                                .row
+                                    .input-field
+                                        input#title(type='text', name="title")
+                                        label(for="title") Title
+                                .row
+                                    .input-field
+                                        textarea#description.materialize-textarea(type='text', name="description")
+                                        label(for="description") Description
+                        .modal-footer
+                                a.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(type='submit' form="createTemplateForm") Add
+                .modal#addDetailDescription
+                        .modal-content
                             .row
                                 .input-field
                                     textarea#description.validate.materialize-textarea(type='text', name="description")
                                     label(for="description") Description
-                    .modal-footer
-                            a.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(type='submit' form="createTemplateForm") Add
-            .modal#addDetailDescription
+                        .modal-footer
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Add
+                .modal#addImage
                     .modal-content
                         .row
-                            .input-field
-                                textarea#description.validate.materialize-textarea(type='text', name="description")
-                                label(for="description") Description
+                            .input-field.file-field
+                                .btn
+                                    span.col.s12 Add image
+                                    input#image(type='file' accept="image/*" capture="camera" name="image" multiple)
+                                .file-path-wrapper.col.s12
+                                    input.file-path.validate(type="text")
                     .modal-footer
                             button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Add
+                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Confirm
+                .modal#addVideo
+                    .modal-content
+                         .row
+                            .input-field.file-field
+                                .btn
+                                    span.col.s12 Add video
+                                    input#video(type='file' accept="video/*" name="video" capture="camcorder" multiple)
+                                .file-path-wrapper.col.s12
+                                    input.file-path.validate(type="text")
+                    .modal-footer
+                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
+                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Confirm
+                .modal#addRecording
+                    .modal-content
+                         .row
+                            .input-field.file-field
+                                .btn
+                                    span.col.s12 Add recording
+                                    input#recording(type='file' accept="audio/*" name="recording" capture="microphone" multiple)
+                                .file-path-wrapper.col.s12
+                                    input.file-path.validate(type="text")
+                    .modal-footer
+                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
+                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Confirm
+    .fixed-action-btn
+        a.btn-floating#templateFab(class="btn-large waves-effect waves-light red right hide" href="#createTemplate")
+            i.material-icons add

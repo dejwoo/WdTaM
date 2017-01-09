@@ -1,0 +1,9 @@
+.edit-field {
+  display: flex;
+  align-items: center; }
+  .edit-field .input-field {
+    flex: 1 1 auto; }
+  .edit-field a.btn-flat {
+    padding: 0 1rem; }
+
+/*# sourceMappingURL=settings.css.map */

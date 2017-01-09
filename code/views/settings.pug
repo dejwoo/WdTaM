@@ -1,0 +1,25 @@
+extends layout
+
+append head
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
+
+block body-inner
+    include includes/header
+    include includes/sidebar
+    block content
+    if user
+        if user.isMechanic
+            .parent
+                .content-panel
+                    main.row.main-content
+                        h4.grey-text.text-lighten-2.center-align
+                            p This part of application hasn't been implemented yet.
+                            | Please accept our apologies.
+                include includes/footer
+        else
+            main.row.main-content
+                h4.grey-text.text-lighten-2.center-align
+                    p This part of application is hasn't been implemented yet.
+                    | Please accept our apologies.
+            include includes/footer
