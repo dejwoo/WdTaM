@@ -88,9 +88,25 @@ router.get('/help', function(req, res){
     res.render('help');
 });
 
+router.get('/about', function(req, res){
+    res.render('about');
+});
+
+router.get('/jobs', function(req, res){
+    res.render('jobs');
+});
+
+router.get('/support', function(req, res){
+    res.render('support');
+});
+router.get('/contact', function(req, res){
+    res.render('contact');
+});
+
+
 router.get('/settings', isAuthenticated, function (req, res) {
     if (req.user) {
-        res.render('settings', {title: 'Settings', user:req.user});
+        res.render('account/settings', {title: 'Settings', user:req.user});
     } else {
         res.redirect('/')
     }

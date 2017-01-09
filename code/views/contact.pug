@@ -1,0 +1,43 @@
+extends layout
+
+append head
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
+
+append foot
+    scr
+
+mixin userContact(randomUser)
+    .card
+        p
+
+mixin aboutContent
+    main.row.main-content
+        article.s12
+            h3 Our contacts
+            .row
+                .col.s12.m7
+                    p If you have any questions/feedback or would like to get in touch with us, here are our contacts
+                .col.s12.m5
+                    h4 Our headquarters
+                    img#googleMap(src="https://maps.googleapis.com/maps/api/staticmap?center=Bratislava,SK&zoom=14&scale=1&size=300x200&key=AIzaSyCSZzABIzY7QTr-7Fk05fEeg-I5HHZrKr8")
+
+            h4 Socials
+                h5#facebook Facebook
+                h5#google Google+
+                h5#Twitter Twitter
+
+
+
+block body-inner
+    include includes/header
+    include includes/sidebar
+    block content
+    if user && user.isMechanic
+        .parent
+            .content-panel
+                +aboutContent
+            include includes/footer
+    else
+        +aboutContent
+        include includes/footer

@@ -1,0 +1,66 @@
+extends ../layout
+
+append head
+    if user && user.isMechanic
+        link(type='text/css' rel='stylesheet' href='/stylesheets/mechanic_main.css' media='all')
+    link(type='text/css' rel='stylesheet' href='/stylesheets/settings.css' media='all')
+
+append foot
+    script(src='/js/settings.js', type='text/javascript')
+
+mixin editbox(label)
+    .edit-field
+        .input-field
+            if label == "Password"|| label == "Password Again"
+                input.validate(disabled type="password" id=_.snakeCase(label))
+                label(for=_.snakeCase(label)) Password
+            else if label == "Email"
+                input.validate(disabled type="email" id=_.snakeCase(label))
+                label(for=_.snakeCase(label))= user[_.camelCase(label)]
+            else
+                input.validate(disabled type="text" id=_.snakeCase(label))
+                label(for=_.snakeCase(label))= user[_.camelCase(label)]
+        a(id=_.snakeCase(label)+"_edit")
+            i.material-icons edit
+
+mixin settingsContent
+    h4= title
+    .row
+        form.col.s12
+            .row
+                .col.s12.m6
+                    +editbox("First Name")
+                .col.s12.m6
+                    +editbox("Last Name")
+            .row
+                .col.s12
+                    +editbox("Email")
+            .row
+                .col.s12.m6
+                    +editbox("Password")
+                .col.s12.m6
+                    +editbox("Password Again")
+    .row
+        .col.s6.center
+            button#cancelEditsButton.btn.waves-effect.waves-ripple.light-blue.lighten-1(type="submit" name="action") Cancel edits
+        .col.s6.center
+            button#saveEditsButton.btn.waves-effect.waves-ripple.light-blue.lighten-1(type="submit" name="action") Save edits
+
+
+
+block body-inner
+    include ../includes/header
+    include ../includes/sidebar
+    block content
+    if user
+        if user.isMechanic
+            .parent
+                .content-panel
+                    main.row.main-content
+                        +settingsContent
+
+                include ../includes/footer
+        else
+            main.row.main-content
+                +settingsContent
+            include ../includes/footer
