@@ -13,14 +13,25 @@ block body-inner
     -
         var headerCount = 0;
         var chapters = {
-        "Introduction":["This application is destined to serve as your companion, guide and a way to contact your car service, if you are in the need of " +
-        "roadside assistance, or your car just does something, that you don't understand.",
-        "The purpose of this page is to be a guide and help you to navigate in our application, and make you understand it's capabilities.",
-        "In the event that you can't find an answer to your question here, please write us a mail. Our contacts are on the page below."],
-        "FAQ":{"How do I change my password?":[""],"How do I change my email address?":[""],"How do I delete my user account?":[""]},
-        "Account settings":[""],
-        "User: Client":{"Create a ticket":[""],"Respond to ticket":[""],"Add a vehicle":[""],"Edit vehicle":[""],"Use live chat":[""]},
-        "User: Mechanic":{"View clients":[""],"Viewing incoming tickets":[""],"Reply to tickets":[""]}
+        "Introduction":[
+            "This application is destined to serve as your companion, guide and a way to contact your car service, if you are in the need of " +
+            "roadside assistance, or your car just does something, that you don't understand.",
+            "The purpose of this page is to be a guide and help you to navigate in our application, and make you understand it's capabilities.",
+            "In the event that you can't find an answer to your question here, please write us a mail. Our contacts are on the page below."],
+        "FAQ: Account settings":{
+            "How do I change my password?":["You cant."],
+            "How do I change my email address?":["There is no way to do that yet."],
+            "How do I delete my user account?":["Contact support."]},
+        "User Manual: Client":{
+            "Create a problem":[""],
+            "View responses to a problem":[""],
+            "Add a vehicle":[""],
+            "Edit vehicle":[""],
+            "Use live chat":[""]},
+        "User Manual: Mechanic":{
+            "View your clients":[""],
+            "View the incoming tickets":[""],
+            "Reply to tickets":[""]}
         }
     mixin navigation
         aside.col.hide-on-small-only.m3.l3
@@ -45,15 +56,15 @@ block body-inner
             each value, index in chapters
                 section
                     if _.isArray(value)
-                        h2.scrollspy(id= _.kebabCase(index))= index
+                        h3.scrollspy(id= _.kebabCase(index))= index
                         each paragraph in value
                             p= paragraph
                     else
-                        h2.scrollspy(id=_.kebabCase(index))= index
+                        h3.scrollspy(id=_.kebabCase(index))= index
                         section
                             each value2, index2 in value
                                 section
-                                    h3.scrollspy(id= _.kebabCase(index2))= index2
+                                    h4.scrollspy(id= _.kebabCase(index2))= index2
                                     each paragraph in value2
                                         p= paragraph
     include includes/header
