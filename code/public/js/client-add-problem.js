@@ -49,7 +49,6 @@ function validateAddNewProblemStage(n) {
 	if ($("input[name='problems[]']").length > 0 && n > 0) {
 		var selectedTemplate = false;
 		$("input[name='problems[]']").each(function() {
-			console.log($(this).val());
 			if ($(this).val() != null && $(this).val() != "" && $(this).val() != undefined) {
 				selectedTemplate = true;
 				return;
@@ -78,6 +77,9 @@ function setAddNewProblemStageForm(n, simulateTabSwitch) {
 	} else {
 		hideAddNewProblemTemplateFab();
 	}
+	if (n == 3) {
+		loadAddNewProblemReview();
+	}
 	var mapping = {0:"chooseVehicleLevel", 1:"selectProblemLevel", 2:"additionalInfoLevel", 3:"confirmationLevel"};
 	var mappingLeadText = {0:"Please select your vehicle!", 1:"Please select a problem from the template which describes your situation the best or create one!", 2:"Add any additional information or photo/video!", 3:"Please review all information and confirm to create the problem!"};
 	if ($("h2 + p.lead")) {
@@ -99,6 +101,19 @@ function setAddNewProblemStageForm(n, simulateTabSwitch) {
 		var tabPrevious = $("#" + mapping[n-1] + "Tab").get(0);
 		tabPrevious.className = tabPrevious.className.replace(" active", "")
 	}
+}
+function loadAddNewProblemReview() {
+	var textSelectedCarDefault = "Selected car: "
+	var textSelectedTemplateDefault = "Selected template: "
+	var textAdditionalInfoDefault = "Additional info: "
+	var textMediaFilesDefault = "Media files: "
+	var vehicleId = $("select#vehicle").val();
+	var vehicleName = $("option[value="+vehicleId+"]").html();
+	var templateId = $("input[name='problems[]'][ value!='']").val();
+	var templateName = $('#' + templateId + ' span').html()
+	console.log(templateId, templateName, vehicleName);
+	$("#selectedCar").html(textSelectedCarDefault+'<span class="black-text flow-text medium">'+vehicleName+'</span>');
+	$("#selectedTemplate").html(textSelectedTemplateDefault+'<span class="black-text flow-text medium">'+templateName+'</span>');
 }
 function setAddNewProblemInitialStage() {
 	showAddNewProblemInitialCancelButton();

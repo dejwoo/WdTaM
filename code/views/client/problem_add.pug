@@ -56,10 +56,10 @@ block content
                                 a.col.s12.space.btn-large.waves-effect.waves-light(href="#addRecording") Add a recording
                     .row#confirmationLevel
                         .container
-                            p.small.grey-text Selected car:
-                            p.small.grey-text Selected template:
-                            p.small.grey-text Additional info:
-                            p.small.grey-text Media files:
+                            p#selectedCar.small.grey-text.flow-text Selected car:
+                            p#selectedTemplate.small.grey-text.flow-text Selected template:
+                            p#additionalInfo.small.grey-text.flow-text Additional info:
+                            p#mediaFiles.small.grey-text.flow-text Media files:
                     .row.space.center-aligned
                         a#addNewProblemCancelButtonInitial.btn.col.space.s12.m5.waves-effect.waves-light(href='/') Cancel
                         button#addNewProblemBackButton.btn.col.space.s12.m5.waves-effect.waves-light.hide(type='button' onclick="setAddNewProblemStage(currentLevel-1, 1)") Back
@@ -98,8 +98,8 @@ block content
                     .modal-content
                         .row
                             .input-field.file-field
-                                .btn.col.s12
-                                    span Add image
+                                .btn
+                                    span.col.s12 Add image
                                     input#image(type='file' accept="image/*" capture="camera" name="image" multiple)
                                 .file-path-wrapper.col.s12
                                     input.file-path.validate(type="text")
@@ -110,8 +110,8 @@ block content
                     .modal-content
                          .row
                             .input-field.file-field
-                                .btn.col.s12
-                                    span Add video
+                                .btn
+                                    span.col.s12 Add video
                                     input#video(type='file' accept="video/*" name="video" capture="camcorder" multiple)
                                 .file-path-wrapper.col.s12
                                     input.file-path.validate(type="text")
@@ -122,8 +122,8 @@ block content
                     .modal-content
                          .row
                             .input-field.file-field
-                                .btn.col.s12
-                                    span Add recording
+                                .btn
+                                    span.col.s12 Add recording
                                     input#recording(type='file' accept="audio/*" name="recording" capture="microphone" multiple)
                                 .file-path-wrapper.col.s12
                                     input.file-path.validate(type="text")
