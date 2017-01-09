@@ -28,7 +28,7 @@ if user
                         a(href="#!user")
                             if (user && !user.profile_img)
                                 -var letter = user.username.substr(0,1)
-                                span(data-letters=letter)
+                                span.profile-letter-circle(data-letters=letter)
                         a(href="#!name")
                             span.white-text.name
                                 =user.username

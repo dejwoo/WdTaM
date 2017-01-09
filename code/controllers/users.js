@@ -88,6 +88,16 @@ router.get('/help', function(req, res){
     res.render('help');
 });
 
+router.get('/settings', isAuthenticated, function (req, res) {
+    if (req.user) {
+        res.render('settings', {title: 'Settings', user:req.user});
+    } else {
+        res.redirect('/')
+    }
+});
+
+
+
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -143,6 +153,4 @@ router.get('/td', isAuthenticated, function (req, res) {
         res.redirect('/')
     }
 });
-
-
 module.exports = router;

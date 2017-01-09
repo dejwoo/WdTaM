@@ -42,7 +42,7 @@ block content
                                             - var temp = item.images? "col s12 m6 l7 "+ side :"col s12 m8 l8 "+ side;
                                             div(class=temp)
                                                 div(class="row" + " message-header-" + side)
-                                                    p.profile-icon(data-letters=item.author.firstName.charAt(0) + item.author.lastName.charAt(0))
+                                                    span.profile-letter-circle(data-letters=item.author.firstName.charAt(0) + item.author.lastName.charAt(0))
                                                     div
                                                         p.message-author
                                                             = "Written by " + item.author.firstName + " " + item.author.lastName

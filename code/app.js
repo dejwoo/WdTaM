@@ -66,6 +66,7 @@ app.locals.moment = require('moment');
 app.locals.humanizeDuration = require('humanize-duration');
 app.locals.money = require('money');
 app.locals.numeral = require('numeral');
+app.locals.randomcolor = require('randomcolor');
 app.locals.numeral.register('locale', 'sk', {
     delimiters: {
         thousands: ' ',
