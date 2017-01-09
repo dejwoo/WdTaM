@@ -24,20 +24,68 @@ block content
 
 
         var messages2 = [
-        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:""},
-        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:true}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum},
-        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
-        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]},
-        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:true}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum},
-        {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
-        images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg","media/usr_001/ticket_0123_img_3.jpg"]}]
+        {
+            title: "Car problem",
+            author: {
+                firstName:'Robert',
+                lastName:'Tester',
+                isMechanic:false
+            },
+            createdate:temp_date.subtract(0,'day'),
+            messageContent:"Thank you very much Yohan, you've saved my business! You guys fixed it so fast, that I can't be more thankful... I've never seen such talented people. If I experience some more problems with the engine I will send you a message, but for now it works like a charm. Cheers! "
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Yohan',
+                lastName:'Schmidt',
+                isMechanic:true
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"That's really sad. I will check if we have it in stock, so we can replace it with the engine, " +
+            "but usually we have plenty of these for cars like yours, so no worries. We will be waiting for you at 4 PM."
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Robert',
+                lastName:'Tester',
+                isMechanic:false
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"That's really great! Yes, I will come at 4 PM, is that okay with you? And yeah... Some drunken people broke my side window in the morning, is it possible to replace it while fixing the engine?",
+            images:["media/usr_001/ticket_0123_img_3.jpg"]
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Yohan',
+                lastName:'Schmidt',
+                isMechanic:true
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"Hello, it looks like there's a problem with the turbo. You have to come here, so we can diagnose the exact problem. We can make the diagnostic pretty fast, so will tell you then" +
+            " how serious the problem really is. If you need the car for your business and we can't fix it that day, we provide you our car for the days we're working on yours. Can you come today afternnon?"
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Robert',
+                lastName:'Tester',
+                isMechanic:false
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"Hello, I have a problem with my car. Whenever I start the engine, it sounds really bad. I mean it lasts during the whole car ride and it also can't go fast now, I can have my foot on the floor and it won't go faster than 80kph. " +
+            "I've tried to open the mask, but can't really hear the exact part where it is coming from. I mean, I don't know what to do now. I need my car for my business every day, so I hope it is not something serious. Could you help me with this, please?",
+            images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg"]
+        }]
 
     .parent
         .content-panel
                 main.main-content
                     .container-fluid.row
                         ul.collapsible.show-first.popout(data-collapsible='accordion')
-                            each item, index in messages
+                            each item, index in messages2
                                 li.detail-card
                                     - var side = item.author.isMechanic?"right": "left"
                                     div(class="collapsible-header" + " message-card-header-" + side)
