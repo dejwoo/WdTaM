@@ -64,7 +64,7 @@ block body-inner
                     if _.isArray(value)
                         h3.scrollspy(id= _.kebabCase(index))= index
                         each paragraph in value
-                            p= paragraph
+                            p.flow-text= paragraph
                     else
                         h3.scrollspy(id=_.kebabCase(index))= index
                         section
@@ -72,7 +72,7 @@ block body-inner
                                 section
                                     h4.scrollspy(id= _.kebabCase(index2))= index2
                                     each paragraph in value2
-                                        p= paragraph
+                                        p.flow-text= paragraph
     include includes/header
     include includes/sidebar
 
