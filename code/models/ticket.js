@@ -6,7 +6,10 @@ var TicketSchema = new Schema({
     mechanic: {type: Schema.Types.ObjectId, ref: 'Account'},
     messages: [{type: Schema.Types.ObjectId, ref: 'Message'}],
     status: {type: Schema.Types.ObjectId, ref: 'Status'},
-    title: String
+    title: String,
+    vehicle: {type: Schema.Types.ObjectId, ref: 'Vehicle'}
+    additionalInfo: [{type: Schema.Types.ObjectId, ref: 'additionalInfo'}]
+    templates: [{type: Schema.Types.ObjectId, ref: 'additionalInfo'}]
 });
 
 var Ticket = mongoose.model('Ticket', TicketSchema);
