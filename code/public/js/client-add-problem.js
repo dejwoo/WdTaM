@@ -240,6 +240,23 @@ function createTemplate(form) {
 		return;
 	}
 	socket.emit("createTemplate", {userId:userId, title:form.title.value, description:form.description.value});
-	form.title.value = "";
-	form.description.value = "";
+	var created = false;
+	socket.on("createTemplateResponse", function(data) {
+		if (created) {
+			return;
+		}
+		created = true;
+		if (data.error) {
+			Materialize.toast("Something went wrong please try again!", 4000, 'orange center-aligned large black-text flow-text')
+			console.error("createTemplateResponseError: ", data.error)
+			return;
+		}
+		if (!$("#templateList")) {
+			console.error("createTemplateResponseError: Could not find the template list");
+		}
+		var newTemplateHtml = '<li><div class="collapsible-header" onclick="addNewProblemToggleProblemTemplate(this)" id="'+data.template._id+'"><i class="material-icons">check_box_outline_blank</i><span class="flow-text">'+data.template.title+'</span><input type="hidden" name="problems[]" value=""></div><div class="collapsible-body"><p class="flow-text">'+data.template.desc+'</p></div></li>';
+		$(newTemplateHtml).prependTo($('#templateList'));
+		form.title.value = "";
+		form.description.value = "";
+	});
 }

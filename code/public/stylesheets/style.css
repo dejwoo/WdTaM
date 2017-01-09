@@ -224,7 +224,7 @@ span.profile-letter-circle {
   border-radius: 50%;
   vertical-align: middle;
   color: white;
-  background: #88c26a; }
+  background: #65373d; }
 
 .profile-letter-circle[data-letters]:before {
   content: attr(data-letters); }

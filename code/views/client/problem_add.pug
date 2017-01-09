@@ -38,20 +38,15 @@ block content
                             label(for="vehicle" data-error="Please select car with a problem!" data-success="Car selected!") Select your vehicle
                     .row#selectProblemLevel
                         .input-field.col.s12
-                            ul.collapsible(data-collapsible="expandable")
-                                li
-                                    .collapsible-header(onclick="addNewProblemToggleProblemTemplate(this)" id="problems[x]._id")
-                                        |Problem Title 1 <i class="material-icons right">check_box_outline_blank</i>
-                                        input(type='hidden', name="problems[]" value="")
+                            ul.collapsible#templateList(data-collapsible="expandable")
+                                - for (var x = 0; x < templates.length; x++)
+                                    li
+                                        .collapsible-header(onclick="addNewProblemToggleProblemTemplate(this)" id=templates[x]._id)
+                                            |#[i.material-icons check_box_outline_blank]#[span.flow-text #{templates[x].title}]
+                                            input(type='hidden', name="problems[]" value="")
 
-                                    .collapsible-body
-                                        p Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.
-                                li
-                                    .collapsible-header(onclick="addNewProblemToggleProblemTemplate(this)" id="problems[x]._id2")
-                                       |Problem Title 1 <i class="material-icons right">check_box_outline_blank</i>
-                                       input(type='hidden', name="problems[]" value="")
-                                    .collapsible-body
-                                        p Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.
+                                        .collapsible-body
+                                            p.flow-text #{templates[x].desc}
                     .row#additionalInfoLevel
                          .container
                             .row.center-align.section

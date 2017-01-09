@@ -8,12 +8,12 @@ block content
         if (vehicles.length == 0)
             main.valign-wrapper.container
                 h3.grey-text.text-lighten-1.hide-on-med-and-down.
-                    It appears you don't have any vehicles yet. Add one #[a(href="/client/vehicle/add") here!]
+                    It appears you don't have any vehicles yet. Add one #[a.btn-floating.btn-large.waves-effect.waves-light.red(href="/client/vehicle/add")] here!
                 h5.grey-text.text-lighten-1.hide-on-large-only.
-                    It appears you don't have any vehicles yet. Add one by clicking on a #[i.material-icons add] button in right corner!
+                    It appears you don't have any vehicles yet. Add one by clicking on a #[i.material-icons.red add] button in right corner!
                 .fixed-action-btn.hide-on-large-only
-                    a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='#!')
-                        i.material-icons edit
+                    a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='/client/vehicle/add')
+                        i.material-icons add
         else
             main.container.row.hide-on-med-and-down
                 - for (var x = (page-1)*perPage; x < page*perPage && x < vehicles.length; x++)
@@ -42,9 +42,9 @@ block content
                                                 =vehicles[x].vin
                                                 .secondary-content
                                                     p VIN
-                                    .card-action
-                                        - var link = "/vehicle/" + vehicles[x]._id
-                                        a(href=link) Details
+                                    //- .card-action
+                                    //-     - var link = "/vehicle/" + vehicles[x]._id
+                                        //- a(href=link) Details
                 .fixed-action-btn
                     a.btn-floating.btn-large.waves-effect.waves-light.red.right(href='/client/vehicle/add')
                         i.material-icons edit
@@ -77,9 +77,9 @@ block content
                                                         =vehicles[x].vin
                                                         .secondary-content
                                                             p VIN
-                                            .card-action
-                                                - var link = "/vehicle/" + vehicles[x]._id
-                                                a(href=link) Details
+                                            //- .card-action
+                                            //-     - var link = "/vehicle/" + vehicles[x]._id
+                                            //-     a(href=link) Details
                     //- .swiper-button-prev
                     //-     i.material-icons fast_rewind
                     //- .swiper-button-next
