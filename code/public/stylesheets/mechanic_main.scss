@@ -95,12 +95,13 @@ a.hamburger {
   left: 0;
   bottom: 0;
   width: 100%;
+  padding-top: 0!important;
   background: #555;
-  @media screen and (max-width:320px){
-    padding-left: $leftPanelWidth;
+  @media screen and (max-width:425px){
+    padding-left: 0
   }
-  @media screen and (min-width:321px){
-    padding-left: 0;
+  @media screen and (min-width:426px){
+    padding-left: $leftPanelWidth;
   }
   .container-fluid {
     padding-left: 25px;
