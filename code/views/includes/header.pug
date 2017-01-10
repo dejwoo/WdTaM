@@ -1,40 +1,45 @@
 block header
     header.header
-        nav.light-blue
+        nav.cyan.darken-4
             .nav-wrapper.row
                 if (!user)
                     .col.s5.m3
                         span.brand-logo
-                            a(href="/")= "eService - " + title
-
+                            if title
+                                a.orange-text.darken-1(href="/")= "eService - " + title
+                            else
+                                a.orange-text.darken-1(href="/") eService
                     ul.right.hide-on-med-and-down
-                        li: a(href="/help") Help
-                        li: a(href="/register") Register
-                        li: a(href="/login") Login
+                        li: a.orange-text.darken-1(href="/help") Help
+                        li: a.orange-text.darken-1(href="/register") Register
+                        li: a.orange-text.darken-1(href="/login") Login
                     a.right.hide-on-large-only.dropdown-button(href="#" data-activates="nav-mobile" data-beloworigin="true" data-constrainWidth="false")
                         i.material-icons menu
                     ul#nav-mobile.dropdown-content.right.col.s12
-                        li: a(href="/login") Login
-                        li: a(href="/register") Register
-                        li: a(href="/help") Help
+                        li: a.orange-text.darken-1(href="/login") Login
+                        li: a.orange-text.darken-1(href="/register") Register
+                        li: a.orange-text.darken-1(href="/help") Help
                 else
                     if user.isMechanic
                         a.hamburger(href='#')
                             span.material-icons menu
-                    a.brand-logo(href='/')
+                    a.brand-logo(href='/').orange-text.darken-1
                         if(user.isMechanic)
-                            = 'eService Dashboard - ' + title
+                            if title
+                                = 'eService Dashboard - ' + title
+                            else
+                                = 'eService Dashboard'
                         else
-                            = 'eService - ' + title
+                            = 'eService'
                     if (user.isMechanic)
                         //form.left.search.col.s6.hide-on-small-and-down.input-field
                                 input#search(type="search",placeholder="Search",autocomplete="off")
                                 label.active(for="search")
                                     i.material-icons.search-icon search
                         a.profile.profile-menu.right(href="#!" data-activates='profile-menu-dropdown')
-                            p.hide-on-med-and-down= user.username
+                            p.hide-on-small-and-down= user.firstName + " " + user.lastName
                             if (!user.profile_img)
-                                span.profile-letter-circle.btn-flat.waves-effect(data-letters=user.username.substr(0, 1))
+                                span.profile-letter-circle.btn-flat.waves-effect(data-letters=user.firstName.substr(0, 1) + user.lastName.substr(0, 1))
 
                         ul#profile-menu-dropdown.dropdown-content.card
                             li: a(href="/settings") Account settings

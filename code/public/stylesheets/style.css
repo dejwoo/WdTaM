@@ -1,3 +1,6 @@
+main {
+  flex: 1 0 auto; }
+
 body {
   font: 14px "Roboto", Helvetica, Arial, sans-serif;
   display: flex;
@@ -224,7 +227,7 @@ span.profile-letter-circle {
   border-radius: 50%;
   vertical-align: middle;
   color: white;
-  background: #9db63a; }
+  background: #337443; }
 
 .profile-letter-circle[data-letters]:before {
   content: attr(data-letters); }
@@ -245,5 +248,13 @@ main {
     color: white;
     font-family: "Roboto", sans-serif;
     font-size: 1.2rem; }
+
+footer li a {
+  display: inline-block;
+  padding: 0 5px; }
+
+footer li a i {
+  display: inline-block;
+  padding: 0 5px; }
 
 /*# sourceMappingURL=style.css.map */

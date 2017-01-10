@@ -13,23 +13,29 @@ mixin userContact(randomUser)
 
 mixin aboutContent
     main.row.main-content
-        article.col.s10.push-s1.m8.push-m2
+        article.col.s10
             h3 Our contacts
             .row
-                .col.s12.m7
+                .col.s12.m12.l7
                     p.flow-text If you have any questions/feedback or would like to get in touch with us, here are our contacts
                     #contacts
-                .col.s12.m5
+                .col.s12.m12.l5
                     h4 Our headquarters
                     img#googleMap(src="https://maps.googleapis.com/maps/api/staticmap?center=Bratislava,SK&zoom=14&scale=1&size=300x200&key=AIzaSyCSZzABIzY7QTr-7Fk05fEeg-I5HHZrKr8")
-
-            h4 Socials
-                .card
-                    h5#facebook Facebook
-                .card
-                    h5#google Google+
-                .card
-                    h5#Twitter Twitter
+            .row
+                h4 Socials
+                h4
+                    a#facebook(href="#")
+                        i.mdi.mdi-facebook.mdi-36px
+                        | Facebook
+                h4
+                    a#google(href="#")
+                        i.mdi.mdi-google-plus.mdi-36px
+                        | Google +
+                h4
+                    a#Twitter(href="#")
+                        i.mdi.mdi-twitter.mdi-36px
+                        | Twitter
 
 
 

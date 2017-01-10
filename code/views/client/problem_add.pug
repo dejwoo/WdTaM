@@ -66,8 +66,51 @@ block content
                         button#addNewProblemNextButton.btn.col.space.s12.m5.offset-m2.waves-effect.waves-light(type='button' onclick="setAddNewProblemStage(currentLevel+1, 1)") Next
                         button#addNewProblemSubmitButton.btn.col.space.s12.m5.offset-m2.waves-effect.waves-light.hide(type='submit') Submit
                         a#addNewProblemCancelButton.btn-flat.col.center.s12.m6.offset-m3.waves-effect.waves-light.space.hide(href='/') Cancel
-                    .row.space
-                        div#toast-container
+                    .modal#addDetailDescription
+                        .modal-content
+                            .row
+                                .input-field
+                                    textarea#description.validate.materialize-textarea(type='text', name="description")
+                                    label(for="description") Description
+                        .modal-footer
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Cancel
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Add
+                    .modal#addImage
+                        .modal-content
+                            .row
+                                .input-field.file-field
+                                    .btn
+                                        span.col.s12 Add image
+                                        input#image(type='file' accept="image/*" capture="camera" name="image" multiple)
+                                    .file-path-wrapper.col.s12
+                                        input.file-path.validate(type="text")
+                        .modal-footer
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Cancel
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Confirm
+                    .modal#addVideo
+                        .modal-content
+                             .row
+                                .input-field.file-field
+                                    .btn
+                                        span.col.s12 Add video
+                                        input#video(type='file' accept="video/*" name="video" capture="camcorder" multiple)
+                                    .file-path-wrapper.col.s12
+                                        input.file-path.validate(type="text")
+                        .modal-footer
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Cancel
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Confirm
+                    .modal#addRecording
+                        .modal-content
+                             .row
+                                .input-field.file-field
+                                    .btn
+                                        span.col.s12 Add recording
+                                        input#recording(type='file' accept="audio/*" name="recording" capture="microphone" multiple)
+                                    .file-path-wrapper.col.s12
+                                        input.file-path.validate(type="text")
+                        .modal-footer
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Cancel
+                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Confirm
                 .modal#createTemplate
                         .modal-content
                             form(role='form' action="javascript:void(0)" id="createTemplateForm" onsubmit="createTemplate(this)")
@@ -83,53 +126,9 @@ block content
                                         textarea#description.materialize-textarea(type='text', name="description")
                                         label(for="description") Description
                         .modal-footer
-                                a.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
+                                a.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#' type="button") Cancel
                                 button.modal-action.modal-close.waves-effect.waves-light.btn-flat(type='submit' form="createTemplateForm") Add
-                .modal#addDetailDescription
-                        .modal-content
-                            .row
-                                .input-field
-                                    textarea#description.validate.materialize-textarea(type='text', name="description")
-                                    label(for="description") Description
-                        .modal-footer
-                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
-                                button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Add
-                .modal#addImage
-                    .modal-content
-                        .row
-                            .input-field.file-field
-                                .btn
-                                    span.col.s12 Add image
-                                    input#image(type='file' accept="image/*" capture="camera" name="image" multiple)
-                                .file-path-wrapper.col.s12
-                                    input.file-path.validate(type="text")
-                    .modal-footer
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Confirm
-                .modal#addVideo
-                    .modal-content
-                         .row
-                            .input-field.file-field
-                                .btn
-                                    span.col.s12 Add video
-                                    input#video(type='file' accept="video/*" name="video" capture="camcorder" multiple)
-                                .file-path-wrapper.col.s12
-                                    input.file-path.validate(type="text")
-                    .modal-footer
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Confirm
-                .modal#addRecording
-                    .modal-content
-                         .row
-                            .input-field.file-field
-                                .btn
-                                    span.col.s12 Add recording
-                                    input#recording(type='file' accept="audio/*" name="recording" capture="microphone" multiple)
-                                .file-path-wrapper.col.s12
-                                    input.file-path.validate(type="text")
-                    .modal-footer
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Cancel
-                            button.modal-action.modal-close.waves-effect.waves-light.btn-flat(href='#') Confirm
+                
     .fixed-action-btn
         a.btn-floating#templateFab(class="btn-large waves-effect waves-light red right hide" href="#createTemplate")
             i.material-icons add

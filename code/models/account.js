@@ -11,6 +11,7 @@ var AccountSchema = new Schema({
     firstName: String,
     lastName: String,
     date: { type: Date, default: Date.now },
+    lastLogin: { type: Date, default: Date.now },
     vehicles: [{type:Schema.Types.ObjectId, ref: 'Vehicle'}]
 });
 
