@@ -78,14 +78,101 @@ block content
             messageContent:"Hello, I have a problem with my car. Whenever I start the engine, it sounds really bad. I mean it lasts during the whole car ride and it also can't go fast now, I can have my foot on the floor and it won't go faster than 80kph. " +
             "I've tried to open the mask, but can't really hear the exact part where it is coming from. I mean, I don't know what to do now. I need my car for my business every day, so I hope it is not something serious. Could you help me with this, please?",
             images:["media/usr_001/ticket_0123_img_1.jpg","media/usr_001/ticket_0123_img_2.jpg"]
-        }]
+        }];
+
+        var messages3 = [
+        {
+            title: "Car crash",
+            author: {
+                firstName:'Robert',
+                lastName:'Tester',
+                isMechanic:false
+            },
+            createdate:temp_date.subtract(0,'day'),
+            messageContent:"Money isn't a problem. I just want my wife to be happy! Please try it, I count on you."
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Yohan',
+                lastName:'Schmidt',
+                isMechanic:true
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"I'm sorry to say that, but we've checked the car and the engine is broken, so teoretically it can be fixed, but it could be very expensive."
+            },
+            {
+            title: "Message 1",
+            author: {
+            firstName:'Robert',
+            lastName:'Tester',
+            isMechanic:false
+        },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"Yes, sure, I hope you can find the way to fix it, it was her favorite car..."
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Yohan',
+                lastName:'Schmidt',
+                isMechanic:true
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"Hello John, the car may look destroyed from outside, but what is more important is under its skin. We will come for the car and let you know. Can we come in the morning?"
+        },
+        {
+            title: "Car crash",
+            author: {
+                firstName:'John Doe',
+                lastName:'Tester',
+                isMechanic:false
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"My wife just crashed my car, that's not something unusual though, but look at what she did, I really can't understand how could this eventually happen. Guys, is it possible to fix this? I mean you fixed everething my wife broke, but this looks pretty serious. Please let me know if you can help.",
+            images:["media/usr_002/118057481.jpg","media/usr_002/1649894146.jpg"]
+        }];
+
+        var messages4 = [
+
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Jimmy Appendix',
+                lastName:'Tester',
+                isMechanic:false
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"Okay, I hope he gets well... Thanks for the help."
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Yohan',
+                lastName:'Schmidt',
+                isMechanic:true
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"Hello. If it doesn't get better in a week, go with it to see a doctor. From the picture you sent me it looks like a regular flu. Just give it a rest."
+        },
+        {
+            title: "Message 1",
+            author: {
+                firstName:'Jimmy Appendix',
+                lastName:'Tester',
+                isMechanic:false
+            },
+            createdate:temp_date.subtract(1,'day'),
+            messageContent:"My car has high temperature all the time, I don't know what to do.. I gave it ton of Paralen in the fuel tank, but it didn't work, really.. Please help me.",
+            images:["media/usr_003/new_454627891.jpg"]
+        }];
 
     .parent
         .content-panel
                 main.main-content
                     .container-fluid.row
                         ul.collapsible.show-first.popout(data-collapsible='accordion')
-                            each item, index in messages2
+                            each item, index in messages4
                                 li.detail-card
                                     - var side = item.author.isMechanic?"right": "left"
                                     div(class="collapsible-header" + " message-card-header-" + side)
