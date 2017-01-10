@@ -259,9 +259,7 @@ module.exports = function(io) {
             let not_solved = _.filter(tickets, (o) => {
                 return o.status.name != 'Solved'
             });
-            res.render('client/problems', {
-                tickets: _.sortBy(not_solved, ['updated_date'])
-            });
+            res.render('client/problems', {tickets: _.sortBy(not_solved, ['updated_date']), title: "Open problems"});
         }
     });
     router.get('/problems/resolved/:latest', isAuthenticated, function(req, res) {
@@ -269,14 +267,7 @@ module.exports = function(io) {
         if (req.user.isMechanic) {
             res.redirect('mechanic/tickets');
         } else {
-            res.render('client/problems', {
-                tickets: _.filter(tickets, {
-                    'status': {
-                        'name': 'Solved',
-                        rank: 2
-                    }
-                })
-            })
+            res.render('client/problems', {tickets: _.filter(tickets, {'status': {'name': 'Solved', rank: 2}}), title: "Resolved problems"})
         }
     });
     return router;

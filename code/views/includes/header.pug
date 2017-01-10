@@ -24,16 +24,13 @@ block header
                         a.hamburger(href='#')
                             span.material-icons menu
                     a.brand-logo(href='/').orange-text.darken-1
-                        if title
-                            if(user.isMechanic)
+                        if(user.isMechanic)
+                            if title
                                 = 'eService Dashboard - ' + title
                             else
-                                = 'eService - ' + title
-                        else
-                            if(user.isMechanic)
                                 = 'eService Dashboard'
-                            else
-                                = 'eService'
+                        else
+                            = 'eService'
                     if (user.isMechanic)
                         //form.left.search.col.s6.hide-on-small-and-down.input-field
                                 input#search(type="search",placeholder="Search",autocomplete="off")
