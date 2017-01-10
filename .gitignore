@@ -58,6 +58,7 @@ jspm_packages
 # User-specific stuff:
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/watcherTasks.xml
 
 # Sensitive or high-churn files:
 .idea/dataSources/
