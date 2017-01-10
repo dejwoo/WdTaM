@@ -74,8 +74,13 @@ a.hamburger {
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #555;
-  padding-left: 250px; }
+  background: #555; }
+  @media screen and (max-width: 320px) {
+    .page-footer {
+      padding-left: 250px; } }
+  @media screen and (min-width: 321px) {
+    .page-footer {
+      padding-left: 0; } }
   .page-footer .container-fluid {
     padding-left: 25px; }
 

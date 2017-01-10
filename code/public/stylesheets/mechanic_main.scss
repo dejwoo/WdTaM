@@ -96,7 +96,12 @@ a.hamburger {
   bottom: 0;
   width: 100%;
   background: #555;
-  padding-left: $leftPanelWidth;
+  @media screen and (max-width:320px){
+    padding-left: $leftPanelWidth;
+  }
+  @media screen and (min-width:321px){
+    padding-left: 0;
+  }
   .container-fluid {
     padding-left: 25px;
   }
