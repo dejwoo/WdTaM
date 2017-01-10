@@ -76,7 +76,7 @@ $(function () {
         var el = $(this).closest('tr');
         el.before('<tr><td class="center"><div><a class="delete-table-row" href="#!"><i class="material-icons">delete</i></a></div></td>' +
             '<td><div class="input-field custom-input-field"><label><input value=""></label></div></td>' +
-            '<td><div class="custom-input-field"><input type="text" class="datepicker"></div></td>' +
+            '<td><div class="input-field custom-input-field"><input type="text" class="datepicker"></div></td>' +
             '<td><div class="input-field custom-input-field"><label><input value=""></label></div></td></tr>)');
         el = el.prev();
         el.addClass('opened');

@@ -13,7 +13,7 @@ block content
     - var temp_date = moment(new Date('1.12.2016'));
     - var humanize_setting = {conjunction: ' and ',serialComma: false};
     -
-        var messages = [
+        var messages1 = [
         {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum},
         {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:true}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum},
         {title: "Message 1", author:{firstName:'Robert',lastName:'Tester', isMechanic:false}, createdate:temp_date.subtract(1,'day'), messageContent:lipsum,
@@ -166,13 +166,14 @@ block content
             messageContent:"My car has high temperature all the time, I don't know what to do.. I gave it ton of Paralen in the fuel tank, but it didn't work, really.. Please help me.",
             images:["media/usr_003/new_454627891.jpg"]
         }];
-
+    - var messages_list = [messages2,messages3,messages4,messages1]
     .parent
         .content-panel
                 main.main-content
                     .container-fluid.row
                         ul.collapsible.show-first.popout(data-collapsible='accordion')
-                            each item, index in messages4
+                            - var messages = messages_list[ticketId % 4]
+                            each item, index in messages
                                 li.detail-card
                                     - var side = item.author.isMechanic?"right": "left"
                                     div(class="collapsible-header" + " message-card-header-" + side)

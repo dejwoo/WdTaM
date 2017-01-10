@@ -140,7 +140,7 @@ router.get('/tickets', isAuthenticated, function (req, res) {
 });
 router.get('/ticket-detail', isAuthenticated, function (req, res) {
     if (req.user.isMechanic) {
-        res.render('mechanic/ticket-detail', {title: 'Tickets'});
+        res.render('mechanic/ticket-detail', {title: 'Tickets', ticketId:req.query.id});
     } else {
         res.redirect('/')
     }
