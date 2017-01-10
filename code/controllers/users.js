@@ -48,6 +48,12 @@ router.post('/login', function (req, res, next) {
         if (!user) {
             return res.render('account/login', {reason: info, title: "Login"});
         }
+        //save last login date
+        Account.findOneAndUpdate({'username': req.body.username}, {lastLogin: Date.now()}, {new:true}, function(err, user) {
+            if (err) {
+                console.log(err);
+            }
+        });
         req.logIn(user, function (err) {
             if (err) {
                 return next(err);
