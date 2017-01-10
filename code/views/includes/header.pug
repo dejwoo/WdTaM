@@ -5,7 +5,7 @@ block header
                 if (!user)
                     .col.s5.m3
                         span.brand-logo
-                            a(href="/") eService
+                            a(href="/")= "eService - " + title
 
                     ul.right.hide-on-med-and-down
                         li: a(href="/help") Help
@@ -23,9 +23,9 @@ block header
                             span.material-icons menu
                     a.brand-logo(href='/')
                         if(user.isMechanic)
-                            = 'eService Dashboard'
+                            = 'eService Dashboard - ' + title
                         else
-                            = 'eService'
+                            = 'eService - ' + title
                     if (user.isMechanic)
                         //form.left.search.col.s6.hide-on-small-and-down.input-field
                                 input#search(type="search",placeholder="Search",autocomplete="off")
