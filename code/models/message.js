@@ -14,7 +14,7 @@ var MessageSchema = new Schema({
     creation_date: Date,
     images: [String],
     messageNo: Number,
-    templates: [{type: Schema.Types.ObjectId, ref: 'Template'}]
+    templates: [{type: Schema.Types.ObjectId, ref: 'Template'}],
     additionalInfo: [{type: Schema.Types.ObjectId, ref: 'Template'}]
 });
 
