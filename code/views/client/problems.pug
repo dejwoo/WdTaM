@@ -16,13 +16,13 @@ block content
             each item in tickets
                 a.collection-item.avatar(href='/ticket-detail?id=' + item.id data-status=item.status.name)
                     .row
-                        .col
+                        .col.s12
                             i.material-icons.circle details
                             span.title: =item.title
                             p: =item.name
-                        .col
-                            p: =item.messages[0].subject
-                            p: =item.updated_date.format('Do MMMM YYYY, h:mm')
+                        .col.s12
+                            p: ="Latest subject: " + item.messages[item.messages.length-1].subject
+                            p: ="Updated on: " + item.updated_date.format('Do MMMM YYYY, h:mm')
                     span.secondary-content.badge.new(data-badge-caption=item.status.name)
     main.hide-on-med-and-down.valign-wrapper
         .container
