@@ -1,25 +1,23 @@
 const mongoose = require('mongoose');
-var AutoIncrement = require('mongoose-sequence');
+const AutoIncrement = require('mongoose-sequence');
 const Account = require('./account');
-const Ticket = require('./ticket');
 const Item = require('./item');
-var Schema = mongoose.Schema;
+const Ticket = require('./ticket');
+const Schema = mongoose.Schema;
 
-var MessageSchema = new Schema({
-    autor: {type: Schema.Types.ObjectId, ref: 'Account'},
-    ticket: {type: Schema.Types.ObjectId, ref: 'Ticket'},
-    items: {type: Schema.Types.ObjectId, ref: 'Item'},
+const MessageSchema = new Schema({
+    _ticket: {type: Schema.Types.ObjectId, ref: 'Ticket'},
+    author: {type: Schema.Types.ObjectId, ref: 'Account'},
+    items: [{type: Schema.Types.ObjectId, ref: 'Item'}],
     subject: String,
     text: String,
-    creation_date: Date,
+    creationDate: {type: Date, default: Date.now},
     images: [String],
-    messageNo: Number,
-    templates: [{type: Schema.Types.ObjectId, ref: 'Template'}],
-    additionalInfo: [{type: Schema.Types.ObjectId, ref: 'Template'}]
+    messageNo: {type: Number, default: 0}
 });
 
 //Auto increment each new message in ticket thread
-MessageSchema.plugin(AutoIncrement, {id: 'messageSeq',inc_field: 'messageNo', reference_fields:['ticket']});
+MessageSchema.plugin(AutoIncrement, {id: 'messageSeq', inc_field: 'messageNo', reference_fields: ['_ticket']});
 
-var Message = mongoose.model('Message', MessageSchema);
+const Message = mongoose.model('Message', MessageSchema);
 module.exports = Message;
