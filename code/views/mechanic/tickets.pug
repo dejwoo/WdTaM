@@ -17,7 +17,7 @@ block content
                         label(for="tags") Filter
                         input#ticket-filter.typeahead(type="text" name="tags")
                 .collection#ticket-list
-                    //each item in tickets
+                    each item in tickets
                         a.collection-item.avatar(href='/ticket-detail?id=' + item.id data-status=item.status.name)
                             .row
                                 .col

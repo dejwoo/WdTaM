@@ -18,17 +18,19 @@ const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
+const multer = require('multer');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 
+const upload = multer({dest: path.join(__dirname, 'uploads')});
 /**
  * Create Express server.
  */
 
-var app = express();
-var server = require('http').Server(app);
-var socketApi = require('./socket');
-var io = socketApi.io;
+const app = express();
+const server = require('http').Server(app);
+const socketApi = require('./socket');
+const io = socketApi.io;
 io.attach(server);
 /**
  * Controllers (route handlers).
@@ -84,7 +86,6 @@ app.locals.numeral.register('locale', 'sk', {
 });
 app.locals.numeral.locale('sk');
 
-
 /**
  * Connect to MongoDB.
  */
@@ -96,7 +97,6 @@ mongoose.connection.on('error', function () {
     console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
     process.exit();
 });
-
 
 /**
  * Express configuration.
@@ -125,24 +125,24 @@ app.use(session({
     //    autoReconnect: true
     //})
 }));
-// app.use(lusca({
-//     csrf: true,
-//     csp: {
-//         policy: {
-//             "default-src": "* 'self' dejwoo.com api.dejwoo.com",
-//             "img-src": "* 'self' data* 'unsafe-inline' 'unsafe-eval' w3.org",
-//             "style-src": "'unsafe-inline' 'self' fonts.googleapis.com cdnjs.cloudflare.com",
-//             "script-src": "'unsafe-inline' 'self' code.jquery.com cdnjs.cloudflare.com unpkg.com",
-//             "font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com",
-//             "connect-src": "'self' *"
-//         }
-//     },
-//     xframe: 'SAMEORIGIN',
-//     p3p: 'ABCDEF',
-//     hsts: {maxAge: 31536000, includeSubDomains: true, preload: true},
-//     xssProtection: true,
-//     nosniff: true
-// }));
+app.use(lusca({
+    csrf: true,
+    csp: {
+        policy: {
+            "default-src": "* 'self' dejwoo.com api.dejwoo.com",
+            "img-src": "* 'self' data* 'unsafe-inline' 'unsafe-eval' w3.org",
+            "style-src": "'unsafe-inline' 'self' fonts.googleapis.com cdnjs.cloudflare.com",
+            "script-src": "'unsafe-inline' 'self' code.jquery.com cdnjs.cloudflare.com unpkg.com",
+            "font-src": "'self' fonts.googleapis.com fonts.gstatic.com cdnjs.cloudflare.com",
+            "connect-src": "'self' *"
+        }
+    },
+    xframe: 'SAMEORIGIN',
+    p3p: 'ABCDEF',
+    hsts: {maxAge: 31536000, includeSubDomains: true, preload: true},
+    xssProtection: true,
+    nosniff: true
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -157,7 +157,7 @@ app.use(flash());
 
 app.use(function (req, res, next) {
     res.locals.user = req.user;
-    // res.locals.token = req.csrfToken();
+    res.locals.token = req.csrfToken();
     next();
 });
 

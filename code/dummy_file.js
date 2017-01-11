@@ -107,3 +107,5 @@ let tickets = [
         status: {name: 'New', rank: 4}
     }
 ];
+
+module.exports = tickets;

@@ -174,6 +174,7 @@ module.exports = function (io) {
             statesCursor.on('end', () => res.render('mechanic/tickets', {
                 title: 'Tickets',
                 states: stateList,
+                tickets: require('../dummy_file')
             }));
         } else {
             res.redirect('/')
@@ -207,7 +208,7 @@ module.exports = function (io) {
                 .exec((err, ticket) => {
                 console.log(ticket);
                     res.render('mechanic/ticket-detail',
-                        {title: 'Tickets', ticket: ticket, ticketId: 1});
+                        {title: 'Tickets', ticket: ticket, ticketId: req.query.id});
                 });
             //FIXME ticketId is redundant and is just there for static data until messages can be retrieved from DB
         } else {
