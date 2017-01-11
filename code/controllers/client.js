@@ -13,14 +13,14 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
 }
 
-module.exports = function (io) {
+module.exports = function(io) {
     var socketsDetails = {};
-    io.on('connection', function (socket) {
+    io.on('connection', function(socket) {
         console.log('A user connected ' + socket.id);
-        socket.on("disconnect", function () {
+        socket.on("disconnect", function() {
             console.log("A user disconnected " + socket.id)
         });
-        socket.on("socketInfo", function (data) {
+        socket.on("socketInfo", function(data) {
             console.log("SockInfoData", data);
             if (data.username && data.userId && data.socketId) {
                 socketsDetails[data.userId] = {
@@ -29,7 +29,7 @@ module.exports = function (io) {
                 };
             }
         });
-        socket.on("createTemplate", function (data) {
+        socket.on("createTemplate", function(data) {
             console.log("Creating a new template: ", data);
             (new Template({
                 title: data.title,
@@ -37,7 +37,7 @@ module.exports = function (io) {
                 createdBy: data.userId,
                 timestamp: Date.now(),
                 used: 0
-            })).save(function (err, template) {
+            })).save(function(err, template) {
                 if (err) {
                     console.log(err);
                     socket.emit("createTemplateResponse", {
@@ -54,7 +54,7 @@ module.exports = function (io) {
     });
 
     function sendUser(req, res, next) {
-        res.on('finish', function () {
+        res.on('finish', function() {
             console.log(socketsDetails, req.user.toObject()._id.toString('utf8'));
             if (req.user._id && socketsDetails && socketsDetails[req.user._id]) {
                 io.to(socketsDetails[req.user._id].sockedId).emit("contectedUser", JSON.stringify(req.user.toObject()));
@@ -63,7 +63,7 @@ module.exports = function (io) {
         return next();
     }
 
-    router.get('/home', isAuthenticated, sendUser, function (req, res) {
+    router.get('/home', isAuthenticated, sendUser, function(req, res) {
         if (req.user.isMechanic) {
             res.redirect('/home');
         } else {
@@ -72,7 +72,7 @@ module.exports = function (io) {
             });
         }
     });
-    router.get('/vehicles/:page', isAuthenticated, function (req, res) {
+    router.get('/vehicles/:page', isAuthenticated, function(req, res) {
         if (req.user.isMechanic) {
             res.redirect('/home');
         }
@@ -91,11 +91,11 @@ module.exports = function (io) {
             owner: req.user._id
         }).cursor();
         var vehicleArray = [];
-        cursor.on('data', function (doc) {
+        cursor.on('data', function(doc) {
             // Called once for every document
             vehicleArray.push(doc);
         });
-        cursor.on('end', function () {
+        cursor.on('end', function() {
             if (req.params.page == "latest") {
                 res.render('client/vehicles', {
                     title: 'Vehicles',
@@ -116,7 +116,7 @@ module.exports = function (io) {
         });
     });
 
-    router.get('/vehicle/add', isAuthenticated, function (req, res) {
+    router.get('/vehicle/add', isAuthenticated, function(req, res) {
         if (req.user.isMechanic) {
             res.redirect('/home');
         }
@@ -126,11 +126,11 @@ module.exports = function (io) {
         });
     });
 
-    router.post('/vehicle/add', isAuthenticated, function (req, res) {
+    router.post('/vehicle/add', isAuthenticated, function(req, res) {
         if (req.user.isMechanic) {
             res.redirect('/home');
         }
-        io.on('connection', function (socket) {
+        io.on('connection', function(socket) {
             socket.emit("contectedUser", req.user);
         });
 
@@ -141,7 +141,7 @@ module.exports = function (io) {
             owner: res.locals.user._id,
             ecv: req.body.ecv,
             vin: req.body.vin
-        })).save(function (err, vehicle) {
+        })).save(function(err, vehicle) {
             if (err) {
                 console.err(err);
                 return res.render('client/vehicle_add', {
@@ -153,7 +153,7 @@ module.exports = function (io) {
         });
     });
 
-    router.get('/problem/add', isAuthenticated, function (req, res) {
+    router.get('/problem/add', isAuthenticated, function(req, res) {
         if (req.user.isMechanic) {
             res.redirect('/home');
         }
@@ -162,18 +162,18 @@ module.exports = function (io) {
             owner: req.user._id
         }).cursor();
         var vehicleArray = [];
-        cursor.on('data', function (doc) {
+        cursor.on('data', function(doc) {
             // Called once for every document
             vehicleArray.push(doc);
         });
-        cursor.on('end', function () {
+        cursor.on('end', function() {
             var cursorTemplate = Template.find({}).cursor();
             var templateArray = [];
-            cursorTemplate.on('data', function (doc) {
+            cursorTemplate.on('data', function(doc) {
                 // Called once for every document
                 templateArray.push(doc);
             });
-            cursorTemplate.on('end', function () {
+            cursorTemplate.on('end', function() {
                 res.render('client/problem_add', {
                     title: 'Add problem',
                     vehicles: vehicleArray,
@@ -184,48 +184,74 @@ module.exports = function (io) {
             });
         });
     });
+    router.post('/problem/add', isAuthenticated, function(req, res) {
+        if (req.user.isMechanic) {
+            res.redirect('/home');
+        }
+        console.log(req.body);
+        res.redirect('/client/home');
+    });
     const moment = require('moment');
     const _ = require('lodash');
     let temp_date = moment(new Date('1.12.2016'));
-    let tickets = [
-        {
-            name: 'Jozo',
-            title: 'Critical car malfunction',
-            messages: [{subject: "Re:Re:Tckt1", creation_date: temp_date.subtract(1, 'day')}],
-            id: 0,
-            creation_date: new Date('1.12.2016'),
-            updated_date: moment(),
-            status: {name: 'Solved', rank: 2}
-        },
-        {
-            name: 'John',
-            title: 'Strange sounds',
-            messages: [{subject: "Re:Tckt8", creation_date: temp_date.subtract(5, 'day')}],
-            id: 1,
-            creation_date: new Date('1.12.2016'),
-            updated_date: moment().add(2, 'day'),
-            status: {name: 'In Progress', rank: 3}
-        },
-        {
-            name: 'John',
-            title: 'Strange lights',
-            messages: [{subject: "Tckt1", creation_date: temp_date.subtract(5, 'day')}],
-            id: 1,
-            creation_date: new Date('1.12.2016'),
-            updated_date: moment().add(2, 'day'),
-            status: {name: 'In Progress', rank: 3}
-        },
-        {
-            name: 'John',
-            title: 'Brakes not working',
-            messages: [{subject: "Tckt8", creation_date: temp_date.subtract(5, 'day')}],
-            id: 1,
-            creation_date: new Date('1.12.2016'),
-            updated_date: moment().add(2, 'day'),
-            status: {name: 'In Progress', rank: 3}
-        },
-    ];
-    router.get('/problems/open/:latest', isAuthenticated, function (req, res) {
+    let tickets = [{
+        name: 'Jozo',
+        title: 'Critical car malfunction',
+        messages: [{
+            subject: "Re:Re:Tckt1",
+            creation_date: temp_date.subtract(1, 'day')
+        }],
+        id: 0,
+        creation_date: new Date('1.12.2016'),
+        updated_date: moment(),
+        status: {
+            name: 'Solved',
+            rank: 2
+        }
+    }, {
+        name: 'John',
+        title: 'Strange sounds',
+        messages: [{
+            subject: "Re:Tckt8",
+            creation_date: temp_date.subtract(5, 'day')
+        }],
+        id: 1,
+        creation_date: new Date('1.12.2016'),
+        updated_date: moment().add(2, 'day'),
+        status: {
+            name: 'In Progress',
+            rank: 3
+        }
+    }, {
+        name: 'John',
+        title: 'Strange lights',
+        messages: [{
+            subject: "Tckt1",
+            creation_date: temp_date.subtract(5, 'day')
+        }],
+        id: 1,
+        creation_date: new Date('1.12.2016'),
+        updated_date: moment().add(2, 'day'),
+        status: {
+            name: 'In Progress',
+            rank: 3
+        }
+    }, {
+        name: 'John',
+        title: 'Brakes not working',
+        messages: [{
+            subject: "Tckt8",
+            creation_date: temp_date.subtract(5, 'day')
+        }],
+        id: 1,
+        creation_date: new Date('1.12.2016'),
+        updated_date: moment().add(2, 'day'),
+        status: {
+            name: 'In Progress',
+            rank: 3
+        }
+    }, ];
+    router.get('/problems/open/:latest', isAuthenticated, function(req, res) {
 
         if (req.user.isMechanic) {
             res.redirect('mechanic/tickets');
@@ -236,7 +262,7 @@ module.exports = function (io) {
             res.render('client/problems', {tickets: _.sortBy(not_solved, ['updated_date']), title: "Open problems"});
         }
     });
-    router.get('/problems/resolved/:latest', isAuthenticated, function (req, res) {
+    router.get('/problems/resolved/:latest', isAuthenticated, function(req, res) {
 
         if (req.user.isMechanic) {
             res.redirect('mechanic/tickets');
