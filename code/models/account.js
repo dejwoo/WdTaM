@@ -6,13 +6,14 @@ const Vehicle = require('./vehicle');
 var AccountSchema = new Schema({
     username: String,
     password: String,
-    isMechanic: { type: Boolean, default: false },
+    isMechanic: {type: Boolean, default: false},
     email: String,
     firstName: String,
     lastName: String,
-    date: { type: Date, default: Date.now },
-    lastLogin: { type: Date, default: Date.now },
-    vehicles: [{type:Schema.Types.ObjectId, ref: 'Vehicle'}]
+    date: {type: Date, default: Date.now},
+    lastLogin: {type: Date, default: Date.now},
+    vehicles: [{type: Schema.Types.ObjectId, ref: 'Vehicle'}],
+    picture: {large: String, medium: String, thumbnail: String}
 });
 
 AccountSchema.plugin(passportLocalMongoose);

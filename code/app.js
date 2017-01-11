@@ -30,13 +30,12 @@ var server = require('http').Server(app);
 var socketApi = require('./socket');
 var io = socketApi.io;
 io.attach(server);
-
 /**
  * Controllers (route handlers).
  */
 
 const homeController = require('./controllers/home');
-const userController = require('./controllers/users');
+const userController = require('./controllers/users')(io);
 const clientController = require('./controllers/client')(io);
 
 /**
