@@ -3,6 +3,35 @@ const router = express.Router();
 const passport = require('passport');
 const Vehicle = require('../models/vehicle');
 const Template = require('../models/problem_template');
+const path = require('path');
+const fs = require('fs');
+const util = require('util');
+const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        var userId = req.user._id
+        fs.access(path.join(__dirname, '../uploads/' + userId), fs.constants.R_OK | fs.constants.W_OK, function(exists) {
+            if (!exists) {
+                cb(null, path.join(__dirname, '../uploads/' + userId));
+            } else {
+                fs.mkdir(path.join(__dirname, '../uploads/' + userId), function (err) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    cb(null, path.join(__dirname, '../uploads/' + userId));
+                });
+            }
+        })
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({
+    storage: storage
+});
+
 
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -184,12 +213,30 @@ module.exports = function(io) {
             });
         });
     });
-    router.post('/problem/add', isAuthenticated, function(req, res) {
+    var mediaUpload = upload.fields([{
+        name: 'image',
+        maxCount: 10
+    }, {
+        name: 'video',
+        maxCount: 10
+    }, {
+        name: 'recording',
+        maxCount: 10
+    }])
+    router.post('/problem/add', isAuthenticated, mediaUpload, function(req, res) {
         if (req.user.isMechanic) {
             res.redirect('/home');
         }
         console.log(req.body);
-        res.redirect('/client/home');
+        console.log(req.files);
+        res.writeHead(200, {
+            'content-type': 'text/plain'
+        });
+        res.write('received upload:\n\n');
+        res.end(util.inspect({
+            fields: req.body,
+            files: req.files
+        }));
     });
     const moment = require('moment');
     const _ = require('lodash');
@@ -259,7 +306,10 @@ module.exports = function(io) {
             let not_solved = _.filter(tickets, (o) => {
                 return o.status.name != 'Solved'
             });
-            res.render('client/problems', {tickets: _.sortBy(not_solved, ['updated_date']), title: "Open problems"});
+            res.render('client/problems', {
+                tickets: _.sortBy(not_solved, ['updated_date']),
+                title: "Open problems"
+            });
         }
     });
     router.get('/problems/resolved/:latest', isAuthenticated, function(req, res) {
@@ -267,7 +317,15 @@ module.exports = function(io) {
         if (req.user.isMechanic) {
             res.redirect('mechanic/tickets');
         } else {
-            res.render('client/problems', {tickets: _.filter(tickets, {'status': {'name': 'Solved', rank: 2}}), title: "Resolved problems"})
+            res.render('client/problems', {
+                tickets: _.filter(tickets, {
+                    'status': {
+                        'name': 'Solved',
+                        rank: 2
+                    }
+                }),
+                title: "Resolved problems"
+            })
         }
     });
     return router;

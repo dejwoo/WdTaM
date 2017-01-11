@@ -18,11 +18,9 @@ const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
-const multer = require('multer');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 
-const upload = multer({dest: path.join(__dirname, 'uploads')});
 /**
  * Create Express server.
  */
@@ -116,6 +114,8 @@ app.use(sass({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+
 // app.use(expressValidator());
 app.use(session({
     resave: true,
@@ -148,17 +148,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(function (req, res, next) {
-    if (req.path === '/api/upload') {
-        next();
-    } else {
-        lusca.csrf()(req, res, next);
-    }
-});
+// app.use(function (req, res, next) {
+//     if (req.path === '/api/upload') {
+//         next();
+//     } else {
+//         lusca.csrf({cookie:"_csrf"})(req, res, next);
+//     }
+// });
 
 app.use(function (req, res, next) {
     res.locals.user = req.user;
-    res.locals.token = req.csrfToken();
+    // res.locals.token = req.csrfToken();
     next();
 });
 
@@ -174,7 +174,6 @@ app.use(function (req, res, next) {
     }
     next();
 });
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000}));
 
 // uncomment after placing your favicon in /public
