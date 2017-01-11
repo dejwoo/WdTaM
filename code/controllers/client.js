@@ -3,10 +3,13 @@ const router = express.Router();
 const passport = require('passport');
 const Vehicle = require('../models/vehicle');
 const Template = require('../models/problem_template');
+const AdditionalInfo = require('../models/additionalInfo');
+const Ticket = require('../models/ticket');
 const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const multer = require('multer');
+const _ = require('lodash');
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         var userId = req.user._id
@@ -14,7 +17,7 @@ var storage = multer.diskStorage({
             if (!exists) {
                 cb(null, path.join(__dirname, '../uploads/' + userId));
             } else {
-                fs.mkdir(path.join(__dirname, '../uploads/' + userId), function (err) {
+                fs.mkdir(path.join(__dirname, '../uploads/' + userId), function(err) {
                     if (err) {
                         console.error(err);
                         return;
@@ -227,16 +230,43 @@ module.exports = function(io) {
         if (req.user.isMechanic) {
             res.redirect('/home');
         }
-        console.log(req.body);
-        console.log(req.files);
-        res.writeHead(200, {
-            'content-type': 'text/plain'
+        (new AdditionalInfo({
+            desc: req.body.description,
+            image: _.map(req.files.image, 'filename'),
+            video: _.map(req.files.video, 'filename'),
+            rec: _.map(req.files.recording, 'filename')
+        })).save(function(err, additionalInfo) {
+            if (err) {
+                console.log(err);
+                res.writeHead(500, {
+                    'content-type': 'text/plain'
+                });
+                res.end(err);
+            }
+            var newTicket = {
+                user: req.user._id,
+                mechanic: null,
+                messages: [],
+                status: '5873d5b4d67415ca281bb355',
+                title: "##TEMPLATETITLE##",
+                vehicle: req.body.vehicle_id,
+                templates: req.body.problems.filter(function(item) {
+                    return item != '';
+                }),
+                additionalInfo: additionalInfo._id
+            }
+            Ticket.createTicket(newTicket, {}, function(err, ticket) {
+                if (err) {
+                    console.log(err);
+                    res.writeHead(500, {
+                        'content-type': 'text/plain'
+                    });
+                    res.end(err);
+                }
+            });
         });
-        res.write('received upload:\n\n');
-        res.end(util.inspect({
-            fields: req.body,
-            files: req.files
-        }));
+        res.redirect('/client/problems/open/:latest');
+
     });
     const moment = require('moment');
     const _ = require('lodash');

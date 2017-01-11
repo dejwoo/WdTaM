@@ -17,7 +17,7 @@ const TicketSchema = new Schema({
     updated_date: {type: Date, default: Date.now},
     vehicle: {type: Schema.Types.ObjectId, ref: 'Vehicle'},
     templates: [{type: Schema.Types.ObjectId, ref: 'Template'}],
-    additionalInfo: [{type: Schema.Types.ObjectId, ref: 'AdditionalInfo'}]
+    additionalInfo: String
 });
 
 TicketSchema.methods.appendMessage = function (messageData, cb) {
@@ -32,8 +32,11 @@ TicketSchema.statics.createTicket = function (ticketData, messageData, cb) {
     let ticket = new this(ticketData, (err) => cb(err));
     ticket.save((err, data) => {
         if (err) return cb(err);
-        return ticket.appendMessage(messageData, cb);
-    })
+        if (messageData) {
+            return ticket.appendMessage(messageData, cb);
+        }
+        cb(err,data);
+    });
 };
 
 const Ticket = mongoose.model('Ticket', TicketSchema);
