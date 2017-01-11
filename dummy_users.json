@@ -1,0 +1,146 @@
+[
+  {
+    "name": {
+      "title": "miss",
+      "first": "isabella",
+      "last": "nichols"
+    },
+    "email": "isabella.nichols@example.com",
+    "login": {
+      "username": "beautifulfrog505",
+      "password": "callie",
+      "salt": "K3lBlxTr",
+      "md5": "f1bf9396710ff17ef68f1dca66cc9849",
+      "sha1": "d84dfa6c593045aea1a696fd0eb342ee1d1b42f4",
+      "sha256": "fbf9be6022d3402553c9dcde484639485f4edeb643fa797d0b08f5b0e40c3f18"
+    },
+    "registered": "2006-02-02 19:13:03",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/82.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/82.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/82.jpg"
+    },
+    "isMechanic": false,
+    "nat": "US"
+  },
+  {
+    "name": {
+      "title": "miss",
+      "first": "elizabeth",
+      "last": "chambers"
+    },
+    "email": "elizabeth.chambers@example.com",
+    "login": {
+      "username": "bigfish782",
+      "password": "prophet",
+      "salt": "Xi9FEyId",
+      "md5": "0c5ab99d5f61bbf3d9052063e5c3f634",
+      "sha1": "2dad323dc1e0a075d14b97e624985d43f37b8cd6",
+      "sha256": "789032e95adeece1266c6a0d53406f89759bc86b2925357e5adc1c7ee3c9c393"
+    },
+    "registered": "2013-12-08 13:01:36",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/56.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/56.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/56.jpg"
+    },
+    "isMechanic": false,
+    "nat": "US"
+  },
+  {
+    "name": {
+      "title": "mrs",
+      "first": "mary",
+      "last": "bishop"
+    },
+    "email": "mary.bishop@example.com",
+    "login": {
+      "username": "tinybutterfly203",
+      "password": "evan",
+      "salt": "ayx13ODi",
+      "md5": "49e7a0a61d87a26ccd954bf1d68baa42",
+      "sha1": "d296d2f48c5b54b200b11c2711d85388094f205b",
+      "sha256": "bc2d1802221ac2d490024b3b7f9a52cbc2235ec2b89cfff96a2e1bedb99f7c95"
+    },
+    "registered": "2012-04-15 04:51:36",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/56.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/56.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/56.jpg"
+    },
+    "isMechanic": false,
+    "nat": "US"
+  },
+  {
+    "name": {
+      "title": "mr",
+      "first": "pedro",
+      "last": "palmer"
+    },
+    "email": "pedro.palmer@example.com",
+    "login": {
+      "username": "whitebutterfly545",
+      "password": "1103",
+      "salt": "rdDsPbc5",
+      "md5": "a83e169954752e1c63c0ab5a613e6f69",
+      "sha1": "eec9068f2f7466f3ce7e9b52a0bbde683e193d80",
+      "sha256": "c65cefcbef65c845fae85d1c3a2ff6d5f7f119c5b756e47bf63fd4bc3a34094b"
+    },
+    "registered": "2011-11-20 22:09:47",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/50.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/50.jpg"
+    },
+    "isMechanic": false,
+    "nat": "US"
+  },
+  {
+    "name": {
+      "title": "mr",
+      "first": "landon",
+      "last": "may"
+    },
+    "email": "landon.may@example.com",
+    "login": {
+      "username": "lazyladybug803",
+      "password": "claude",
+      "salt": "UQ8BZsfl",
+      "md5": "6cb5185584477f260566304109639f8e",
+      "sha1": "9b8a94fca930cb66d11127e41420127f4f46718d",
+      "sha256": "ed32c7a0785aa3836a404952cd1b717e4fe7e3a871a127c4f6053a1ecc146852"
+    },
+    "registered": "2009-04-08 05:20:08",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/12.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/12.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/12.jpg"
+    },
+    "isMechanic": true,
+    "nat": "US"
+  },
+  {
+    "name": {
+      "title": "mr",
+      "first": "joseph",
+      "last": "ruiz"
+    },
+    "email": "joseph.ruiz@example.com",
+    "login": {
+      "username": "crazysnake555",
+      "password": "juniper",
+      "salt": "s4jGsMJ0",
+      "md5": "afc96326ce11db2a9fcb8829bb0558c3",
+      "sha1": "52a47b5db783da379f31f83a1971d2d5214b1a4d",
+      "sha256": "433e8fa9c5a6a8c0dc04c5e0266920f278effea71e01795797e345f2eb0a0690"
+    },
+    "registered": "2006-04-15 10:19:06",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/52.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/52.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/52.jpg"
+    },
+    "isMechanic": true,
+    "nat": "US"
+  }
+]
